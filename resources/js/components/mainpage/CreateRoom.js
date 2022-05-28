@@ -10,7 +10,6 @@ export default class CreateRoom extends Component {
         this.state = {
             user_id: 0,
             room_name: "",
-            // letter: "الف",
         };
     }
 
@@ -33,10 +32,6 @@ export default class CreateRoom extends Component {
         });
     };
 
-    // handleChange = (e) => {
-    //     this.setState({ letter: e.target.value });
-    // };
-
     onSubmitButton = (e) => {
         e.preventDefault();
 
@@ -44,7 +39,6 @@ export default class CreateRoom extends Component {
             .post("/api/create_room", {
                 user_id: this.state.user_id,
                 room_name: this.state.room_name,
-                // letter: this.state.letter,
             })
             .then((res) => {
                 if (res.data == "no") {
@@ -83,43 +77,6 @@ export default class CreateRoom extends Component {
                     </p>
                     <br></br>
                     <form onSubmit={this.onSubmitButton}>
-                        {/* <select
-                            className="form-select"
-                            value={this.state.letter}
-                            onChange={this.handleChange}
-                        >
-                            <option value="الف">الف</option>
-                            <option value="ب">ب</option>
-                            <option value="پ">پ</option>
-                            <option value="ت">ت</option>
-                            <option value="ث">ث</option>
-                            <option value="ج">ج</option>
-                            <option value="چ">چ</option>
-                            <option value="ح">ح</option>
-                            <option value="خ">خ</option>
-                            <option value="د">د</option>
-                            <option value="ذ">ذ</option>
-                            <option value="ر">ر</option>
-                            <option value="ز">ز</option>
-                            <option value="ژ">ژ</option>
-                            <option value="س">س</option>
-                            <option value="ش">ش</option>
-                            <option value="ص">ص</option>
-                            <option value="ض">ض</option>
-                            <option value="ط">ط</option>
-                            <option value="ظ">ظ</option>
-                            <option value="ع">ع</option>
-                            <option value="غ">غ</option>
-                            <option value="ف">ف</option>
-                            <option value="ق">ق</option>
-                            <option value="ل">ل</option>
-                            <option value="م">م</option>
-                            <option value="ن">ن</option>
-                            <option value="و">و</option>
-                            <option value="ه">ه</option>
-                            <option value="ی">ی</option>
-                        </select> */}
-                        <br></br>
                         <div className="mb-3">
                             <input
                                 placeholder="اسم اتاق"
