@@ -10,7 +10,7 @@ export default class CreateRoom extends Component {
         this.state = {
             user_id: 0,
             room_name: "",
-            letter: "الف",
+            // letter: "الف",
         };
     }
 
@@ -33,9 +33,9 @@ export default class CreateRoom extends Component {
         });
     };
 
-    handleChange = (e) => {
-        this.setState({ letter: e.target.value });
-    };
+    // handleChange = (e) => {
+    //     this.setState({ letter: e.target.value });
+    // };
 
     onSubmitButton = (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ export default class CreateRoom extends Component {
             .post("/api/create_room", {
                 user_id: this.state.user_id,
                 room_name: this.state.room_name,
-                letter: this.state.letter,
+                // letter: this.state.letter,
             })
             .then((res) => {
                 if (res.data == "no") {
@@ -83,7 +83,7 @@ export default class CreateRoom extends Component {
                     </p>
                     <br></br>
                     <form onSubmit={this.onSubmitButton}>
-                        <select
+                        {/* <select
                             className="form-select"
                             value={this.state.letter}
                             onChange={this.handleChange}
@@ -118,7 +118,7 @@ export default class CreateRoom extends Component {
                             <option value="و">و</option>
                             <option value="ه">ه</option>
                             <option value="ی">ی</option>
-                        </select>
+                        </select> */}
                         <br></br>
                         <div className="mb-3">
                             <input

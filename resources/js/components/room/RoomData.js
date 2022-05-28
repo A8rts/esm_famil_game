@@ -7,7 +7,6 @@ import Room from "./Room";
 export default function RoomKey() {
     let { key } = useParams();
     const [owner, setOwner] = useState();
-    const [letter, setLetter] = useState();
     const [userid, setUserid] = useState();
 
     useEffect(() => {
@@ -30,10 +29,8 @@ export default function RoomKey() {
                         }
                     });
                 } else {
-                    let owner = res.data[0];
-                    let letter = res.data[1];
+                    let owner = res.data;
                     setOwner(owner);
-                    setLetter(letter);
                 }
             })
             .catch((err) => {
@@ -53,7 +50,6 @@ export default function RoomKey() {
     return (
         <Room
             room_key={key}
-            letter={letter}
             owner_id={owner}
             user_id={userid}
         />

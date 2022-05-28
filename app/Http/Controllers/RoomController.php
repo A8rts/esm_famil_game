@@ -21,10 +21,8 @@ class RoomController extends Controller
             return 'error';
         } else {
             $owner = $room[0]->owner;
-            $letter = $room[0]->letter;
-            $room_data = array($owner, $letter);
 
-            return $room_data;
+            return $owner;
         }
     }
 
@@ -43,7 +41,7 @@ class RoomController extends Controller
                 'name' => $room_name,
                 'key' => $key,
                 'owner' => $owner,
-                'letter' => $letter,
+                'letter' => '',
                 'started' => false,
                 'finished' => false,
             ]);
@@ -63,6 +61,12 @@ class RoomController extends Controller
         ]);
 
         event(new FinishEvent($event));
+
+        $letters = request()->letters;
+
+        $rand = array_rand($letters, 1);
+
+        return $letters[$rand];
     }
 
     public function change_started(Request $request)

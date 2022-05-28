@@ -13,6 +13,7 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
+            letter : '',
             esm: "خالی",
             famil: "خالی",
             ghaza: "خالی",
@@ -111,7 +112,12 @@ export default class Room extends Component {
     startGame = () => {
         axios.post("/api/start", {
             room_key: this.state.room_key,
-        });
+            letters : ['الف' , 'ب' , 'پ' ,'ت' ,'ث' , 'ج' ,'چ' ,'ح' ,'خ' ,'د' ,'ذ' ,'ر','ز','ش','س','ص','ض','ط','ظ',
+            'ع','غ','ف','ق','ل','م','ن','و','ه','ی'],
+        })
+        .then((res) => {
+            this.setState({letter : res.data})
+        })
     };
 
     onChangeInput = (e) => {
@@ -131,8 +137,8 @@ export default class Room extends Component {
     };
 
     render() {
-        let {started, room_key, finished, answers, sended, allUsers, esm, famil, ghaza, miveh, mashin, ashia } = this.state;
-        let { owner_id, letter, user_id } = this.props;
+        let {started, room_key, finished, answers, sended, allUsers, esm, famil, ghaza, miveh, mashin, ashia , letter } = this.state;
+        let { owner_id, user_id } = this.props;
 
         return (
             <main className="container p-5">
@@ -152,7 +158,7 @@ export default class Room extends Component {
                                     کلید اتاق : {room_key}
                                 </button>
                                 <br></br>
-
+                                
                                 {started ? (
                                     <></>
                                 ) : finished ? (
