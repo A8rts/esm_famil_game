@@ -72,8 +72,7 @@ export default class CreateRoom extends Component {
                 <div className="col p-4 d-flex flex-column position-static">
                     <h3 className="mb-0">ایجاد اتاق</h3>
                     <p className="card-text mb-auto">
-                        حرف مورد نظر برای شروع کلمات در بازی و اسم اتاق را وارد
-                        کنید
+                        اسم دلخواه برای اتاقتان را وارد کنید
                     </p>
                     <br></br>
                     <form onSubmit={this.onSubmitButton}>

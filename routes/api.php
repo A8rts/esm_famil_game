@@ -29,6 +29,8 @@ Route::post('change_started', [RoomController::class, 'change_started']);
 Route::post('finished', [RoomController::class, 'finished']);
 Route::post('room_data', [RoomController::class, 'room_data']);
 Route::post('get_answers', [RoomController::class, 'get_answers']);
+Route::post('change_letter', [RoomController::class, 'change_letter']);
+Route::post('get_letter', [RoomController::class, 'get_letter']);
 
 Route::post('check_key', [CheckRoomController::class, 'check_key']);
 Route::post('check_started', [CheckRoomController::class, 'check_started']);

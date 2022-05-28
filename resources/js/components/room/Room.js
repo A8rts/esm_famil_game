@@ -13,7 +13,7 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letter : '',
+            letter: "",
             esm: "خالی",
             famil: "خالی",
             ghaza: "خالی",
@@ -50,6 +50,13 @@ export default class Room extends Component {
                         })
                         .then((res) => {
                             this.setState({ started: true });
+                            axios
+                                .post('/api/get_letter' , {
+                                    room_key : this.state.room_key,
+                                })
+                                .then((res) => {
+                                    this.setState({letter: res.data})
+                                })
                         })
                         .catch((err) => {
                             console.log(err);
@@ -107,17 +114,31 @@ export default class Room extends Component {
                     }
                 }
             });
+
+        axios
+            .post('/api/get_letter' , {
+                room_key : this.state.room_key,
+            })
+            .then((res) => {this.setState({letter : res.data})})
+            // So that if the user refreshes the page, the word(letter) for the game will not be lost
     }
 
     startGame = () => {
-        axios.post("/api/start", {
-            room_key: this.state.room_key,
-            letters : ['الف' , 'ب' , 'پ' ,'ت' ,'ث' , 'ج' ,'چ' ,'ح' ,'خ' ,'د' ,'ذ' ,'ر','ز','ش','س','ص','ض','ط','ظ',
-            'ع','غ','ف','ق','ل','م','ن','و','ه','ی'],
-        })
-        .then((res) => {
-            this.setState({letter : res.data})
-        })
+        axios
+            .post("/api/start", {
+                room_key: this.state.room_key,
+                letters: [ "الف", "ب", "پ", "ت", "ث", "ج", "چ", "ح", "خ", "د", "ذ", "ر", "ز", "ش", "س",
+                 "ص", "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ل", "م", "ن", "و", "ه", "ی" ],
+            })
+            .then((res) => {
+                this.setState({ letter: res.data });
+
+                axios
+                    .post("/api/change_letter", {
+                        room_key: this.state.room_key,
+                        letter: this.state.letter,
+                    })
+            });
     };
 
     onChangeInput = (e) => {
@@ -137,7 +158,7 @@ export default class Room extends Component {
     };
 
     render() {
-        let {started, room_key, finished, answers, sended, allUsers, esm, famil, ghaza, miveh, mashin, ashia , letter } = this.state;
+        let { started, room_key, finished, answers, sended, allUsers, esm, famil, ghaza, miveh, mashin, ashia, letter } = this.state;
         let { owner_id, user_id } = this.props;
 
         return (
@@ -158,7 +179,7 @@ export default class Room extends Component {
                                     کلید اتاق : {room_key}
                                 </button>
                                 <br></br>
-                                
+
                                 {started ? (
                                     <></>
                                 ) : finished ? (

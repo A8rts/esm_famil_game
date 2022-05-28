@@ -69,6 +69,20 @@ class RoomController extends Controller
         return $letters[$rand];
     }
 
+    public function change_letter()
+    {
+        $room_key = request()->room_key;
+        $room = Room::where('key', $room_key)->update(['letter' => request()->letter]);
+    }
+
+    public function get_letter()
+    {
+        $room_key = request()->room_key;
+        $room = Room::where('key', $room_key)->get();
+
+        return $room[0]->letter;
+    }
+
     public function change_started(Request $request)
     {
         $room_key = request()->room_key;
