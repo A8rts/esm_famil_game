@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('room_key');
             $table->string('event');
+            $table->string('letter');
             $table->timestamps();
         });
     }

@@ -96,7 +96,7 @@ export default class Result extends Component {
                                             }}
                                             href="/game"
                                         >
-                                            بازگشت به صفحه اصلی
+                                            ترک کردن اتاق
                                         </a>
                                     </button>
                                 </div>

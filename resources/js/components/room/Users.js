@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Users extends Component {
     render() {
-        let { allUsers } = this.props;
+        let { allUsers , user_id , owner_id} = this.props;
 
         return (
             <div className="list-group">

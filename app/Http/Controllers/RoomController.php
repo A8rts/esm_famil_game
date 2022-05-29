@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\FinishEvent;
 use App\Models\Room;
 use App\Models\RoomEvent;
+use App\Models\RoomGame;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -58,6 +59,7 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => 'start',
+            'letter' => 'null'
         ]);
 
         event(new FinishEvent($event));
@@ -86,7 +88,7 @@ class RoomController extends Controller
     public function change_started(Request $request)
     {
         $room_key = request()->room_key;
-        $room = Room::where('key', $room_key)->update(['started' => true]);
+        $room = Room::where('key', $room_key)->update(['started' => true, 'finished' => false]);
 
         return 'updated';
     }
@@ -110,6 +112,7 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => $message,
+            'letter' => 'ss',
         ]);
 
         event(new FinishEvent($event));
@@ -130,5 +133,19 @@ class RoomController extends Controller
         $answers = RoomEvent::where('room_key', $room_key)->get();
 
         return $answers;
+    }
+
+    public function letters_finished()
+    {
+        $room_key = request()->room_key;
+
+        $event = RoomEvent::create([
+            'room_key' => $room_key,
+            'event' => 'all letters finished',
+        ]);
+
+        event(new FinishEvent($event));
+
+        //for when all letters in game finished, make event to all users
     }
 }
