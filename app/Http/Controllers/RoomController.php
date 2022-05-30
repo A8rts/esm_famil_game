@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\RoomEvent;
 use App\Models\RoomGame;
 use App\Models\User;
+use App\Models\UserGame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Unique;
@@ -59,7 +60,6 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => 'start',
-            'letter' => 'null'
         ]);
 
         event(new FinishEvent($event));
@@ -93,6 +93,19 @@ class RoomController extends Controller
         return 'updated';
     }
 
+    public function create_room_game()
+    {
+        $room_key = request()->room_key;
+        $letter = request()->letter;
+
+        $create = RoomGame::create([
+            'room_key' => $room_key,
+            'letter' => $letter,
+        ]);
+
+        return $create;
+    }
+
     public function finish(Request $request)
     {
         $room_key = request()->room_key;
@@ -112,12 +125,29 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => $message,
-            'letter' => 'ss',
         ]);
 
         event(new FinishEvent($event));
 
         return $event;
+    }
+
+    public function get_room_games()
+    {
+        $room_key = request()->room_key;
+
+        $room_games = RoomGame::where('room_key', $room_key)->get();
+
+        return $room_games;
+    }
+
+    public function get_users_game()
+    {
+        $room_key = request()->room_key;
+
+        $users_games = UserGame::where('room_key', $room_key)->get();
+
+        return $users_games;
     }
 
     public function finished()
@@ -133,6 +163,21 @@ class RoomController extends Controller
         $answers = RoomEvent::where('room_key', $room_key)->get();
 
         return $answers;
+    }
+
+    public function create_user_game()
+    {
+        $room_key = request()->room_key;
+        $letter = request()->letter;
+        $answer = request()->answer;
+
+        $create = UserGame::create([
+            'room_key' => $room_key,
+            'letter' => $letter,
+            'answer' => $answer,
+        ]);
+
+        return $create;
     }
 
     public function letters_finished()

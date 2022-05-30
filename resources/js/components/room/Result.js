@@ -8,20 +8,16 @@ export default class Result extends Component {
 
     componentDidMount() {
         if (this.props.sended == true) {
-            axios
-                .post("/api/finish", {
-                    user_id: this.props.user_id,
-                    room_key: this.props.room_key,
-                    esm: this.props.esm,
-                    famil: this.props.famil,
-                    ghaza: this.props.ghaza,
-                    miveh: this.props.miveh,
-                    mashin: this.props.mashin,
-                    ashia: this.props.ashia,
-                })
-                .then((res) => {
-                    console.log(res.data);
-                });
+            axios.post("/api/finish", {
+                user_id: this.props.user_id,
+                room_key: this.props.room_key,
+                esm: this.props.esm,
+                famil: this.props.famil,
+                ghaza: this.props.ghaza,
+                miveh: this.props.miveh,
+                mashin: this.props.mashin,
+                ashia: this.props.ashia,
+            });
         }
     }
 

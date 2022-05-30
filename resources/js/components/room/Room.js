@@ -15,8 +15,36 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: [ "الف", "ب", "پ", "ت", "ث", "ج", "چ", "ح", "خ", "د", "ذ", "ر", "ز", "ش", "س", "ص",
-             "ض", "ط", "ظ", "ع", "غ", "ف", "ق", "ل", "م", "ن", "و", "ه", "ی",
+            letters: [
+                "الف",
+                "ب",
+                "پ",
+                "ت",
+                "ث",
+                "ج",
+                "چ",
+                "ح",
+                "خ",
+                "د",
+                "ذ",
+                "ر",
+                "ز",
+                "ش",
+                "س",
+                "ص",
+                "ض",
+                "ط",
+                "ظ",
+                "ع",
+                "غ",
+                "ف",
+                "ق",
+                "ل",
+                "م",
+                "ن",
+                "و",
+                "ه",
+                "ی",
             ],
             letter: "",
             esm: "خالی",
@@ -49,6 +77,8 @@ export default class Room extends Component {
             })
             .listen("FinishEvent", (e) => {
                 if (e.event.event == "start") {
+                    this.clearFormData();
+
                     axios
                         .post("/api/change_started", {
                             room_key: e.event.room_key,
@@ -80,6 +110,11 @@ export default class Room extends Component {
                     this.setState((prevState) => ({
                         answers: [...prevState.answers, e.event.event],
                     }));
+
+                    let state = this.state;
+                    let answer = e.event.event;
+
+                    this.createUserGame(state.room_key, state.letter, answer);
                 }
             });
 
@@ -107,6 +142,19 @@ export default class Room extends Component {
             })
             .catch((err) => {
                 console.log(err);
+            });
+
+        axios
+            .post("/api/check_letters", { room_key: this.state.room_key })
+            .then((res) => {
+                let games = res.data;
+                for (let i = 0; i < games.length; i++) {
+                    this.setState({
+                        letters: this.state.letters.filter(
+                            (item) => item !== games[i].letter
+                        ),
+                    });
+                }
             });
 
         axios
@@ -175,6 +223,8 @@ export default class Room extends Component {
     submitForm = (e) => {
         e.preventDefault();
 
+        this.createRoomGame(this.state.room_key, this.state.letter);
+
         this.setState({ finished: true, started: false, sended: true });
 
         axios.post("/api/finished", {
@@ -183,12 +233,60 @@ export default class Room extends Component {
         });
     };
 
+    clearFormData = () => {
+        let ALL_FORM_DATA = [
+            "esm",
+            "famil",
+            "ghaza",
+            "miveh",
+            "mashin",
+            "ashia",
+        ];
+
+        for (let i = 0; i < ALL_FORM_DATA.length; i++) {
+            this.setState({ [ALL_FORM_DATA[i]]: "خالی" });
+        }
+    };
+
     playAgain = () => {
         this.startGame();
     };
 
+    createRoomGame = (room_key, letter) => {
+        axios
+            .post("/api/create_room_game", {
+                room_key: room_key,
+                letter: letter,
+            })
+            .then((res) => {
+                console.log(res.data);
+            });
+    };
+
+    createUserGame = (room_key, letter, answer) => {
+        axios.post("/api/create_user_game", {
+            room_key: room_key,
+            letter: letter,
+            answer: answer,
+        });
+    };
+
     render() {
-        let { started, room_key, finished, answers, sended, allUsers, esm, famil, ghaza, miveh, mashin, ashia, letter } = this.state;
+        let {
+            started,
+            room_key,
+            finished,
+            answers,
+            sended,
+            allUsers,
+            esm,
+            famil,
+            ghaza,
+            miveh,
+            mashin,
+            ashia,
+            letter,
+        } = this.state;
         let { owner_id, user_id } = this.props;
 
         return (
@@ -225,7 +323,8 @@ export default class Room extends Component {
                                             className="btn btn-dark"
                                             onClick={this.playAgain}
                                         >
-                                            صبر کنید تا سازنده اتاق دوباره بازی را شروع کند
+                                            صبر کنید تا سازنده اتاق دوباره بازی
+                                            را شروع کند
                                         </button>
                                     )
                                 ) : user_id == owner_id ? (

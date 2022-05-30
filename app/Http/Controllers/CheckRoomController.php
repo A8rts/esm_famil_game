@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomGame;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\returnSelf;
 
 class CheckRoomController extends Controller
 {
@@ -46,5 +49,14 @@ class CheckRoomController extends Controller
         } else {
             return 'false';
         }
+    }
+
+    public function check_letters()
+    {
+        $room_key = request()->room_key;
+
+        $room_games = RoomGame::where('room_key', $room_key)->get();
+
+        return $room_games;
     }
 }
