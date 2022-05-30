@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Result from "./Result";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import GameForm from "./GameForm";
 
 const Users = React.lazy(() => import("./Users"));
 
@@ -15,46 +15,13 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: [
-                "الف",
-                "ب",
-                "پ",
-                "ت",
-                "ث",
-                "ج",
-                "چ",
-                "ح",
-                "خ",
-                "د",
-                "ذ",
-                "ر",
-                "ز",
-                "ش",
-                "س",
-                "ص",
-                "ض",
-                "ط",
-                "ظ",
-                "ع",
-                "غ",
-                "ف",
-                "ق",
-                "ل",
-                "م",
-                "ن",
-                "و",
-                "ه",
-                "ی",
+            letters: ["الف","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص",
+            "ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",
             ],
+
             letter: "",
-            esm: "خالی",
-            famil: "خالی",
-            ghaza: "خالی",
-            miveh: "خالی",
-            mashin: "خالی",
-            ashia: "خالی",
             answers: [],
-            sended: false,
+            send : false,
         };
     }
 
@@ -101,85 +68,27 @@ export default class Room extends Component {
                         title: "شما با تمام حروف بازی کرده اید !",
                         confirmButtonText: "باشه",
                     });
+                } else if (e.event.event == "finish") {
+                    //for when click on finish get all users form data and send thoes
+                    this.setState({ finished: true, started: false , send : true});
                 } else {
                     this.setState({
                         finished: true,
                         started: false,
-                        sended: true,
                     });
                     this.setState((prevState) => ({
                         answers: [...prevState.answers, e.event.event],
                     }));
-
-                    let state = this.state;
-                    let answer = e.event.event;
-
-                    this.createUserGame(state.room_key, state.letter, answer);
                 }
             });
 
-        axios
-            .post("/api/check_started", {
-                room_key: this.state.room_key,
-            })
-            .then((res) => {
-                if (res.data == true) {
-                    this.setState({ started: true });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        let room_key = this.state.room_key;
 
-        axios
-            .post("/api/check_finished", {
-                room_key: this.state.room_key,
-            })
-            .then((res) => {
-                if (res.data == true) {
-                    this.setState({ finished: true, started: false });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        axios
-            .post("/api/check_letters", { room_key: this.state.room_key })
-            .then((res) => {
-                let games = res.data;
-                for (let i = 0; i < games.length; i++) {
-                    this.setState({
-                        letters: this.state.letters.filter(
-                            (item) => item !== games[i].letter
-                        ),
-                    });
-                }
-            });
-
-        axios
-            .post("/api/get_answers", {
-                room_key: this.state.room_key,
-            })
-            .then((res) => {
-                let events = res.data;
-                for (let i = 0; i < events.length; i++) {
-                    if (events[i].event !== "start") {
-                        this.setState((prevState) => ({
-                            answers: [...prevState.answers, events[i].event],
-                        }));
-                    }
-                }
-            });
-
-        axios
-            .post("/api/get_letter", {
-                room_key: this.state.room_key,
-            })
-            .then((res) => {
-                this.setState({ letter: res.data });
-            });
-        // So that if the user refreshes the page, the word(letter) for the game will not be lost
+        this.checkStarted(room_key);
+        this.checkFinished(room_key);
+        this.getLetter(room_key);
+        this.removeLetters(room_key);
+        this.getAnswers(room_key);
     }
 
     startGame = () => {
@@ -188,6 +97,7 @@ export default class Room extends Component {
                 room_key: this.state.room_key,
             });
         } else {
+            this.clearFormData();
             axios
                 .post("/api/start", {
                     room_key: this.state.room_key,
@@ -197,13 +107,8 @@ export default class Room extends Component {
                     let letter = res.data;
 
                     for (let i = 0; i < this.state.letters.length; i++) {
-                        this.setState({
-                            letters: this.state.letters.filter(
-                                (item) => item !== letter
-                            ),
-                        });
+                        this.filterLetters(letter);
                     }
-
                     this.setState({ letter: letter });
 
                     axios.post("/api/change_letter", {
@@ -212,25 +117,6 @@ export default class Room extends Component {
                     });
                 });
         }
-    };
-
-    onChangeInput = (e) => {
-        e.preventDefault();
-
-        this.setState({ [e.target.name]: e.target.value });
-    };
-
-    submitForm = (e) => {
-        e.preventDefault();
-
-        this.createRoomGame(this.state.room_key, this.state.letter);
-
-        this.setState({ finished: true, started: false, sended: true });
-
-        axios.post("/api/finished", {
-            room_key: this.state.room_key,
-            letter: this.state.letter,
-        });
     };
 
     clearFormData = () => {
@@ -252,41 +138,85 @@ export default class Room extends Component {
         this.startGame();
     };
 
-    createRoomGame = (room_key, letter) => {
+    checkStarted = (room_key) => {
+        //So that no problem when user refresh the page
         axios
-            .post("/api/create_room_game", {
+            .post("/api/check_started", {
                 room_key: room_key,
-                letter: letter,
             })
             .then((res) => {
-                console.log(res.data);
+                if (res.data == true) {
+                    this.setState({ started: true });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
             });
     };
 
-    createUserGame = (room_key, letter, answer) => {
-        axios.post("/api/create_user_game", {
-            room_key: room_key,
-            letter: letter,
-            answer: answer,
+    checkFinished = (room_key) => {
+        //So that no problem when user refresh the page
+        axios
+            .post("/api/check_finished", {
+                room_key: room_key,
+            })
+            .then((res) => {
+                if (res.data == true) {
+                    this.setState({ finished: true, started: false });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    getLetter = (room_key) => {
+        // So that if the user refreshes the page, the word(letter) for the game will not be lost
+        axios
+            .post("/api/get_letter", {
+                room_key: room_key,
+            })
+            .then((res) => {
+                this.setState({ letter: res.data });
+            });
+    };
+
+    filterLetters = (letter) => {
+        this.setState({
+            letters: this.state.letters.filter((item) => item !== letter),
         });
     };
 
+    removeLetters = (room_key) => {
+        //To prevent the random letter from repeating itself when updating the page in room
+        axios.post("/api/check_letters", { room_key: room_key }).then((res) => {
+            let games = res.data;
+            for (let i = 0; i < games.length; i++) {
+                this.filterLetters(games[i].letter);
+            }
+        });
+    };
+
+    getAnswers = (room_key) => {
+        //for when page is refreshed get all answers
+        axios
+            .post("/api/get_answers", {
+                room_key: room_key,
+            })
+            .then((res) => {
+                let events = res.data;
+                for (let i = 0; i < events.length; i++) {
+                    if (events[i].event !== "start" && events[i].event !== "finish") {
+                        this.setState((prevState) => ({
+                            answers: [...prevState.answers, events[i].event],
+                        }));
+                    }
+                }
+            });
+    };
+
     render() {
-        let {
-            started,
-            room_key,
-            finished,
-            answers,
-            sended,
-            allUsers,
-            esm,
-            famil,
-            ghaza,
-            miveh,
-            mashin,
-            ashia,
-            letter,
-        } = this.state;
+        let { started, room_key, finished, answers, allUsers, letter } = this.state;
         let { owner_id, user_id } = this.props;
 
         return (
@@ -343,137 +273,18 @@ export default class Room extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <Users allUsers={allUsers} />
+                        <Users allUsers={allUsers} room_key={room_key} />
                     </div>
                 </div>
-                {started ? (
-                    finished ? (
-                        <></>
-                    ) : (
-                        <main>
-                            <form onSubmit={this.submitForm}>
-                                <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-                                    <p className="fs-5">
-                                        بازی شروع شده است! وقتی فرم را تکمیل
-                                        کردید روی دکمه تمام کلیک کنید
-                                        <strong>
-                                            {" "}
-                                            توجه بازی با حرف - {letter} - است
-                                        </strong>
-                                    </p>
-                                    <button className="btn btn-success btn-lg">
-                                        تمام
-                                    </button>
-                                </div>
-                                <br></br>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span
-                                            className="input-group-text"
-                                            id=""
-                                        >
-                                            اسم و فامیل
-                                        </span>
-                                    </div>
-                                    <input
-                                        name="esm"
-                                        required
-                                        type="text"
-                                        className="form-control"
-                                        onChange={this.onChangeInput}
-                                        placeholder="اسم"
-                                    ></input>
-                                    <input
-                                        name="famil"
-                                        required
-                                        type="text"
-                                        className="form-control"
-                                        onChange={this.onChangeInput}
-                                        placeholder="فامیل"
-                                    ></input>
-                                </div>
-                                <br></br>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span
-                                            className="input-group-text"
-                                            id=""
-                                        >
-                                            غذا و میوه
-                                        </span>
-                                    </div>
-                                    <input
-                                        onChange={this.onChangeInput}
-                                        name="ghaza"
-                                        required
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="غذا"
-                                    ></input>
-                                    <input
-                                        onChange={this.onChangeInput}
-                                        name="miveh"
-                                        required
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="میوه"
-                                    ></input>
-                                </div>
-                                <br></br>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span
-                                            className="input-group-text"
-                                            id=""
-                                        >
-                                            ماشین و اشیا
-                                        </span>
-                                    </div>
-                                    <input
-                                        onChange={this.onChangeInput}
-                                        name="mashin"
-                                        required
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="ماشین"
-                                    ></input>
-                                    <input
-                                        onChange={this.onChangeInput}
-                                        name="ashia"
-                                        required
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="اشیا"
-                                    ></input>
-                                </div>
-                            </form>
-                        </main>
-                    )
-                ) : (
-                    <></>
-                )}
-                {finished ? (
-                    sended ? (
-                        <div>
-                            <Result
-                                sended={sended}
-                                user_id={user_id}
-                                room_key={room_key}
-                                answers={answers}
-                                esm={esm}
-                                famil={famil}
-                                ghaza={ghaza}
-                                miveh={miveh}
-                                mashin={mashin}
-                                ashia={ashia}
-                            />
-                        </div>
-                    ) : (
-                        <Result sended={sended} answers={answers} />
-                    )
-                ) : (
-                    <></>
-                )}
+                <GameForm
+                    letter={letter}
+                    room_key={room_key}
+                    finished={finished}
+                    started={started}
+                    answers={answers}
+                    user_id={user_id}
+                    send={this.state.send}
+                />
             </main>
         );
     }

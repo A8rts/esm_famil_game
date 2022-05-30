@@ -33,9 +33,8 @@ Route::post('change_letter', [RoomController::class, 'change_letter']);
 Route::post('get_letter', [RoomController::class, 'get_letter']);
 Route::post('letters_finished', [RoomController::class, 'letters_finished']);
 Route::post('create_room_game', [RoomController::class, 'create_room_game']);
-Route::post('create_user_game', [RoomController::class, 'create_user_game']);
 Route::post('get_room_games', [RoomController::class, 'get_room_games']);
-Route::post('get_users_game', [RoomController::class, 'get_users_game']);
+Route::post('game_finished', [RoomController::class, 'game_finished']);
 
 Route::post('check_key', [CheckRoomController::class, 'check_key']);
 Route::post('check_started', [CheckRoomController::class, 'check_started']);

@@ -10,5 +10,3 @@ class UserGame extends Model
     use HasFactory;
     protected $fillable = ['room_key', 'letter', 'answer'];
 }
-
-//This model is for the final resul and list all user`s answers in room with different letters

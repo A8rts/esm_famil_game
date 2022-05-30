@@ -26,6 +26,7 @@ class RoomController extends Controller
 
             return $owner;
         }
+        //get all room data
     }
 
     public function create_room(Request $request)
@@ -52,6 +53,8 @@ class RoomController extends Controller
         } else {
             return 'no';
         }
+
+        //for creating rooms
     }
 
     public function start(Request $request)
@@ -69,12 +72,15 @@ class RoomController extends Controller
         $rand = array_rand($letters, 1);
 
         return $letters[$rand];
+
+        //make event (game started) to users on room and find one random letter for game
     }
 
     public function change_letter()
     {
         $room_key = request()->room_key;
         $room = Room::where('key', $room_key)->update(['letter' => request()->letter]);
+        //for set letter in database room (Because when the page is refreshed, the letter for the game does not disappear)
     }
 
     public function get_letter()
@@ -83,14 +89,15 @@ class RoomController extends Controller
         $room = Room::where('key', $room_key)->get();
 
         return $room[0]->letter;
+
+        //to get letter and set that for game
     }
 
     public function change_started(Request $request)
     {
         $room_key = request()->room_key;
         $room = Room::where('key', $room_key)->update(['started' => true, 'finished' => false]);
-
-        return 'updated';
+        //for set (started : true) on database, to avoid problems when refreshed the page
     }
 
     public function create_room_game()
@@ -104,6 +111,8 @@ class RoomController extends Controller
         ]);
 
         return $create;
+
+        //for make all data games in room
     }
 
     public function finish(Request $request)
@@ -130,6 +139,8 @@ class RoomController extends Controller
         event(new FinishEvent($event));
 
         return $event;
+
+        //for get form game data to list that
     }
 
     public function get_room_games()
@@ -141,19 +152,11 @@ class RoomController extends Controller
         return $room_games;
     }
 
-    public function get_users_game()
-    {
-        $room_key = request()->room_key;
-
-        $users_games = UserGame::where('room_key', $room_key)->get();
-
-        return $users_games;
-    }
-
     public function finished()
     {
         $room_key = request()->room_key;
         $room = Room::where('key', $room_key)->update(['finished' => true]);
+        //for set (finished : true) on database, to avoid problems when refreshed the page
     }
 
     public function get_answers()
@@ -163,21 +166,8 @@ class RoomController extends Controller
         $answers = RoomEvent::where('room_key', $room_key)->get();
 
         return $answers;
-    }
 
-    public function create_user_game()
-    {
-        $room_key = request()->room_key;
-        $letter = request()->letter;
-        $answer = request()->answer;
-
-        $create = UserGame::create([
-            'room_key' => $room_key,
-            'letter' => $letter,
-            'answer' => $answer,
-        ]);
-
-        return $create;
+        //for list all answers on room
     }
 
     public function letters_finished()
@@ -193,4 +183,18 @@ class RoomController extends Controller
 
         //for when all letters in game finished, make event to all users
     }
+
+    public function game_finished()
+    {
+        $room_key = request()->room_key;
+
+        $event = RoomEvent::create([
+            'room_key' => $room_key,
+            'event' => 'finish',
+        ]);
+
+        event(new FinishEvent($event));
+    }
+
+    //when user click on finish in gameform, make event for another users
 }
