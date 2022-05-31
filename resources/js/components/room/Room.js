@@ -251,7 +251,6 @@ export default class Room extends Component {
                                     ) : (
                                         <button
                                             className="btn btn-dark"
-                                            onClick={this.playAgain}
                                         >
                                             صبر کنید تا سازنده اتاق دوباره بازی
                                             را شروع کند
