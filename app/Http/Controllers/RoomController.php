@@ -63,6 +63,7 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => 'start',
+            'letter' => 'null',
         ]);
 
         event(new FinishEvent($event));
@@ -134,12 +135,10 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => $message,
+            'letter' => request()->letter,
         ]);
 
         event(new FinishEvent($event));
-
-        return $event;
-
         //for get form game data to list that
     }
 
@@ -177,6 +176,7 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => 'all letters finished',
+            'letter' => 'null',
         ]);
 
         event(new FinishEvent($event));
@@ -191,6 +191,7 @@ class RoomController extends Controller
         $event = RoomEvent::create([
             'room_key' => $room_key,
             'event' => 'finish',
+            'letter' => 'null',
         ]);
 
         event(new FinishEvent($event));

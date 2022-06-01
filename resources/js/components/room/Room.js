@@ -45,6 +45,7 @@ export default class Room extends Component {
             .listen("FinishEvent", (e) => {
                 if (e.event.event == "start") {
                     this.clearFormData();
+                    this.setState({answers : []});
 
                     axios
                         .post("/api/change_started", {
@@ -84,9 +85,7 @@ export default class Room extends Component {
 
         let room_key = this.state.room_key;
 
-        this.checkStarted(room_key);
-        this.checkFinished(room_key);
-        this.getLetter(room_key);
+        this.checkStarteFinished(room_key);
         this.removeLetters(room_key);
         this.getAnswers(room_key);
     }
@@ -98,6 +97,7 @@ export default class Room extends Component {
             });
         } else {
             this.clearFormData();
+            this.setState({answers : []});
             axios
                 .post("/api/start", {
                     room_key: this.state.room_key,
@@ -138,7 +138,7 @@ export default class Room extends Component {
         this.startGame();
     };
 
-    checkStarted = (room_key) => {
+    checkStarteFinished = (room_key) => {
         //So that no problem when user refresh the page
         axios
             .post("/api/check_started", {
@@ -147,37 +147,12 @@ export default class Room extends Component {
             .then((res) => {
                 if (res.data == true) {
                     this.setState({ started: true });
+                }else if(res.data == false){
+                    this.setState({finished : true})
                 }
             })
             .catch((err) => {
                 console.log(err);
-            });
-    };
-
-    checkFinished = (room_key) => {
-        //So that no problem when user refresh the page
-        axios
-            .post("/api/check_finished", {
-                room_key: room_key,
-            })
-            .then((res) => {
-                if (res.data == true) {
-                    this.setState({ finished: true, started: false });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    getLetter = (room_key) => {
-        // So that if the user refreshes the page, the word(letter) for the game will not be lost
-        axios
-            .post("/api/get_letter", {
-                room_key: room_key,
-            })
-            .then((res) => {
-                this.setState({ letter: res.data });
             });
     };
 
@@ -190,7 +165,11 @@ export default class Room extends Component {
     removeLetters = (room_key) => {
         //To prevent the random letter from repeating itself when updating the page in room
         axios.post("/api/check_letters", { room_key: room_key }).then((res) => {
-            let games = res.data;
+            let room = res.data[0];
+            this.setState({letter : room[0].letter});
+
+            let games = res.data[1];
+            console.log(games);
             for (let i = 0; i < games.length; i++) {
                 this.filterLetters(games[i].letter);
             }
@@ -207,9 +186,11 @@ export default class Room extends Component {
                 let events = res.data;
                 for (let i = 0; i < events.length; i++) {
                     if (events[i].event !== "start" && events[i].event !== "finish") {
-                        this.setState((prevState) => ({
-                            answers: [...prevState.answers, events[i].event],
-                        }));
+                        if(events[i].letter == this.state.letter) {
+                            this.setState((prevState) => ({
+                                answers: [...prevState.answers, events[i].event],
+                            }));
+                        }
                     }
                 }
             });

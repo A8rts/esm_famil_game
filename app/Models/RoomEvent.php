@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class RoomEvent extends Model
 {
     use HasFactory;
-    protected $fillable = ['room_key', 'event'];
+    protected $fillable = ['room_key', 'event' , 'letter'];
 }

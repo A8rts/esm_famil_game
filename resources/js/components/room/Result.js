@@ -8,21 +8,23 @@ export default class Result extends Component {
 
     componentDidMount() {
         if (this.props.send == true) {
+            let props = this.props;
             axios.post("/api/finish", {
-                user_id: this.props.user_id,
-                room_key: this.props.room_key,
-                esm: this.props.esm,
-                famil: this.props.famil,
-                ghaza: this.props.ghaza,
-                miveh: this.props.miveh,
-                mashin: this.props.mashin,
-                ashia: this.props.ashia,
-            });
+                user_id: props.user_id,
+                room_key: props.room_key,
+                esm: props.esm,
+                famil: props.famil,
+                ghaza: props.ghaza,
+                miveh: props.miveh,
+                mashin: props.mashin,
+                ashia: props.ashia,
+                letter: props.letter,
+            })
         }
     }
 
     render() {
-        let { answers } = this.props;
+        let { answers, letter } = this.props;
 
         return (
             <main>

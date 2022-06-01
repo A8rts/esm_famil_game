@@ -142,6 +142,7 @@ export default class GameForm extends Component {
                     <Result
                         send={this.props.send}
                         esm={esm}
+                        letter={letter}
                         famil={famil}
                         ghaza={ghaza}
                         miveh={miveh}
