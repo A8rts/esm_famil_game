@@ -11,6 +11,7 @@ use App\Models\UserGame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Unique;
+use App\Models\Result;
 
 class RoomController extends Controller
 {
@@ -138,6 +139,18 @@ class RoomController extends Controller
             'letter' => request()->letter,
         ]);
 
+        $result = Result::create([
+            'room_key' => $room_key,
+            'name' => $user_name,
+            'esm' => $esm,
+            'famil' => $famil,
+            'ghaza' => $ghaza,
+            'miveh' => $miveh,
+            'mashin' => $mashin,
+            'ashia' => $ashia,
+            'letter' => request()->letter,
+        ]);
+
         event(new FinishEvent($event));
         //for get form game data to list that
     }
@@ -162,9 +175,9 @@ class RoomController extends Controller
     {
         $room_key = request()->room_key;
 
-        $answers = RoomEvent::where('room_key', $room_key)->get();
+        $results = Result::where('room_key', $room_key)->get();
 
-        return $answers;
+        return $results;
 
         //for list all answers on room
     }

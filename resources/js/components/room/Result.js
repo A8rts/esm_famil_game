@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import Score from "./Score";
 
 export default class Result extends Component {
     constructor(props) {
@@ -19,12 +20,12 @@ export default class Result extends Component {
                 mashin: props.mashin,
                 ashia: props.ashia,
                 letter: props.letter,
-            })
+            });
         }
     }
 
     render() {
-        let { answers, letter } = this.props;
+        let { answers } = this.props;
 
         return (
             <main>
@@ -49,30 +50,43 @@ export default class Result extends Component {
                                     </a>
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                    <div>
-                        {answers.map((item) => (
-                            <div className="list-group w-auto" key={item}>
-                                <a
-                                    href="#"
-                                    className="list-group-item list-group-item-action d-flex gap-3 py-3"
-                                    aria-current="true"
+                            {answers.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className="modal modal-sheet position-static d-block"
+                                    role="dialog"
+                                    id="modalSheet"
                                 >
-                                    <div className="d-flex gap-2 w-100 justify-content-between">
-                                        <div>
-                                            <h6 className="mb-0">{item}</h6>
-                                            <p className="mb-0 opacity-75">
-                                                نتایج
-                                            </p>
+                                    <div
+                                        className="modal-dialog"
+                                        role="document"
+                                    >
+                                        <div className="modal-content rounded-4 shadow">
+                                            <div className="modal-header border-bottom-0">
+                                                <h5 className="modal-title">
+                                                    {item.name}
+                                                </h5>
+                                            </div>
+                                            <div className="modal-body py-0">
+                                                <p>
+                                                    اسم : {item.esm} , فامیل :
+                                                    {item.famil} , غذا :
+                                                    {item.ghaza} , میوه :
+                                                    {item.miveh} , ماشین :
+                                                    {item.mashin} , اشیا :
+                                                    {item.ashia}
+                                                </p>
+                                            </div>
+                                            <div className="modal-footer flex-column border-top-0">
+                                                به حریفان خود امتیاز بدهید
+                                                <br></br>
+                                                <Score id={item.id}/>
+                                            </div>
                                         </div>
-                                        <small className="opacity-50 text-nowrap">
-                                            بازیکن
-                                        </small>
                                     </div>
-                                </a>
-                            </div>
-                        ))}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </main>

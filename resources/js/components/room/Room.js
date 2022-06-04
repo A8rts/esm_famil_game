@@ -15,13 +15,13 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: ["الف","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص",
-            "ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",
-            ],
+            letters: ["الف","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س",
+            "ص","ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",],
 
             letter: "",
             answers: [],
-            send : false,
+            answers_count : 0,
+            send: false,
         };
     }
 
@@ -45,7 +45,7 @@ export default class Room extends Component {
             .listen("FinishEvent", (e) => {
                 if (e.event.event == "start") {
                     this.clearFormData();
-                    this.setState({answers : []});
+                    this.setState({ answers: [] });
 
                     axios
                         .post("/api/change_started", {
@@ -71,15 +71,21 @@ export default class Room extends Component {
                     });
                 } else if (e.event.event == "finish") {
                     //for when click on finish get all users form data and send thoes
-                    this.setState({ finished: true, started: false , send : true});
+                    this.setState({
+                        finished: true,
+                        started: false,
+                        send: true,
+                    });
                 } else {
                     this.setState({
                         finished: true,
                         started: false,
                     });
-                    this.setState((prevState) => ({
-                        answers: [...prevState.answers, e.event.event],
-                    }));
+
+                    if(this.state.answers_count < 1){
+                        this.getAnswers(this.state.room_key);
+                        this.setState({answers_count : this.state.answers_count + 1});
+                    }
                 }
             });
 
@@ -91,13 +97,15 @@ export default class Room extends Component {
     }
 
     startGame = () => {
+        this.setState({answers_count : 0});
+
         if (this.state.letters.length < 1) {
             axios.post("/api/letters_finished", {
                 room_key: this.state.room_key,
             });
         } else {
             this.clearFormData();
-            this.setState({answers : []});
+            this.setState({ answers: [] });
             axios
                 .post("/api/start", {
                     room_key: this.state.room_key,
@@ -147,8 +155,8 @@ export default class Room extends Component {
             .then((res) => {
                 if (res.data == true) {
                     this.setState({ started: true });
-                }else if(res.data == false){
-                    this.setState({finished : true})
+                } else if (res.data == false) {
+                    this.setState({ finished: true });
                 }
             })
             .catch((err) => {
@@ -166,10 +174,10 @@ export default class Room extends Component {
         //To prevent the random letter from repeating itself when updating the page in room
         axios.post("/api/check_letters", { room_key: room_key }).then((res) => {
             let room = res.data[0];
-            this.setState({letter : room[0].letter});
+            this.setState({ letter: room[0].letter });
 
             let games = res.data[1];
-            console.log(games);
+
             for (let i = 0; i < games.length; i++) {
                 this.filterLetters(games[i].letter);
             }
@@ -177,27 +185,26 @@ export default class Room extends Component {
     };
 
     getAnswers = (room_key) => {
-        //for when page is refreshed get all answers
+        //for get all answers
         axios
             .post("/api/get_answers", {
                 room_key: room_key,
             })
             .then((res) => {
-                let events = res.data;
-                for (let i = 0; i < events.length; i++) {
-                    if (events[i].event !== "start" && events[i].event !== "finish") {
-                        if(events[i].letter == this.state.letter) {
-                            this.setState((prevState) => ({
-                                answers: [...prevState.answers, events[i].event],
-                            }));
-                        }
+                let results = res.data;
+                for (let i = 0; i < results.length; i++) {
+                    if (results[i].letter == this.state.letter) {
+                        this.setState((prevState) => ({
+                            answers : [...prevState.answers , results[i]]
+                        }))
                     }
                 }
             });
     };
 
     render() {
-        let { started, room_key, finished, answers, allUsers, letter } = this.state;
+        let { started, room_key, finished, answers, allUsers, letter } =
+            this.state;
         let { owner_id, user_id } = this.props;
 
         return (
@@ -230,9 +237,7 @@ export default class Room extends Component {
                                             دوباره بازی کن
                                         </button>
                                     ) : (
-                                        <button
-                                            className="btn btn-dark"
-                                        >
+                                        <button className="btn btn-dark">
                                             صبر کنید تا سازنده اتاق دوباره بازی
                                             را شروع کند
                                         </button>
