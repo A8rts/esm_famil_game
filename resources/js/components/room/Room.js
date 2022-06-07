@@ -15,13 +15,14 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: ["الف","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س",
-            "ص","ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",],
-
+            letters: ["الف","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص",
+            "ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",],
             letter: "",
             answers: [],
-            answers_count : 0,
+            user_id: 0,
+            answers_count: 0,
             send: false,
+            player_save_scores: 0,
         };
     }
 
@@ -45,6 +46,7 @@ export default class Room extends Component {
             .listen("FinishEvent", (e) => {
                 if (e.event.event == "start") {
                     this.clearFormData();
+                    this.setState({ answers_count: 0 });
                     this.setState({ answers: [] });
 
                     axios
@@ -76,28 +78,47 @@ export default class Room extends Component {
                         started: false,
                         send: true,
                     });
+                } else if (e.event.event == "one_player_finished_scores") {
+                    this.setState({
+                        player_save_scores: this.state.player_save_scores + 1,
+                    });
                 } else {
                     this.setState({
                         finished: true,
                         started: false,
                     });
 
-                    if(this.state.answers_count < 1){
+                    if (this.state.answers_count < 1) {
                         this.getAnswers(this.state.room_key);
-                        this.setState({answers_count : this.state.answers_count + 1});
+                        this.setState({
+                            answers_count: this.state.answers_count + 1,
+                        });
                     }
                 }
             });
 
         let room_key = this.state.room_key;
 
+        axios
+            .get("/user/profile")
+            .then((res) => {
+                this.setState({ user_id: res.data.id });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
         this.checkStarteFinished(room_key);
         this.removeLetters(room_key);
         this.getAnswers(room_key);
+        
+        setTimeout(() => {
+            this.getCountPlayersScores(room_key, this.state.letter);
+        }, 2000);
     }
 
     startGame = () => {
-        this.setState({answers_count : 0});
+        this.setState({ answers_count: 0, player_save_scores: 0 });
 
         if (this.state.letters.length < 1) {
             axios.post("/api/letters_finished", {
@@ -195,17 +216,28 @@ export default class Room extends Component {
                 for (let i = 0; i < results.length; i++) {
                     if (results[i].letter == this.state.letter) {
                         this.setState((prevState) => ({
-                            answers : [...prevState.answers , results[i]]
-                        }))
+                            answers: [...prevState.answers, results[i]],
+                        }));
                     }
                 }
             });
     };
 
+    getCountPlayersScores = (room_key, letter) => {
+        axios
+            .post("/api/count_palyers_scores", {
+                room_key: room_key,
+                letter: letter,
+            })
+            .then((res) =>
+                this.setState({
+                    player_save_scores: res.data.count_players_save_score,
+                })
+            );
+    };
     render() {
-        let { started, room_key, finished, answers, allUsers, letter } =
-            this.state;
-        let { owner_id, user_id } = this.props;
+        let {started, room_key, finished, answers, allUsers, letter, user_id, player_save_scores} = this.state;
+        let { owner_id } = this.props;
 
         return (
             <main className="container p-5">
@@ -230,12 +262,17 @@ export default class Room extends Component {
                                     <></>
                                 ) : finished ? (
                                     user_id == owner_id ? (
-                                        <button
-                                            className="btn btn-success"
-                                            onClick={this.playAgain}
-                                        >
-                                            دوباره بازی کن
-                                        </button>
+                                        player_save_scores ==
+                                        allUsers.length ? (
+                                            <button
+                                                className="btn btn-success"
+                                                onClick={this.playAgain}
+                                            >
+                                                دوباره بازی کن
+                                            </button>
+                                        ) : (
+                                            <></>
+                                        )
                                     ) : (
                                         <button className="btn btn-dark">
                                             صبر کنید تا سازنده اتاق دوباره بازی

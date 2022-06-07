@@ -7,11 +7,13 @@ use App\Models\Room;
 use App\Models\RoomEvent;
 use App\Models\RoomGame;
 use App\Models\User;
-use App\Models\UserGame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules\Unique;
 use App\Models\Result;
+use App\Models\Score;
+use App\Models\UsersScoring;
+
+use function PHPUnit\Framework\returnSelf;
 
 class RoomController extends Controller
 {
@@ -110,6 +112,7 @@ class RoomController extends Controller
         $create = RoomGame::create([
             'room_key' => $room_key,
             'letter' => $letter,
+            'count_players_save_score' => 0,
         ]);
 
         return $create;
@@ -208,7 +211,74 @@ class RoomController extends Controller
         ]);
 
         event(new FinishEvent($event));
+
+        //when user click on finish in gameform, make event for another users
     }
 
-    //when user click on finish in gameform, make event for another users
+    public function save_score()
+    {
+        $create_score = Score::create([
+            'room_key' => request()->room_key,
+            'letter' => request()->letter,
+            'from_id' => request()->from_id,
+            'name' => request()->name,
+            'esm_score' => request()->esm_score,
+            'famil_score' => request()->famil_score,
+            'ghaza_score' => request()->ghaza_score,
+            'miveh_score' => request()->miveh_score,
+            'mashin_score' => request()->mashin_score,
+            'ashia_score' => request()->ashia_score,
+        ]);
+
+        return $create_score;
+    }
+
+    public function get_scores()
+    {
+        $scores = Score::where('room_key', request()->room_key)->where('from_id', request()->from_id)->get();
+
+        return $scores;
+    }
+
+    public function done_score()
+    {
+        $event = RoomEvent::create([
+            'room_key' => request()->room_key,
+            'event' => 'one_player_finished_scores',
+            'letter' => 'null',
+        ]);
+
+        $preveRoomGame = RoomGame::where('room_key', request()->room_key)->where('letter', request()->letter)->get();
+        $prev_count_players_save_score = $preveRoomGame[0]->count_players_save_score;
+        $newRoomGame = RoomGame::where('room_key', request()->room_key)->where('letter', request()->letter)->update(['count_players_save_score' => $prev_count_players_save_score + 1]);
+
+        $UsersScoring = UsersScoring::create([
+            'room_key' => request()->room_key,
+            'letter' => request()->letter,
+            'user_id' => request()->user_id,
+        ]);
+
+        event(new FinishEvent($event));
+    }
+
+    public function get_users_scores()
+    {
+        $UsersScorings = UsersScoring::where('room_key', request()->room_key)->where('letter', request()->letter)->where('user_id', request()->user_id)->get();
+
+        if ($UsersScorings->isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function count_palyers_scores()
+    {
+        if (request()->letter !== "") {
+            $count = RoomGame::where('room_key', request()->room_key)->where('letter', request()->letter)->get();
+            return $count[0];
+        }
+
+        //for when page is refreshed get count to play again or no
+    }
 }

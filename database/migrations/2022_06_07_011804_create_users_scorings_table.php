@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('room_games', function (Blueprint $table) {
+        Schema::create('users_scorings', function (Blueprint $table) {
             $table->id();
             $table->string('room_key');
             $table->string('letter');
-            $table->integer('count_players_save_score');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_games');
+        Schema::dropIfExists('users_scorings');
     }
 };

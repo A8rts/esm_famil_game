@@ -151,6 +151,7 @@ export default class GameForm extends Component {
                         user_id={user_id}
                         room_key={room_key}
                         answers={answers}
+                        arta={4}
                     />
                 ) : (
                     <></>

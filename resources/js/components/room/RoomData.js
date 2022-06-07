@@ -7,7 +7,6 @@ import Room from "./Room";
 export default function RoomKey() {
     let { key } = useParams();
     const [owner, setOwner] = useState();
-    const [userid, setUserid] = useState();
     const [username, setUsername] = useState();
 
     useEffect(() => {
@@ -41,7 +40,6 @@ export default function RoomKey() {
         axios
             .get("/user/profile")
             .then((res) => {
-                setUserid(res.data.id);
                 setUsername(res.data.name);
             })
             .catch((err) => {
@@ -53,7 +51,6 @@ export default function RoomKey() {
         <Room
             room_key={key}
             owner_id={owner}
-            user_id={userid}
             user_name={username}
         />
     );

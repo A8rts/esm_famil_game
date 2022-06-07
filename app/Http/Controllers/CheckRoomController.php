@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\RoomGame;
+use App\Models\Score;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -38,7 +39,7 @@ class CheckRoomController extends Controller
             return 'false';
         } else if ($room[0]->started) {
             return 'true';
-        }else{
+        } else {
             return 'null';
         }
     }
@@ -47,11 +48,25 @@ class CheckRoomController extends Controller
     {
         $room_key = request()->room_key;
 
-        $letter = Room::where('key' , $room_key)->get();
+        $letter = Room::where('key', $room_key)->get();
         $room_games = RoomGame::where('room_key', $room_key)->get();
 
-        $data = array($letter , $room_games);
+        $data = array($letter, $room_games);
 
         return $data;
+    }
+
+    public function check_saved_score()
+    {
+        $scores = Score::where('room_key', request()->room_key)->where('name', request()->name)->where('from_id', request()->user_id)->where('letter', request()->letter)->get();
+
+        return $scores;
+    }
+
+    public function check_scores()
+    {
+        $scores = Score::where('room_key', request()->room_key)->where('letter', request()->letter)->where('from_id', request()->from_id)->get();
+
+        return $scores;
     }
 }
