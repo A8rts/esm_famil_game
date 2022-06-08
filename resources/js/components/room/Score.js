@@ -8,7 +8,7 @@ export default class Score extends Component {
         super(props);
 
         this.state = {
-            show: true,
+            show: "loading",
         };
     }
 
@@ -29,7 +29,15 @@ export default class Score extends Component {
                         this.setState({ show: false });
                     }
                 }
+
+                if (this.state.show !== false) {
+                    this.setState({ show: true });
+                }
             });
+    }
+
+    componentWillUnmount() {
+        this.setState({show : false});
     }
 
     sendScore = (e) => {
@@ -102,7 +110,9 @@ export default class Score extends Component {
 
         return (
             <main>
-                {show ? (
+                {show == "loading" ? (
+                    <strong>لطفا کمی صبر کنید...</strong>
+                ) : show ? (
                     <form onSubmit={this.sendScore}>
                         امتیاز برای اسم
                         <div

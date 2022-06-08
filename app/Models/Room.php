@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'key', 'owner', 'letter', 'started' , 'finished'];
+    protected $fillable = ['name', 'key', 'owner', 'letter', 'started' , 'finished' , 'scores_sended' , 'final_results'];
 }

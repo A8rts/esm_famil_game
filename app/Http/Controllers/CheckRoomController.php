@@ -69,4 +69,26 @@ class CheckRoomController extends Controller
 
         return $scores;
     }
+
+    public function check_scores_sended()
+    {
+        $room = Room::where('key', request()->room_key)->get();
+
+        if ($room[0]->scores_sended == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function check_show_final_results()
+    {
+        $room = Room::where('key', request()->room_key)->get();
+
+        if ($room[0]->final_results == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

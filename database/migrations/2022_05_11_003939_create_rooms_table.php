@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('letter');
             $table->boolean('started');
             $table->boolean('finished');
+            $table->boolean('scores_sended');
+            $table->boolean('final_results');
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./mainpage/Home";
@@ -6,7 +6,7 @@ import Profile from "./Profile";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
 
-const RoomData = lazy(() => import("./room/RoomData"));
+const RoomData = React.lazy(() => import("./room/RoomData"));
 
 class Game extends Component {
     render() {

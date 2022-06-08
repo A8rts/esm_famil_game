@@ -1,6 +1,6 @@
 import axios from "axios";
-import Result from "./Result";
 import React, { Component } from "react";
+import Result from "./Result";
 
 export default class GameForm extends Component {
     constructor(props) {
