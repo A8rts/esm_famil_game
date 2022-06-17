@@ -454,7 +454,7 @@ export default class Room extends Component {
                                 ) : finished ? (
                                     user_id == owner_id ? (
                                         player_save_scores ==
-                                        allUsers.length ? (
+                                        answers.length ? (
                                             scores_sended ? (
                                                 show_final_result ? (
                                                     <></>
