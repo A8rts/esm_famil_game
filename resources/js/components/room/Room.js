@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -6,7 +6,6 @@ import FinalResult from "./FinalResult";
 import GameForm from "./GameForm";
 
 const Users = React.lazy(() => import("./Users"));
-// const GameForm = React.lazy(() => import("./GameForm"));
 
 export default class Room extends Component {
     constructor(props) {
@@ -518,13 +517,12 @@ export default class Room extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <Users allUsers={allUsers} room_key={room_key} />
+                        <Users allUsers={allUsers} room_key={room_key} user_id={user_id} owner_id={owner_id}/>
                     </div>
                 </div>
                 {show_final_result ? (
                     <FinalResult final_results={this.state.final_results} />
                 ) : (
-                    // <Suspense fallback={<div>loading...</div>}>
                     <GameForm
                         letter={letter}
                         room_key={room_key}
@@ -534,7 +532,6 @@ export default class Room extends Component {
                         user_id={user_id}
                         send={this.state.send}
                     />
-                    // </Suspense>
                 )}
             </main>
         );
