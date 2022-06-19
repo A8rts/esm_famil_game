@@ -27,6 +27,7 @@
         "laravel-echo": "^1.11.7",
         "pusher-js": "^7.1.0-beta",
         "react-router-dom": "^6.3.0",
+        "react-spinkit": "^3.0.0",
         "sweetalert2": "^11.4.13"
     }
 }

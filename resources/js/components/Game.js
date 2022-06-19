@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./mainpage/Home";
 import Profile from "./Profile";
-import Loading from "./Loading";
+import Loading from "./loading/Loading";
 import NotFound from "./NotFound";
 
 const RoomData = React.lazy(() => import("./room/RoomData"));
@@ -16,6 +16,7 @@ class Game extends Component {
                     <Routes>
                         <Route exact path="/game" element={<Home />} />
                         <Route path="/game/profile" element={<Profile />} />
+                        <Route path="/game/loading" element={<Loading />} />
                         <Route
                             path="/game/room/:key"
                             element={
