@@ -26,3 +26,7 @@ Broadcast::channel('room.{roomkey}', function ($user, $roomkey) {
         ];
     }
 });
+
+Broadcast::channel('kick_user.{toId}', function ($user, $toId) {
+    return (int) $user->id === (int) $toId;
+});

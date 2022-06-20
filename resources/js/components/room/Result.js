@@ -29,7 +29,7 @@ export default class Result extends Component {
                         this.setState({ show_finish_score_button: true });
                     }
                 });
-        }, 250);
+        }, 500);
 
         if (this.props.send == true) {
             let props = this.props;

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Events\FinishEvent;
+use App\Events\KickRequestEvent;
 use App\Models\FinalScore;
+use App\Models\KickRequest;
 use App\Models\Room;
 use App\Models\RoomEvent;
 use App\Models\RoomGame;
@@ -207,5 +209,15 @@ class CreateController extends Controller
 
             $updateScore = FinalScore::where('room_key', request()->room_key)->where('name', request()->name)->update(['score' => $prevScore + request()->score]);
         }
+    }
+
+    public function kick_request()
+    {
+        $kick_request = KickRequest::create([
+            'toId' => request()->toId,
+            'message' => 'شما از این اتاق بیرون انداخته شده اید !',
+        ]);
+
+        event(new KickRequestEvent($kick_request));
     }
 }

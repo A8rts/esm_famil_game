@@ -48,6 +48,7 @@ Route::post('game_finished', [CreateController::class, 'game_finished']);
 Route::post('save_score', [CreateController::class, 'save_score']);
 Route::post('done_score', [CreateController::class, 'done_score']);
 Route::post('final_score', [CreateController::class, 'final_score']);
+Route::post('kick_request', [CreateController::class, 'kick_request']);
 
 Route::post('check_saved_score', [CheckRoomController::class, 'check_saved_score']);
 Route::post('check_key', [CheckRoomController::class, 'check_key']);

@@ -5,7 +5,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import FinalResult from "./FinalResult";
 import GameForm from "./GameForm";
 
-const Users = React.lazy(() => import("./Users"));
+const Users = React.lazy(() => import("./list_users/Users"));
 
 export default class Room extends Component {
     constructor(props) {
@@ -166,10 +166,10 @@ export default class Room extends Component {
     playAgain = () => {
         this.startGame();
 
-        this.setState({ scores_sended: false });
         axios.post("/api/change_scores_not_sended", {
             room_key: this.state.room_key,
         });
+        this.setState({ scores_sended: false });
     };
 
     clearFormData = () => {
@@ -517,7 +517,8 @@ export default class Room extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <Users allUsers={allUsers} room_key={room_key} user_id={user_id} owner_id={owner_id}/>
+                        <Users allUsers={allUsers} room_key={room_key} user_id={user_id} owner_id={owner_id}
+                            finished={finished} scores_sended={scores_sended} started={started}/>
                     </div>
                 </div>
                 {show_final_result ? (
