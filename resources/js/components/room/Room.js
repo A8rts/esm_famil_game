@@ -16,8 +16,37 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: ["الف","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص","ض","ط","ظ",
-            "ع","غ","ف","ق","ل","م","ن","و","ه","ی",],
+            letters: [
+                "الف",
+                "ب",
+                "پ",
+                "ت",
+                "ث",
+                "ج",
+                "چ",
+                "ح",
+                "خ",
+                "د",
+                "ذ",
+                "ر",
+                "ز",
+                "ش",
+                "س",
+                "ص",
+                "ض",
+                "ط",
+                "ظ",
+                "ع",
+                "غ",
+                "ف",
+                "ق",
+                "ل",
+                "م",
+                "ن",
+                "و",
+                "ه",
+                "ی",
+            ],
             letter: "",
             answers: [],
             user_id: 0,
@@ -30,6 +59,7 @@ export default class Room extends Component {
             scores_sended: false,
             final_results: [],
             show_final_result: false,
+            showButtons: true,
         };
     }
 
@@ -84,6 +114,7 @@ export default class Room extends Component {
                         finished: true,
                         started: false,
                         send: true,
+                        scores_sended: false,
                     });
                 } else if (e.event.event == "one_player_finished_scores") {
                     this.getCountPlayersScores(
@@ -164,12 +195,12 @@ export default class Room extends Component {
     };
 
     playAgain = () => {
+        this.setState({ showButtons: false });
         this.startGame();
 
         axios.post("/api/change_scores_not_sended", {
             room_key: this.state.room_key,
         });
-        this.setState({ scores_sended: false });
     };
 
     clearFormData = () => {
@@ -414,6 +445,10 @@ export default class Room extends Component {
             });
     };
 
+    setShowButtons = () => {
+        this.setState({ showButtons: true });
+    };
+
     render() {
         let {
             started,
@@ -448,66 +483,71 @@ export default class Room extends Component {
                                 </button>
                                 <br></br>
 
-                                {started ? (
-                                    <></>
-                                ) : finished ? (
-                                    user_id == owner_id ? (
-                                        player_save_scores ==
-                                        answers.length ? (
-                                            scores_sended ? (
-                                                show_final_result ? (
-                                                    <></>
+                                {this.state.showButtons ? (
+                                    started ? (
+                                        <></>
+                                    ) : finished ? (
+                                        user_id == owner_id ? (
+                                            player_save_scores ==
+                                            answers.length ? (
+                                                scores_sended ? (
+                                                    show_final_result ? (
+                                                        <></>
+                                                    ) : (
+                                                        <div className="col d-flex flex-column position-static">
+                                                            <button
+                                                                onClick={
+                                                                    this
+                                                                        .playAgain
+                                                                }
+                                                                className="btn btn-success"
+                                                            >
+                                                                بازی دوباره
+                                                            </button>
+                                                            <br></br>
+                                                            <button
+                                                                onClick={
+                                                                    this
+                                                                        .makeFinalResultEvent
+                                                                }
+                                                                className="btn btn-danger"
+                                                            >
+                                                                اتمام بازی و
+                                                                دیدن نتایج نهایی
+                                                            </button>
+                                                        </div>
+                                                    )
                                                 ) : (
-                                                    <div className="col d-flex flex-column position-static">
-                                                        <button
-                                                            onClick={
-                                                                this.playAgain
-                                                            }
-                                                            className="btn btn-success"
-                                                        >
-                                                            بازی دوباره
-                                                        </button>
-                                                        <br></br>
-                                                        <button
-                                                            onClick={
-                                                                this
-                                                                    .makeFinalResultEvent
-                                                            }
-                                                            className="btn btn-danger"
-                                                        >
-                                                            اتمام بازی و دیدن
-                                                            نتایج نهایی
-                                                        </button>
-                                                    </div>
+                                                    <button
+                                                        onClick={
+                                                            this
+                                                                .compareAndSaveScores
+                                                        }
+                                                        className="btn btn-warning"
+                                                    >
+                                                        امتیاز دهی کاربران تمام
+                                                        شد! ارسال امتیازات
+                                                    </button>
                                                 )
                                             ) : (
-                                                <button
-                                                    onClick={
-                                                        this
-                                                            .compareAndSaveScores
-                                                    }
-                                                    className="btn btn-warning"
-                                                >
-                                                    امتیاز دهی کاربران تمام شد!
-                                                    ارسال امتیازات
-                                                </button>
+                                                <></>
                                             )
                                         ) : (
-                                            <></>
+                                            <button className="btn btn-dark">
+                                                صبر کنید تا سازنده اتاق دوباره
+                                                بازی را شروع کند
+                                            </button>
                                         )
-                                    ) : (
-                                        <button className="btn btn-dark">
-                                            صبر کنید تا سازنده اتاق دوباره بازی
-                                            را شروع کند
+                                    ) : user_id == owner_id ? (
+                                        <button
+                                            className="btn btn-warning"
+                                            onClick={this.startGame}
+                                        >
+                                            شروع بازی
                                         </button>
+                                    ) : (
+                                        <></>
                                     )
-                                ) : user_id == owner_id ? (
-                                    <button
-                                        className="btn btn-warning"
-                                        onClick={this.startGame}
-                                    >
-                                        شروع بازی
-                                    </button>
                                 ) : (
                                     <></>
                                 )}
@@ -517,8 +557,15 @@ export default class Room extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <Users allUsers={allUsers} room_key={room_key} user_id={user_id} owner_id={owner_id}
-                            finished={finished} scores_sended={scores_sended} started={started}/>
+                        <Users
+                            allUsers={allUsers}
+                            room_key={room_key}
+                            user_id={user_id}
+                            owner_id={owner_id}
+                            finished={finished}
+                            scores_sended={scores_sended}
+                            started={started}
+                        />
                     </div>
                 </div>
                 {show_final_result ? (
@@ -532,6 +579,7 @@ export default class Room extends Component {
                         answers={answers}
                         user_id={user_id}
                         send={this.state.send}
+                        setShowButtons={this.setShowButtons.bind(this)}
                     />
                 )}
             </main>

@@ -44,6 +44,10 @@ export default class GameForm extends Component {
         });
     };
 
+    setShowRoomButtons = () => {
+        this.props.setShowButtons();
+    }
+
     render() {
         let { letter, user_id, answers, finished, room_key, started } =
             this.props;
@@ -152,6 +156,7 @@ export default class GameForm extends Component {
                         room_key={room_key}
                         answers={answers}
                         arta={4}
+                        setShowRoomButtons={this.setShowRoomButtons.bind(this)}
                     />
                 ) : (
                     <></>

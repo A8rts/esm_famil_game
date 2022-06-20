@@ -48,6 +48,8 @@ export default class Result extends Component {
     }
 
     scoresSended = () => {
+        this.props.setShowRoomButtons();
+        
         axios
             .post("/api/check_scores", {
                 room_key: this.props.room_key,
