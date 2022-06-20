@@ -23,8 +23,8 @@ export default class PlayersColumn extends Component {
                 });
         } else {
             Swal.fire({
-                title: "شما در حال امتیاز دهی هستید!",
-                text: "زمانی که کاربران در حال امتیاز دهی هستند نمیتواندی کسی را بیرون بندازید",
+                title: "نمیتوانید الان کسی را بیرون بندازید",
+                text: "شما در این لحظه نمیتوانید کسی را بیرون از اتاق بندازید !",
                 icon: "warning",
                 confirmButtonText: "باشه",
             });
@@ -43,7 +43,7 @@ export default class PlayersColumn extends Component {
                     aria-current="true"
                 >
                     <img
-                        src="https://cdn.icon-icons.com/icons2/2506/PNG/512/user_icon_150670.png"
+                        src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
                         width="42"
                         height="42"
                     ></img>
