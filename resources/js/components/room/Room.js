@@ -115,6 +115,7 @@ export default class Room extends Component {
                         started: false,
                         send: true,
                         scores_sended: false,
+                        showButtons : false,
                     });
                 } else if (e.event.event == "one_player_finished_scores") {
                     this.getCountPlayersScores(

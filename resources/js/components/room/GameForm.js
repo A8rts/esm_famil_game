@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
 import Result from "./Result";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 export default class GameForm extends Component {
     constructor(props) {
@@ -22,19 +24,45 @@ export default class GameForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+    validationForm = () => {
+        let state = this.state;
+        let letter = this.props.letter;
+        if (
+            state.esm.charAt(0) !== letter ||
+            state.famil.charAt(0) !== letter ||
+            state.ghaza.charAt(0) !== letter ||
+            state.miveh.charAt(0) !== letter ||
+            state.mashin.charAt(0) !== letter ||
+            state.ashia.charAt(0) !== letter
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
     submitForm = (e) => {
         e.preventDefault();
+        if (this.validationForm()) {
+            this.createRoomGame(this.props.room_key, this.props.letter);
 
-        this.createRoomGame(this.props.room_key, this.props.letter);
+            axios.post("/api/game_finished", {
+                room_key: this.props.room_key,
+            });
 
-        axios.post("/api/game_finished", {
-            room_key: this.props.room_key,
-        });
-
-        axios.post("/api/finished", {
-            room_key: this.props.room_key,
-            letter: this.props.letter,
-        });
+            axios.post("/api/finished", {
+                room_key: this.props.room_key,
+                letter: this.props.letter,
+            });
+        } else {
+            Swal.fire({
+                title: "لطفا کلمات خود را بررسی کنید",
+                text: `اول یکی یا چند تا از کلمات شما با حرف (${this.props.letter}) یکسان نیست`,
+                icon: "warning",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "باشه",
+            });
+        }
     };
 
     createRoomGame = (room_key, letter) => {
@@ -46,7 +74,7 @@ export default class GameForm extends Component {
 
     setShowRoomButtons = () => {
         this.props.setShowButtons();
-    }
+    };
 
     render() {
         let { letter, user_id, answers, finished, room_key, started } =
