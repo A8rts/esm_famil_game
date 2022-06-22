@@ -4,7 +4,6 @@ import Score from "./Score";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
-
 export default class Result extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +24,7 @@ export default class Result extends Component {
                 .then((res) => {
                     if (res.data == false) {
                         this.setState({ show_finish_score_button: false });
-                    } else if(res.data == true){
+                    } else if (res.data == true) {
                         this.setState({ show_finish_score_button: true });
                     }
                 });
@@ -49,7 +48,7 @@ export default class Result extends Component {
 
     scoresSended = () => {
         this.props.setShowRoomButtons();
-        
+
         axios
             .post("/api/check_scores", {
                 room_key: this.props.room_key,
@@ -158,6 +157,9 @@ export default class Result extends Component {
                                                         room_key={room_key}
                                                         user_id={user_id}
                                                         letter={letter}
+                                                        show_finish_score_button={
+                                                            show_finish_score_button
+                                                        }
                                                     />
                                                 </div>
                                             </div>

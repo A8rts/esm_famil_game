@@ -152,4 +152,18 @@ class RoomController extends Controller
 
         return $final_result;
     }
+
+    public function edit_scores()
+    {
+        $score = Score::where('from_id', request()->from_id)->where('letter', request()->letter)->where('name', request()->name)->update([
+            'esm_score' => request()->esm_score,
+            'famil_score' => request()->famil_score,
+            'ghaza_score' => request()->ghaza_score,
+            'miveh_score' => request()->miveh_score,
+            'mashin_score' => request()->mashin_score,
+            'ashia_score' => request()->ashia_score,
+        ]);
+
+        return $score;
+    }
 }

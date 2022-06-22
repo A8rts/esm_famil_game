@@ -220,4 +220,9 @@ class CreateController extends Controller
 
         event(new KickRequestEvent($kick_request));
     }
+
+    public function update_score()
+    {
+        return request()->all();
+    }
 }

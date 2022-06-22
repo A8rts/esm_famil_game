@@ -8,6 +8,7 @@ export default function RoomKey() {
     let { key } = useParams();
     const [owner, setOwner] = useState();
     const [username, setUsername] = useState();
+    const [playerSaveScores, setPlayerSaveScores] = useState();
 
     useEffect(() => {
         axios
@@ -47,11 +48,31 @@ export default function RoomKey() {
             });
     });
 
+    function getCountPlayersScores(room_key, letter) {
+        axios
+            .post("/api/count_palyers_scores", {
+                room_key: room_key,
+                letter: letter,
+            })
+            .then((res) => {
+                if (res.data !== false) {
+                    setPlayerSaveScores(res.data.count_players_save_score);
+                }
+            });
+    }
+
+    function resetPlayerSaveScores(){
+        setPlayerSaveScores(0);
+    }
+
     return (
         <Room
             room_key={key}
             owner_id={owner}
             user_name={username}
+            getCountPlayersScores={getCountPlayersScores.bind(this)}
+            player_save_scores={playerSaveScores}
+            resetPlayerSaveScores={resetPlayerSaveScores.bind(this)}
         />
     );
 }

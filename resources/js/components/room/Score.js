@@ -9,6 +9,7 @@ export default class Score extends Component {
 
         this.state = {
             show: "loading",
+            editOrCreate: "create",
         };
     }
 
@@ -37,7 +38,7 @@ export default class Score extends Component {
     }
 
     componentWillUnmount() {
-        this.setState({show : false});
+        this.setState({ show: false });
     }
 
     sendScore = (e) => {
@@ -55,24 +56,44 @@ export default class Score extends Component {
                 e.target.ashia.value
             )
         ) {
-            this.setState({ show: false });
-            axios
-                .post("/api/save_score", {
-                    room_key: props.room_key,
-                    from_id: props.user_id,
-                    letter: props.letter,
-                    name: props.name,
-                    esm_score: e.target.esm.value,
-                    famil_score: e.target.famil.value,
-                    ghaza_score: e.target.ghaza.value,
-                    miveh_score: e.target.miveh.value,
-                    mashin_score: e.target.mashin.value,
-                    ashia_score: e.target.ashia.value,
-                })
-                .then((res) => {
-                    console.log(res.data);
-                })
-                .catch((err) => console.log(err));
+            if (this.state.editOrCreate == "create") {
+                this.setState({ show: false });
+                axios
+                    .post("/api/save_score", {
+                        room_key: props.room_key,
+                        from_id: props.user_id,
+                        letter: props.letter,
+                        name: props.name,
+                        esm_score: e.target.esm.value,
+                        famil_score: e.target.famil.value,
+                        ghaza_score: e.target.ghaza.value,
+                        miveh_score: e.target.miveh.value,
+                        mashin_score: e.target.mashin.value,
+                        ashia_score: e.target.ashia.value,
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                    })
+                    .catch((err) => console.log(err));
+            } else if (this.state.editOrCreate == "edit") {
+                axios
+                    .post("/api/edit_scores", {
+                        name: props.name,
+                        letter: props.letter,
+                        from_id: props.user_id,
+                        esm_score: e.target.esm.value,
+                        famil_score: e.target.famil.value,
+                        ghaza_score: e.target.ghaza.value,
+                        miveh_score: e.target.miveh.value,
+                        mashin_score: e.target.mashin.value,
+                        ashia_score: e.target.ashia.value,
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                    });
+
+                this.setState({ show: false });
+            }
         }
     };
 
@@ -102,6 +123,10 @@ export default class Score extends Component {
             });
             return false;
         }
+    };
+
+    editScores = () => {
+        this.setState({ editOrCreate: "edit", show: true });
     };
 
     render() {
@@ -446,11 +471,15 @@ export default class Score extends Component {
                         <br></br>
                         <button className="btn btn-primary btn-lg">ثبت</button>
                     </form>
+                ) : this.props.show_finish_score_button ? (
+                    <button
+                        className="btn btn-primary"
+                        onClick={this.editScores}
+                    >
+                        ویرایش امتیازات
+                    </button>
                 ) : (
-                    <div>
-                        <br></br>
-                        <strong>به این حریف امتیاز داده شده است</strong>
-                    </div>
+                    <strong>شما امتیازتان را تکمیل کردید</strong>
                 )}
             </main>
         );
