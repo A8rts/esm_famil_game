@@ -1,0 +1,37 @@
+.header {
+    overflow: hidden;
+    background: linear-gradient(to left, #8e2de2, #4a00e0);
+    padding: 15px 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+
+.header a {
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.game-icon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header a:hover {
+    background-color: darkblue;
+}
+
+.header-center {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
