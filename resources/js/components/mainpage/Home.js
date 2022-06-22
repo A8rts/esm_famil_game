@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import CreateRoom from "./CreateRoom";
 import JoinRoom from "./JoinRoom";
 import Header from "../layouts/Header";
-import "./Main.css";
-
 export default class Home extends Component {
     constructor() {
         super();

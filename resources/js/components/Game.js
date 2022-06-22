@@ -2,7 +2,7 @@ import React, { Component, Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./mainpage/Home";
-import Profile from "./Profile";
+import Profile from "./Profile/Profile";
 import Loading from "./loading/Loading";
 import NotFound from "./NotFound";
 

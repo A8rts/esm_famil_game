@@ -1,0 +1,31 @@
+.main {
+    height: 100vh;
+    background: linear-gradient(to right, #000046, #1cb5e0);
+}
+
+.card {
+    border: black 10px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    height: 480px;
+    text-align: center;
+    background: linear-gradient(to right, #000428, #004e92);
+}
+
+.title {
+    color: white;
+}
+
+.welcome {
+    color: white;
+}
+
+.content {
+    color: white;
+
+}
+
+.data {
+    font-size: 17px;
+}
