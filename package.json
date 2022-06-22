@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "laravel-echo": "^1.11.7",
+        "math": "^0.0.3",
+        "mathjs": "^10.6.1",
         "pusher-js": "^7.1.0-beta",
         "react-router-dom": "^6.3.0",
         "react-spinkit": "^3.0.0",

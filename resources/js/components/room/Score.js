@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import Spinner from "react-spinkit";
 
 export default class Score extends Component {
     constructor(props) {
@@ -136,7 +137,10 @@ export default class Score extends Component {
         return (
             <main>
                 {show == "loading" ? (
-                    <strong>لطفا کمی صبر کنید...</strong>
+                    <Spinner
+                        name="chasing-dots"
+                        style={{ width: 20, height: 20 }}
+                    />
                 ) : show ? (
                     <form onSubmit={this.sendScore}>
                         امتیاز برای اسم

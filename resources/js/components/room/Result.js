@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Score from "./Score";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import Spinner from "react-spinkit";
 
 export default class Result extends Component {
     constructor(props) {
@@ -80,8 +81,11 @@ export default class Result extends Component {
         return (
             <main>
                 {show_finish_score_button == "loading" ? (
-                    <div className="px-4 py-1 my-5 text-center">
-                        <h3>لطفا کمی صبر کنید</h3>
+                    <div className="modal-footer flex-column border-top-0">
+                        <Spinner
+                            name="chasing-dots"
+                            style={{ width: 70, height: 70 }}
+                        />
                     </div>
                 ) : (
                     <div>

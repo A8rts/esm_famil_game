@@ -4,6 +4,28 @@ import { Link } from "react-router-dom";
 export default class FinalResult extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            best_score: "",
+        };
+    }
+
+    static getDerivedStateFromProps(props) {
+        let scores = [];
+        let best_score = "";
+
+        if (Array.isArray(props.final_results) && props.final_results.length) {
+            for (let i = 0; i < props.final_results.length; i++) {
+                scores = [...scores, props.final_results[i].score];
+            }
+        }
+
+        if (Array.isArray(scores) && scores.length) {
+            best_score = Math.max.apply(Math, scores);
+        }
+        return {
+            best_score: best_score,
+        };
     }
 
     render() {
@@ -35,11 +57,24 @@ export default class FinalResult extends Component {
                                 key={item.id}
                                 className="modal-body p-4 text-center"
                             >
-                                <h2 className="mb-0">{item.name}</h2>
+                                {item.score == this.state.best_score ? (
+                                    <div>
+                                        <img width='50' height='50' src="https://cdn-icons-png.flaticon.com/512/2385/2385856.png"></img>
+                                        <h2>{item.name}</h2>
+                                    </div>
+                                ) : (
+                                    <h2 className="mb-0">{item.name}</h2>
+                                )}
                                 <br></br>
-                                <strong className="mb-0">
-                                    امتیاز : {item.score}
-                                </strong>
+                                {item.score == this.state.best_score ? (
+                                    <strong className="mb-0">
+                                        امتیاز : {item.score}
+                                    </strong>
+                                ) : (
+                                    <p className="mb-0">
+                                        امتیاز : {item.score}
+                                    </p>
+                                )}
                                 <br></br>
                                 <div
                                     style={{
