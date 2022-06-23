@@ -46,7 +46,7 @@ class Profile extends Component {
                 <hr style={{ height: "2px", backgroundColor: "black" }}></hr>
                 <br></br> <br></br>
                 <br></br>
-                <div className="card">
+                <div className="card profile">
                     <h1 className="welcome mt-4">سلام {name} :)</h1>
                     <p className="title">
                         شما در این قسمت میتوانید پروفایل خود را ببینید
