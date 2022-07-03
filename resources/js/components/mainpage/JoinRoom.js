@@ -51,37 +51,44 @@ export default class JoinRoom extends Component {
 
     render() {
         return (
-            <div className="col-md-6">
-                <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div className="col p-4 d-flex flex-column position-static">
-                        <h3 className="mb-0">به اتاق بپیوندید</h3>
-                        <p className="mb-auto">
-                            کلید اتاقی که میخواهید به آن بپیوندید را وارد کنید
-                        </p>
-                        <br></br>
-                        <form onSubmit={this.JoinRoomSubmit}>
-                            <div className="mb-3">
-                                <input
-                                    type="text"
-                                    name="room_name"
-                                    className="form-control rounded-4"
-                                    id="floatingInput2"
-                                    onChange={this.onChangeJoinRoomKey}
-                                    value={this.state.join_room_key}
-                                    required
-                                ></input>
-                            </div>
+            <div
+                className="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form"
+                style={{
+                    background: "linear-gradient(to right, #c94b4b, #4b134f)",
+                }}
+            >
+                <div className="col p-4 d-flex flex-column position-static">
+                    <h3 className="mb-0">به اتاق بپیوندید</h3>
+                    <p className="card-text mb-auto">
+                        کلید اتاقی که میخواهید به آن بپیوندید را وارد کنید
+                    </p>
+                    <br></br>
+                    <form
+                        onSubmit={this.JoinRoomSubmit}
+                        className="room-content"
+                    >
+                        <div className="mb-3">
+                            <input
+                                placeholder="اسم اتاق"
+                                type="text"
+                                name="room_name"
+                                className="form-control rounded-4"
+                                id="floatingInput"
+                                value={this.state.join_room_key}
+                                onChange={this.onChangeJoinRoomKey}
+                                required
+                            ></input>
+                        </div>
 
-                            <button
-                                className="w-100 mb-2 btn btn-lg rounded-4 btn-success"
-                                type="submit"
-                            >
-                                بپیوند
-                            </button>
-                        </form>
-                    </div>
-                    <div className="col-auto d-none d-lg-block"></div>
+                        <button
+                            className="w-100 mb-2 btn btn-lg rounded-4 btn-primary submit-button"
+                            type="submit"
+                        >
+                            بپیوند
+                        </button>
+                    </form>
                 </div>
+                <div className="col-auto d-none d-lg-block"></div>
             </div>
         );
     }

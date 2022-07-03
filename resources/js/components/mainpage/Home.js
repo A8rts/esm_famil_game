@@ -2,49 +2,88 @@ import React, { Component } from "react";
 import CreateRoom from "./CreateRoom";
 import JoinRoom from "./JoinRoom";
 import Header from "../layouts/Header";
+import "./Home.css";
+
 export default class Home extends Component {
     constructor() {
         super();
 
         this.state = {
             join_room_key: "",
+            showCreateRoom: false,
+            showJoinRoom: false,
         };
     }
 
     render() {
+        let { showCreateRoom, showJoinRoom } = this.state;
         return (
-            <main>
+            <main className="home">
                 <div className="bd-masthead mb-5">
                     <Header />
+                    <hr
+                        style={{ height: "2px", backgroundColor: "black" }}
+                    ></hr>
                 </div>
-                <div className="bd-masthead">
-                    <div>
-                        <main className="container">
-                            <div className="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-                                <div className="col-md-6 px-0">
-                                    <h1 className="display-4 ">
-                                        بازی اسم و فامیل
-                                    </h1>
-                                    <p className="lead my-3">
-                                        شما میتوانید در زیر اتاق خودتان را برای
-                                        بازی ایجاد کنید و میتوانید به اتاق
-                                        دوستتان بپیوندید
-                                    </p>
-                                    <p className="lead mb-0">
-                                        <a>موفق باشید</a>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="row mb-2">
-                                <div className="col-md-6">
-                                    <CreateRoom />
-                                </div>
-                                <JoinRoom />
-                            </div>
-                        </main>
+                <div className="game-emoji">
+                    <div className="Introduction">
+                        <strong>بازی اسم و فامیل</strong>
+                        <h4 className="mt-4">
+                            شما میتوانید با استفاده از دکمه های زیر , اتاقی
+                            ایجاد یا به اتاقی بپیوندید
+                        </h4>
+                        <h4>موق باشید :)</h4>
+                    </div>
+                    <div className="all-icon">
+                        <div className="icon">
+                            <p>&#127918;</p>
+                            <p>&#129669;</p>
+                        </div>
+                        <div className="icon">
+                            <p>&#128377;&#65039;</p>
+                            <p>&#127922;</p>
+                        </div>
                     </div>
                 </div>
+                <div className="operation mt-5">
+                    <div className="buttons">
+                        {showCreateRoom == true && showJoinRoom == false ? (
+                            <CreateRoom />
+                        ) : showCreateRoom == false && showJoinRoom == true ? (
+                            <JoinRoom />
+                        ) : (
+                            <></>
+                        )}
+                        <button
+                            className="create-button"
+                            onClick={() =>
+                                this.setState({
+                                    showCreateRoom: true,
+                                    showJoinRoom: false,
+                                })
+                            }
+                        >
+                            ساخت اتاق
+                        </button>
+                        <button
+                            className="join-button"
+                            onClick={() =>
+                                this.setState({
+                                    showJoinRoom: true,
+                                    showCreateRoom: false,
+                                })
+                            }
+                        >
+                            پیوستن به اتاق
+                        </button>
+                    </div>
+                </div>
+                <strong className="text-mianpage">
+                    اگر اولین بار است که میخواهید بازی کنید, توضیحات را بخوانید
+                </strong>
+                <br></br>
+                <br></br>
+                <br></br>
             </main>
         );
     }

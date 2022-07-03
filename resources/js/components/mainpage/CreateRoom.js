@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import "./CreateJoinRoom.css";
 
 export default class CreateRoom extends Component {
     constructor() {
@@ -68,14 +69,17 @@ export default class CreateRoom extends Component {
 
     render() {
         return (
-            <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div className="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
                 <div className="col p-4 d-flex flex-column position-static">
                     <h3 className="mb-0">ایجاد اتاق</h3>
                     <p className="card-text mb-auto">
                         اسم دلخواه برای اتاقتان را وارد کنید
                     </p>
                     <br></br>
-                    <form onSubmit={this.onSubmitButton}>
+                    <form
+                        onSubmit={this.onSubmitButton}
+                        className="room-content"
+                    >
                         <div className="mb-3">
                             <input
                                 placeholder="اسم اتاق"
@@ -90,7 +94,7 @@ export default class CreateRoom extends Component {
                         </div>
 
                         <button
-                            className="w-100 mb-2 btn btn-lg rounded-4 btn-primary"
+                            className="w-100 mb-2 btn btn-lg rounded-4 btn-primary submit-button"
                             type="submit"
                         >
                             بساز

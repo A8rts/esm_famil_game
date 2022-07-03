@@ -1,6 +1,6 @@
 .main {
     height: 100vh;
-    background: linear-gradient(to right, #000046, #1cb5e0);
+    background: linear-gradient(to right, #03001e, #7303c0, #ec38bc);
 }
 
 .profile {
@@ -10,7 +10,7 @@
     margin: auto;
     height: 480px;
     text-align: center;
-    background: linear-gradient(to right, #000428, #004e92);
+    background: linear-gradient(to right, #03001e, #7303c0);
 }
 
 .title {
