@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import "./CreateJoinRoom.css";
+import "./css/CreateJoinRoom.css";
 
 export default class CreateRoom extends Component {
     constructor() {
