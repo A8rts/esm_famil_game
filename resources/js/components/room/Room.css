@@ -1,0 +1,109 @@
+.king {
+    background: linear-gradient(to bottom, #03001e, #7303c0, #ec38bc);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.room-text {
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+}
+
+.start-section {
+    float: right;
+    margin-right: 20rem;
+    width: 30%;
+}
+
+.start-box {
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    border-radius: 15px;
+    color: white;
+}
+
+.start-content {
+    margin: 1rem;
+}
+
+.start-content strong {
+    font-size: 1.2rem;
+}
+
+.start-button {
+    color: white;
+    margin: 1.5rem;
+    background-color: #f7483b;
+    border: pink;
+    padding: 0.5rem 2rem 1rem;
+    border-radius: 20px;
+}
+
+.start-button:hover {
+    background-color: #fc1b0b;
+}
+
+@media screen and (min-width: 1251px) {
+    .users-section {
+        float: left;
+        margin-left: 20rem;
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1615px) {
+    .users-section {
+        width: 24%;
+    }
+
+    .start-section {
+        width: 24%;
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .users-section {
+        float: none;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .start-section {
+        float: none;
+        width: 100%;
+        margin-right: 0rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .start-box {
+        padding: 5rem 5rem 10rem 10rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .room-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .room-text {
+        font-size: 1rem;
+    }
+
+    .start-box {
+        padding: 0rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .room-text {
+        font-size: 0.8rem;
+    }
+}

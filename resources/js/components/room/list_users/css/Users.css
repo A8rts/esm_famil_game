@@ -1,0 +1,53 @@
+.all-users {
+    background: linear-gradient(to right, #9d50bb, #6e48aa);
+    border-radius: 15px;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    margin-right: 1rem;
+}
+
+.user-name {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-text-users {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 1250px) {
+    .all-users {
+        padding: 10rem 10rem 19rem 19rem;
+    }
+
+    .user-icon {
+        float: right;
+        margin-right: 15rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .all-users {
+        padding: 3rem;
+    }
+
+    .user-icon {
+        display: none;
+    }
+
+    .list-text-users {
+        display: flex;
+    }
+}

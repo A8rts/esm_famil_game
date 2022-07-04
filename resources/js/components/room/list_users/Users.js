@@ -3,6 +3,7 @@ import OwnerColumn from "./OwnerColumn";
 import PlayersColumn from "./PlayersColumn";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import "./css/Users.css";
 
 export default class Users extends Component {
     constructor(props) {
@@ -38,30 +39,23 @@ export default class Users extends Component {
         let { isOwner } = this.state;
 
         return (
-            <div className="list-group">
-                {allUsers.map((item) =>
-                    owner_id == item.id ? (
-                        <div className="users" key={owner_id}>
-                            <OwnerColumn
-                                owner_name={item.name}
-                                owner_email={item.email}
-                            />
+            <main className="all-users py-2">
+                <div className="users">
+                    <strong className="list-text-users mb-4">لیست کاربران</strong>
+                    {allUsers.map((item) => (
+                        <div className="user-content" key={item.id}>
+                            <div className="user-icon">
+                                <img
+                                    src="https://primehrm.in/wp-content/uploads/2021/12/user.png"
+                                    width="37"
+                                    height="37"
+                                ></img>
+                            </div>
+                            <p className="user-name">{item.name}</p>
                         </div>
-                    ) : (
-                        <div className="users" key={item.id}>
-                            <PlayersColumn
-                                player_name={item.name}
-                                player_email={item.email}
-                                player_id={item.id}
-                                isOwner={isOwner}
-                                started={started}
-                                finished={finished}
-                                scores_sended={scores_sended}
-                            />
-                        </div>
-                    )
-                )}
-            </div>
+                    ))}
+                </div>
+            </main>
         );
     }
 }

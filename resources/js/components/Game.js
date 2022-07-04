@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./mainpage/Home";
 import Profile from "./Profile/Profile";
 import Loading from "./loading/Loading";
-import NotFound from "./NotFound";
+import NotFound from "./404/NotFound";
 
 const RoomData = React.lazy(() => import("./room/RoomData"));
 

@@ -1,0 +1,21 @@
+.nofound-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+}
+
+.notfound-icon {
+    font-size: 4rem;
+}
+
+.notfound-num {
+    color: red;
+    font-size: 4rem;
+}
+
+.notfound-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

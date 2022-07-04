@@ -24,12 +24,14 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@sweetalert2/theme-borderless": "^5.0.11",
+        "animate.css": "^4.1.1",
         "laravel-echo": "^1.11.7",
         "math": "^0.0.3",
         "mathjs": "^10.6.1",
         "pusher-js": "^7.1.0-beta",
         "react-router-dom": "^6.3.0",
         "react-spinkit": "^3.0.0",
-        "sweetalert2": "^11.4.13"
+        "sweetalert2": "^11.4.19"
     }
 }

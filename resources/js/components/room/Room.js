@@ -4,6 +4,8 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import FinalResult from "./FinalResult";
 import GameForm from "./GameForm";
+import "./Room.css";
+import "animate.css";
 
 const Users = React.lazy(() => import("./list_users/Users"));
 
@@ -16,7 +18,37 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: ["آ","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص","ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",],
+            letters: [
+                "آ",
+                "ب",
+                "پ",
+                "ت",
+                "ث",
+                "ج",
+                "چ",
+                "ح",
+                "خ",
+                "د",
+                "ذ",
+                "ر",
+                "ز",
+                "ش",
+                "س",
+                "ص",
+                "ض",
+                "ط",
+                "ظ",
+                "ع",
+                "غ",
+                "ف",
+                "ق",
+                "ل",
+                "م",
+                "ن",
+                "و",
+                "ه",
+                "ی",
+            ],
             letter: "",
             answers: [],
             user_id: 0,
@@ -84,7 +116,7 @@ export default class Room extends Component {
                         started: false,
                         send: true,
                         scores_sended: false,
-                        showButtons : false,
+                        showButtons: false,
                     });
                 } else if (e.event.event == "one_player_finished_scores") {
                     this.getCountSaveScoresFromProps(
@@ -136,7 +168,7 @@ export default class Room extends Component {
     startGame = () => {
         this.setState({ answers_count: 0 });
         this.props.resetPlayerSaveScores();
-        
+
         if (this.state.letters.length < 1) {
             axios.post("/api/letters_finished", {
                 room_key: this.state.room_key,
@@ -367,7 +399,7 @@ export default class Room extends Component {
     };
 
     getCountSaveScoresFromProps = (room_key, letter) => {
-        this.props.getCountPlayersScores(room_key , letter)
+        this.props.getCountPlayersScores(room_key, letter);
     };
 
     makeFinalResultEvent = () => {
@@ -421,109 +453,40 @@ export default class Room extends Component {
             scores_sended,
             show_final_result,
         } = this.state;
-        let { owner_id , player_save_scores} = this.props;
+        let { owner_id, player_save_scores } = this.props;
 
         return (
-            <main className="container p-5">
-                <div className="row mb-2">
-                    <div className="col-md-6">
-                        <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div className="col p-4 d-flex flex-column position-static">
-                                <strong className="d-inline-block mb-2 text-primary">
-                                    کلید
-                                </strong>
-                                <h3 className="mb-0"></h3>
-                                <p className="card-text mb-auto">
-                                    کلید اتاق شما در زیر نوشته شده است
-                                </p>
-                                <br></br>
-                                <button className="btn btn-info">
-                                    کلید اتاق : {room_key}
-                                </button>
-                                <br></br>
-
-                                {this.state.showButtons ? (
-                                    started ? (
-                                        <></>
-                                    ) : finished ? (
-                                        user_id == owner_id ? (
-                                            player_save_scores ==
-                                            answers.length ? (
-                                                scores_sended ? (
-                                                    show_final_result ? (
-                                                        <></>
-                                                    ) : (
-                                                        <div className="col d-flex flex-column position-static">
-                                                            <button
-                                                                onClick={
-                                                                    this
-                                                                        .playAgain
-                                                                }
-                                                                className="btn btn-success"
-                                                            >
-                                                                بازی دوباره
-                                                            </button>
-                                                            <br></br>
-                                                            <button
-                                                                onClick={
-                                                                    this
-                                                                        .makeFinalResultEvent
-                                                                }
-                                                                className="btn btn-danger"
-                                                            >
-                                                                اتمام بازی و
-                                                                دیدن نتایج نهایی
-                                                            </button>
-                                                        </div>
-                                                    )
-                                                ) : (
-                                                    <button
-                                                        onClick={
-                                                            this
-                                                                .compareAndSaveScores
-                                                        }
-                                                        className="btn btn-warning"
-                                                    >
-                                                        امتیاز دهی کاربران تمام
-                                                        شد! ارسال امتیازات
-                                                    </button>
-                                                )
-                                            ) : (
-                                                <></>
-                                            )
-                                        ) : (
-                                            <button className="btn btn-dark">
-                                                صبر کنید تا سازنده اتاق دوباره
-                                                بازی را شروع کند
-                                            </button>
-                                        )
-                                    ) : user_id == owner_id ? (
-                                        <button
-                                            className="btn btn-warning"
-                                            onClick={this.startGame}
-                                        >
-                                            شروع بازی
-                                        </button>
-                                    ) : (
-                                        <></>
-                                    )
+            <main className="king py-5">
+                <div className="room">
+                    <div className="room-text">
+                        <strong className="animate__animated  animate__zoomInDown">
+                            خوش آمیدد . سازنده اتاق میتواند بازی را شروع کند
+                        </strong>
+                    </div>
+                    <div className="start-section mt-5">
+                        <div className="start-box py-2">
+                            <div className="start-content">
+                                <strong>بازی را شروع کنید</strong>
+                                <p className="mt-4">کلید اتاق : {room_key}</p>
+                                {user_id == owner_id ? (
+                                    <button className="start-button">
+                                        شروع
+                                    </button>
                                 ) : (
-                                    <></>
+                                    <button className="start-button">
+                                        شما سازنده اتاق نیستید !
+                                    </button>
                                 )}
-
-                                <br></br>
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="users-section mt-5">
                         <Users
                             allUsers={allUsers}
-                            room_key={room_key}
-                            user_id={user_id}
                             owner_id={owner_id}
+                            started={started}
                             finished={finished}
                             scores_sended={scores_sended}
-                            started={started}
                         />
                     </div>
                 </div>
