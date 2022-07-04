@@ -1,0 +1,93 @@
+.main-game-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-form {
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    margin-top: 5vh;
+    border-radius: 15px;
+    padding: 1rem 2rem 1rem 2rem;
+}
+
+.with-word {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.word {
+    margin: 3rem;
+    color: white;
+    font-size: 1rem;
+}
+
+.word label {
+    margin-left: 5rem;
+    font-size: 1.2rem;
+}
+
+.word input {
+    background: linear-gradient(to right, #1d976c, #93f9b9);
+    border: 2px solid darkgreen;
+    border-radius: 10px;
+    padding: 0.5rem 4rem 0.5rem 4rem;
+    color: black;
+}
+
+.word input::placeholder {
+    color: gray;
+}
+
+.finish-button {
+    color: white;
+    background-color: #f7483b;
+    border: pink;
+    padding: 0.5rem 2rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.finish-button:hover {
+    background-color: #fa2c1d;
+}
+
+@media screen and (max-width: 660px) {
+    .main-game-form {
+        width: 100%;
+        display: block;
+        align-items: none;
+        justify-content: none;
+    }
+
+    .with-word {
+        color: white;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .word {
+        margin: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .word label {
+        margin-left: 0rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .word input {
+        width: 100%;
+        color: black;
+    }
+}

@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import FinalResult from "./FinalResult";
-import GameForm from "./GameForm";
+import GameForm from "./game_form/GameForm";
 import "./Room.css";
 import "animate.css";
 
@@ -61,6 +61,7 @@ export default class Room extends Component {
             final_results: [],
             show_final_result: false,
             showButtons: true,
+            showUsersAndStart: "",
         };
     }
 
@@ -84,8 +85,11 @@ export default class Room extends Component {
             .listen("FinishEvent", (e) => {
                 if (e.event.event == "start") {
                     this.clearFormData();
-                    this.setState({ answers_count: 0 });
-                    this.setState({ answers: [] });
+                    this.setState({
+                        answers_count: 0,
+                        answers: [],
+                        showUsersAndStart: false,
+                    });
 
                     axios
                         .post("/api/change_started", {
@@ -166,7 +170,7 @@ export default class Room extends Component {
     }
 
     startGame = () => {
-        this.setState({ answers_count: 0 });
+        this.setState({ answers_count: 0, showUsersAndStart: false });
         this.props.resetPlayerSaveScores();
 
         if (this.state.letters.length < 1) {
@@ -338,7 +342,7 @@ export default class Room extends Component {
             })
             .then((res) => {
                 if (res.data == true) {
-                    this.setState({ started: true });
+                    this.setState({ started: true, showUsersAndStart: false });
                 } else if (res.data == false) {
                     this.setState({ finished: true });
                 }
@@ -459,36 +463,64 @@ export default class Room extends Component {
             <main className="king py-5">
                 <div className="room">
                     <div className="room-text">
-                        <strong className="animate__animated  animate__zoomInDown">
-                            خوش آمیدد . سازنده اتاق میتواند بازی را شروع کند
-                        </strong>
+                        {this.state.showUsersAndStart !== "" ? (
+                            this.state.showUsersAndStart ? (
+                                <strong className="animate__animated  animate__zoomInDown welcome">
+                                    خوش آمیدد . سازنده اتاق میتواند بازی را شروع
+                                    کند
+                                </strong>
+                            ) : (
+                                <div>
+                                    <strong className="animate__animated  animate__jackInTheBox playing">
+                                        در حال بازی هستید :)
+                                    </strong>
+                                    <div className="playing-emoji mt-5">
+                                        <p>&#127918;</p>
+                                        <p>&#129669;</p>
+                                    </div>
+                                </div>
+                            )
+                        ) : (
+                            <></>
+                        )}
                     </div>
-                    <div className="start-section mt-5">
-                        <div className="start-box py-2">
-                            <div className="start-content">
-                                <strong>بازی را شروع کنید</strong>
-                                <p className="mt-4">کلید اتاق : {room_key}</p>
-                                {user_id == owner_id ? (
-                                    <button className="start-button">
-                                        شروع
-                                    </button>
-                                ) : (
-                                    <button className="start-button">
-                                        شما سازنده اتاق نیستید !
-                                    </button>
-                                )}
+                    {this.state.showUsersAndStart ? (
+                        <div>
+                            <div className="start-section mt-5">
+                                <div className="start-box py-2">
+                                    <div className="start-content">
+                                        <strong>بازی را شروع کنید</strong>
+                                        <p className="mt-4">
+                                            کلید اتاق : {room_key}
+                                        </p>
+                                        {user_id == owner_id ? (
+                                            <button
+                                                className="start-button"
+                                                onClick={this.startGame}
+                                            >
+                                                شروع
+                                            </button>
+                                        ) : (
+                                            <button className="start-button">
+                                                شما سازنده اتاق نیستید !
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="users-section mt-5">
+                                <Users
+                                    allUsers={allUsers}
+                                    owner_id={owner_id}
+                                    started={started}
+                                    finished={finished}
+                                    scores_sended={scores_sended}
+                                />
                             </div>
                         </div>
-                    </div>
-                    <div className="users-section mt-5">
-                        <Users
-                            allUsers={allUsers}
-                            owner_id={owner_id}
-                            started={started}
-                            finished={finished}
-                            scores_sended={scores_sended}
-                        />
-                    </div>
+                    ) : (
+                        <></>
+                    )}
                 </div>
                 {show_final_result ? (
                     <FinalResult final_results={this.state.final_results} />

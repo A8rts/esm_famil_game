@@ -4,7 +4,15 @@
     width: 100%;
 }
 
-.room-text {
+.room-text .welcome {
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+}
+
+.room-text .playing {
     font-size: 2rem;
     align-items: center;
     justify-content: center;
@@ -43,6 +51,13 @@
 
 .start-button:hover {
     background-color: #fc1b0b;
+}
+
+.playing-emoji {
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (min-width: 1251px) {
@@ -87,13 +102,13 @@
 }
 
 @media screen and (max-width: 700px) {
-    .room-text {
+    .room-text .welcome {
         font-size: 1.5rem;
     }
 }
 
 @media screen and (max-width: 500px) {
-    .room-text {
+    .room-text .welcome {
         font-size: 1rem;
     }
 
@@ -103,7 +118,15 @@
 }
 
 @media screen and (max-width: 321px) {
-    .room-text {
+    .room-text .welcome {
         font-size: 0.8rem;
+    }
+
+    .room-text .playing {
+        font-size: 1.5rem;
+    }
+
+    .playing-emoji {
+        font-size: 4rem;
     }
 }
