@@ -61,7 +61,7 @@ export default class Room extends Component {
             final_results: [],
             show_final_result: false,
             showButtons: true,
-            showUsersAndStart: "",
+            showUsersAndStart: true,
         };
     }
 
@@ -463,25 +463,20 @@ export default class Room extends Component {
             <main className="king py-5">
                 <div className="room">
                     <div className="room-text">
-                        {this.state.showUsersAndStart !== "" ? (
-                            this.state.showUsersAndStart ? (
-                                <strong className="animate__animated  animate__zoomInDown welcome">
-                                    خوش آمیدد . سازنده اتاق میتواند بازی را شروع
-                                    کند
-                                </strong>
-                            ) : (
-                                <div>
-                                    <strong className="animate__animated  animate__jackInTheBox playing">
-                                        در حال بازی هستید :)
-                                    </strong>
-                                    <div className="playing-emoji mt-5">
-                                        <p>&#127918;</p>
-                                        <p>&#129669;</p>
-                                    </div>
-                                </div>
-                            )
+                        {this.state.showUsersAndStart ? (
+                            <strong className="animate__animated  animate__zoomInDown welcome">
+                                خوش آمیدد . سازنده اتاق میتواند بازی را شروع کند
+                            </strong>
                         ) : (
-                            <></>
+                            <div>
+                                <strong className="animate__animated  animate__jackInTheBox playing">
+                                    در حال بازی هستید :)
+                                </strong>
+                                <div className="playing-emoji">
+                                    <p>&#127918;</p>
+                                    <p>&#129669;</p>
+                                </div>
+                            </div>
                         )}
                     </div>
                     {this.state.showUsersAndStart ? (

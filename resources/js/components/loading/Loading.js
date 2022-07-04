@@ -10,7 +10,7 @@ export default class Loading extends Component {
                 style={{
                     textAlign: "center",
                     background: "linear-gradient(to right, #aa076b, #61045f)",
-                    height: "100vh",
+                    minHeight: "100vh",
                 }}
             >
                 <header className="Loading-header">
