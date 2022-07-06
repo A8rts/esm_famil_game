@@ -77,13 +77,21 @@ export default class Result extends Component {
     };
 
     render() {
-        let { answers, room_key, user_id, letter } = this.props;
+        let {
+            answers,
+            room_key,
+            user_id,
+            letter,
+            player_save_scores,
+            owner_id,
+            allUsers,
+        } = this.props;
         let { show_finish_score_button } = this.state;
         return (
             <main>
                 {show_finish_score_button !== "loading" ? (
                     show_finish_score_button ? (
-                        <div className="finish-score-button">
+                        <div className="finish-score-button mt-5">
                             <button
                                 className="scores-finished"
                                 onClick={this.scoresSended}
@@ -92,13 +100,7 @@ export default class Result extends Component {
                             </button>
                         </div>
                     ) : (
-                        <div className="finish-score-button">
-                            <button
-                                className="wait-play"
-                            >
-                                صبر برای بازی دوباره
-                            </button>
-                        </div>
+                        <></>
                     )
                 ) : (
                     <></>

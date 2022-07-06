@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import './css/FinalResult.css';
 
 export default class FinalResult extends Component {
     constructor(props) {
@@ -37,10 +37,10 @@ export default class FinalResult extends Component {
                 id="modalChoice"
             >
                 <div className="modal-dialog" role="document">
-                    <div className="modal-content rounded-3 shadow">
+                    <div className="modal-content rounded-15 shadow final-result">
                         <button
                             type="button"
-                            className="btn btn-danger px-4 gap-3 btn-lg"
+                            className="px-4 gap-3 go-out"
                         >
                             <a
                                 style={{
@@ -59,7 +59,7 @@ export default class FinalResult extends Component {
                             >
                                 {item.score == this.state.best_score ? (
                                     <div>
-                                        <img width='50' height='50' src="https://cdn-icons-png.flaticon.com/512/2385/2385856.png"></img>
+                                        <img width='60' height='60' src="https://cdn-icons-png.flaticon.com/512/2385/2385856.png"></img>
                                         <h2>{item.name}</h2>
                                     </div>
                                 ) : (

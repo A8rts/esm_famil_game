@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import OwnerColumn from "./OwnerColumn";
-import PlayersColumn from "./PlayersColumn";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import "./css/Users.css";
+import "./Users.css";
 
 export default class Users extends Component {
     constructor(props) {
@@ -34,9 +32,8 @@ export default class Users extends Component {
     }
 
     render() {
-        let { allUsers, owner_id, started, finished, scores_sended } =
+        let { allUsers} =
             this.props;
-        let { isOwner } = this.state;
 
         return (
             <main className="all-users py-2">

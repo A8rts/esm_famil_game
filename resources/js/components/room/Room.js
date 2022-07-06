@@ -170,7 +170,11 @@ export default class Room extends Component {
     }
 
     startGame = () => {
-        this.setState({ answers_count: 0, showUsersAndStart: false });
+        this.setState({
+            answers_count: 0,
+            showUsersAndStart: false,
+            showButtons: false,
+        });
         this.props.resetPlayerSaveScores();
 
         if (this.state.letters.length < 1) {
@@ -480,57 +484,118 @@ export default class Room extends Component {
                             </div>
                         )}
                     </div>
-                    {this.state.showUsersAndStart ? (
-                        <div>
-                            <div className="start-section mt-5">
-                                <div className="start-box py-2">
-                                    <div className="start-content">
-                                        <strong>بازی را شروع کنید</strong>
-                                        <p className="mt-4">
-                                            کلید اتاق : {room_key}
-                                        </p>
-                                        {user_id == owner_id ? (
+                    <div>
+                        <div className="start-section mt-5">
+                            <div className="start-box py-2">
+                                <div className="start-content">
+                                    <strong>بازی را شروع کنید</strong>
+                                    <p className="mt-4">
+                                        کلید اتاق : {room_key}
+                                    </p>
+                                    {this.state.showButtons ? (
+                                        started ? (
+                                            <></>
+                                        ) : finished ? (
+                                            user_id == owner_id ? (
+                                                player_save_scores ==
+                                                answers.length ? (
+                                                    scores_sended ? (
+                                                        show_final_result ? (
+                                                            <></>
+                                                        ) : (
+                                                            <div className="col d-flex flex-column position-static">
+                                                                <button
+                                                                    onClick={
+                                                                        this
+                                                                            .playAgain
+                                                                    }
+                                                                    className="play-again-button"
+                                                                >
+                                                                    بازی دوباره
+                                                                </button>
+                                                                <br></br>
+                                                                <button
+                                                                    onClick={
+                                                                        this
+                                                                            .makeFinalResultEvent
+                                                                    }
+                                                                    className="final-result-button"
+                                                                >
+                                                                    اتمام بازی و
+                                                                    دیدن نتایج
+                                                                    نهایی
+                                                                </button>
+                                                            </div>
+                                                        )
+                                                    ) : (
+                                                        <button
+                                                            onClick={
+                                                                this
+                                                                    .compareAndSaveScores
+                                                            }
+                                                            className="finished-scores"
+                                                        >
+                                                            امتیاز دهی کاربران
+                                                            تمام شد! ارسال
+                                                            امتیازات
+                                                        </button>
+                                                    )
+                                                ) : (
+                                                    <></>
+                                                )
+                                            ) : (
+                                                <button className="whait-for-owner mt-4">
+                                                    صبر کنید تا سازنده اتاق
+                                                    دوباره بازی را شروع کند
+                                                </button>
+                                            )
+                                        ) : user_id == owner_id ? (
                                             <button
                                                 className="start-button"
                                                 onClick={this.startGame}
                                             >
-                                                شروع
+                                                شروع بازی
                                             </button>
                                         ) : (
-                                            <button className="start-button">
-                                                شما سازنده اتاق نیستید !
-                                            </button>
-                                        )}
-                                    </div>
+                                            <></>
+                                        )
+                                    ) : (
+                                        <></>
+                                    )}
                                 </div>
                             </div>
-                            <div className="users-section mt-5">
-                                <Users
-                                    allUsers={allUsers}
-                                    owner_id={owner_id}
-                                    started={started}
-                                    finished={finished}
-                                    scores_sended={scores_sended}
-                                />
-                            </div>
                         </div>
-                    ) : (
-                        <></>
-                    )}
+                        <div className="users-section mt-5">
+                            <Users
+                                allUsers={allUsers}
+                                owner_id={owner_id}
+                                started={started}
+                                finished={finished}
+                                scores_sended={scores_sended}
+                            />
+                        </div>
+                    </div>
                 </div>
+
                 {show_final_result ? (
                     <FinalResult final_results={this.state.final_results} />
                 ) : (
-                    <GameForm
-                        letter={letter}
-                        room_key={room_key}
-                        finished={finished}
-                        started={started}
-                        answers={answers}
-                        user_id={user_id}
-                        send={this.state.send}
-                        setShowButtons={this.setShowButtons.bind(this)}
-                    />
+                    <div>
+                        <hr style={{ color: "white", fontSize: "3px" }}></hr>
+                        <GameForm
+                            letter={letter}
+                            allUsers={allUsers}
+                            room_key={room_key}
+                            owner_id={owner_id}
+                            player_save_scores={player_save_scores}
+                            finished={finished}
+                            started={started}
+                            answers={answers}
+                            user_id={user_id}
+                            send={this.state.send}
+                            setShowButtons={this.setShowButtons.bind(this)}
+                        />
+                    </div>
                 )}
             </main>
         );

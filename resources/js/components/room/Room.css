@@ -53,6 +53,59 @@
     background-color: #fc1b0b;
 }
 
+.finished-scores {
+    background-color: #e67e22;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    margin: 1.5rem;
+    border-radius: 20px;
+}
+
+.finished-scores:hover {
+    background-color: #d35400;
+}
+
+.play-again-button {
+    background-color: #27ae60;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    margin: 1.5rem;
+    border-radius: 20px;
+}
+
+.play-again-button:hover {
+    background-color: #2ecc71;
+}
+
+.final-result-button {
+    background-color: #c0392b;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    margin: -1rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 20px;
+}
+
+.final-result-button:hover {
+    background-color: #e74c3c;
+}
+
+.whait-for-owner {
+    background-color: #2c3e50;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    margin: -1rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 20px;
+}
+
+.whait-for-owner:hover {
+    background-color: #34495e;
+}
+
+
 .playing-emoji {
     font-size: 5rem;
     display: flex;

@@ -159,14 +159,17 @@ export default class GameForm extends Component {
                 ) : finished ? (
                     <Result
                         send={this.props.send}
+                        player_save_scores={this.props.player_save_scores}
                         esm={esm}
                         letter={letter}
+                        allUsers={this.props.allUsers}
                         famil={famil}
                         ghaza={ghaza}
                         miveh={miveh}
                         mashin={mashin}
                         ashia={ashia}
                         user_id={user_id}
+                        owner_id={this.props.owner_id}
                         room_key={room_key}
                         answers={answers}
                         setShowRoomButtons={this.setShowRoomButtons.bind(this)}

@@ -1,0 +1,18 @@
+.final-result {
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+
+.go-out {
+    background-color: #e84118;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    border-radius: 15px;
+}
+
+.go-out:hover {
+    background-color: #c23616;
+}
