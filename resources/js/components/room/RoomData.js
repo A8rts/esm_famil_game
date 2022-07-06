@@ -8,7 +8,7 @@ export default function RoomKey() {
     let { key } = useParams();
     const [owner, setOwner] = useState();
     const [username, setUsername] = useState();
-    const [playerSaveScores, setPlayerSaveScores] = useState();
+    const [playerSaveScores, setPlayerSaveScores] = useState('');
 
     useEffect(() => {
         axios
@@ -62,7 +62,7 @@ export default function RoomKey() {
     }
 
     function resetPlayerSaveScores(){
-        setPlayerSaveScores(0);
+        setPlayerSaveScores('');
     }
 
     return (

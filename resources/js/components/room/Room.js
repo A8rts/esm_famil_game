@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import FinalResult from "./FinalResult";
+import FinalResult from "./result/FinalResult";
 import GameForm from "./game_form/GameForm";
 import "./Room.css";
 import "animate.css";
@@ -344,7 +344,7 @@ export default class Room extends Component {
                 if (res.data == true) {
                     this.setState({ started: true, showUsersAndStart: false });
                 } else if (res.data == false) {
-                    this.setState({ finished: true });
+                    this.setState({ finished: true, showUsersAndStart: false });
                 }
             })
             .catch((err) => {
@@ -470,9 +470,10 @@ export default class Room extends Component {
                         ) : (
                             <div>
                                 <strong className="animate__animated  animate__jackInTheBox playing">
-                                    در حال بازی هستید :)
+                                    بازی شروع شده است :)
                                 </strong>
-                                <div className="playing-emoji">
+
+                                <div className="playing-emoji animate__animated animate__swing">
                                     <p>&#127918;</p>
                                     <p>&#129669;</p>
                                 </div>

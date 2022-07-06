@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import Result from "../Result";
+import Result from "../result/Result";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import "./GameForm.css";
