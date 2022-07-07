@@ -139,7 +139,10 @@ export default class Score extends Component {
             <main className="main-score">
                 {show == "loading" ? (
                     <div className="score-loading">
-                        <strong>در حال بار گذاری...</strong>
+                        <Spinner
+                            name="chasing-dots"
+                            style={{ width: 70, height: 70, color: "white" }}
+                        />
                     </div>
                 ) : show ? (
                     <div>
