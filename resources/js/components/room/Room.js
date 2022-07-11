@@ -6,6 +6,10 @@ import FinalResult from "./result/FinalResult";
 import GameForm from "./game_form/GameForm";
 import "./Room.css";
 import "animate.css";
+import StartGuidance from "./guidances/StartGuidance";
+import FinalResultGuidance from "./guidances/FinalResultGuidance";
+import FormGuidance from "./guidances/FormGuidance";
+import ScoreGuidance from "./guidances/ScoreGuidance";
 
 const Users = React.lazy(() => import("./list_users/Users"));
 
@@ -18,36 +22,7 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: [
-                "آ",
-                "ب",
-                "پ",
-                "ت",
-                "ث",
-                "ج",
-                "چ",
-                "ح",
-                "خ",
-                "د",
-                "ذ",
-                "ر",
-                "ز",
-                "ش",
-                "س",
-                "ص",
-                "ض",
-                "ط",
-                "ظ",
-                "ع",
-                "غ",
-                "ف",
-                "ق",
-                "ل",
-                "م",
-                "ن",
-                "و",
-                "ه",
-                "ی",
+            letters: ["آ","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص","ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",
             ],
             letter: "",
             answers: [],
@@ -62,6 +37,7 @@ export default class Room extends Component {
             show_final_result: false,
             showButtons: true,
             showUsersAndStart: true,
+            guidance: false,
         };
     }
 
@@ -89,6 +65,7 @@ export default class Room extends Component {
                         answers_count: 0,
                         answers: [],
                         showUsersAndStart: false,
+                        guidance: false,
                     });
 
                     axios
@@ -118,6 +95,7 @@ export default class Room extends Component {
                     this.setState({
                         finished: true,
                         started: false,
+                        guidance: false,
                         send: true,
                         scores_sended: false,
                         showButtons: false,
@@ -132,6 +110,7 @@ export default class Room extends Component {
                 } else {
                     this.setState({
                         finished: true,
+                        guidance: false,
                         started: false,
                     });
 
@@ -172,6 +151,7 @@ export default class Room extends Component {
     startGame = () => {
         this.setState({
             answers_count: 0,
+            guidance: false,
             showUsersAndStart: false,
             showButtons: false,
         });
@@ -468,121 +448,188 @@ export default class Room extends Component {
                 <div className="room">
                     <div className="room-text">
                         {this.state.showUsersAndStart ? (
-                            <strong className="animate__animated  animate__zoomInDown welcome">
-                                خوش آمیدد . سازنده اتاق میتواند بازی را شروع کند
-                            </strong>
+                            <div>
+                                <strong className="animate__animated  animate__zoomIn welcome">
+                                    خوش آمیدد . سازنده اتاق میتواند بازی را شروع
+                                    کند
+                                </strong>
+                                <p className="click-question-text mt-3 animate__animated  animate__zoomIn">
+                                    هر موقع سوالی برایتان پیش آمد و یا
+                                    نمیدانستید چه کنید روی دکمه ای که علامت سوال
+                                    دارد بزنید
+                                </p>
+                            </div>
                         ) : (
                             <div>
                                 <strong className="animate__animated  animate__jackInTheBox playing">
                                     بازی شروع شده است :)
                                 </strong>
-
+                                <p className="click-question-text mt-3 animate__animated  animate__zoomIn">
+                                    هر موقع سوالی برایتان پیش آمد و یا
+                                    نمیدانستید چه کنید روی دکمه ای که علامت سوال
+                                    دارد بزنید
+                                </p>
                                 <div className="playing-emoji animate__animated animate__swing">
                                     <p>&#127918;</p>
                                     <p>&#129669;</p>
                                 </div>
                             </div>
                         )}
+                        <div className="guidance mt-4 animate__animated animate__zoomIn">
+                            <svg
+                                onClick={() => {
+                                    if (this.state.guidance == true) {
+                                        this.setState({ guidance: false });
+                                    } else {
+                                        this.setState({ guidance: true });
+                                    }
+                                }}
+                                className="guidance-icon"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="45"
+                                height="45"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"
+                                />
+                            </svg>
+                        </div>
+                        {show_final_result ? (
+                            this.state.guidance ? (
+                                <FinalResultGuidance />
+                            ) : (
+                                <></>
+                            )
+                        ) : started ? (
+                            this.state.guidance ? (
+                                <FormGuidance letter={letter} />
+                            ) : (
+                                <></>
+                            )
+                        ) : finished ? (
+                            this.state.guidance ? (
+                                <ScoreGuidance />
+                            ) : (
+                                <></>
+                            )
+                        ) : this.state.guidance ? (
+                            <StartGuidance />
+                        ) : (
+                            <></>
+                        )}
                     </div>
-                    <div>
-                        <div className="start-section mt-5">
-                            <div className="start-box py-2">
-                                <div className="start-content">
-                                    <strong>بازی را شروع کنید</strong>
-                                    <p className="mt-4">
-                                        کلید اتاق : {room_key}
-                                    </p>
-                                    {this.state.showButtons ? (
-                                        started ? (
-                                            <></>
-                                        ) : finished ? (
-                                            user_id == owner_id ? (
-                                                player_save_scores ==
-                                                answers.length ? (
-                                                    scores_sended ? (
-                                                        show_final_result ? (
-                                                            <></>
+                    {started ? (
+                        <></>
+                    ) : (
+                        <div>
+                            <div className="start-section mt-5">
+                                <div className="start-box py-2">
+                                    <div className="start-content">
+                                        <strong>بازی را شروع کنید</strong>
+                                        <p className="mt-4">
+                                            کلید اتاق : {room_key}
+                                        </p>
+                                        {this.state.showButtons ? (
+                                            started ? (
+                                                <></>
+                                            ) : finished ? (
+                                                user_id == owner_id ? (
+                                                    player_save_scores ==
+                                                    answers.length ? (
+                                                        scores_sended ? (
+                                                            show_final_result ? (
+                                                                <></>
+                                                            ) : (
+                                                                <div className="col d-flex flex-column position-static">
+                                                                    <button
+                                                                        onClick={
+                                                                            this
+                                                                                .playAgain
+                                                                        }
+                                                                        className="play-again-button"
+                                                                    >
+                                                                        بازی
+                                                                        دوباره
+                                                                    </button>
+                                                                    <br></br>
+                                                                    <button
+                                                                        onClick={
+                                                                            this
+                                                                                .makeFinalResultEvent
+                                                                        }
+                                                                        className="final-result-button"
+                                                                    >
+                                                                        اتمام
+                                                                        بازی و
+                                                                        دیدن
+                                                                        نتایج
+                                                                        نهایی
+                                                                    </button>
+                                                                </div>
+                                                            )
                                                         ) : (
-                                                            <div className="col d-flex flex-column position-static">
-                                                                <button
-                                                                    onClick={
-                                                                        this
-                                                                            .playAgain
-                                                                    }
-                                                                    className="play-again-button"
-                                                                >
-                                                                    بازی دوباره
-                                                                </button>
-                                                                <br></br>
-                                                                <button
-                                                                    onClick={
-                                                                        this
-                                                                            .makeFinalResultEvent
-                                                                    }
-                                                                    className="final-result-button"
-                                                                >
-                                                                    اتمام بازی و
-                                                                    دیدن نتایج
-                                                                    نهایی
-                                                                </button>
-                                                            </div>
+                                                            <button
+                                                                onClick={
+                                                                    this
+                                                                        .compareAndSaveScores
+                                                                }
+                                                                className="finished-scores"
+                                                            >
+                                                                امتیاز دهی
+                                                                کاربران تمام شد!
+                                                                ارسال امتیازات
+                                                            </button>
                                                         )
                                                     ) : (
-                                                        <button
-                                                            onClick={
-                                                                this
-                                                                    .compareAndSaveScores
-                                                            }
-                                                            className="finished-scores"
-                                                        >
-                                                            امتیاز دهی کاربران
-                                                            تمام شد! ارسال
-                                                            امتیازات
-                                                        </button>
+                                                        <></>
                                                     )
                                                 ) : (
-                                                    <></>
+                                                    <button className="whait-for-owner mt-4">
+                                                        صبر کنید تا سازنده اتاق
+                                                        دوباره بازی را شروع کند
+                                                    </button>
                                                 )
-                                            ) : (
-                                                <button className="whait-for-owner mt-4">
-                                                    صبر کنید تا سازنده اتاق
-                                                    دوباره بازی را شروع کند
+                                            ) : user_id == owner_id ? (
+                                                <button
+                                                    className="start-button"
+                                                    onClick={this.startGame}
+                                                >
+                                                    شروع بازی
                                                 </button>
+                                            ) : (
+                                                <></>
                                             )
-                                        ) : user_id == owner_id ? (
-                                            <button
-                                                className="start-button"
-                                                onClick={this.startGame}
-                                            >
-                                                شروع بازی
-                                            </button>
                                         ) : (
                                             <></>
-                                        )
-                                    ) : (
-                                        <></>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
                             </div>
+                            <div className="users-section mt-5">
+                                <Users
+                                    allUsers={allUsers}
+                                    owner_id={owner_id}
+                                    started={started}
+                                    finished={finished}
+                                    scores_sended={scores_sended}
+                                />
+                            </div>
+                            <hr
+                                style={{ color: "white", fontSize: "3px" }}
+                            ></hr>
                         </div>
-                        <div className="users-section mt-5">
-                            <Users
-                                allUsers={allUsers}
-                                owner_id={owner_id}
-                                started={started}
-                                finished={finished}
-                                scores_sended={scores_sended}
-                            />
-                        </div>
-                    </div>
+                    )}
                 </div>
 
                 {show_final_result ? (
                     <FinalResult final_results={this.state.final_results} />
                 ) : (
                     <div>
-                        <hr style={{ color: "white", fontSize: "3px" }}></hr>
                         <GameForm
+                            guidance={this.state.guidance}
                             letter={letter}
                             allUsers={allUsers}
                             room_key={room_key}

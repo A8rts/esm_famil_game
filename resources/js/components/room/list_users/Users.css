@@ -41,6 +41,7 @@
 @media screen and (max-width: 500px) {
     .all-users {
         padding: 3rem;
+        width: 100%;
     }
 
     .user-icon {

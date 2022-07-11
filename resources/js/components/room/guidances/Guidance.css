@@ -1,0 +1,45 @@
+.start-guidance {
+    margin: auto;
+    width: 30%;
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    background: linear-gradient(to right, #ec008c, #fc6767);
+    justify-content: center;
+}
+
+.start-guidance-content strong {
+    font-size: 1.3rem;
+}
+
+.start-guidance-content p {
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 1420px) {
+    .start-guidance {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1210px) {
+    .start-guidance {
+        width: 30.5rem;
+    }
+}
+
+@media screen and (max-width: 501px) {
+    .start-guidance {
+        width: 100%;
+    }
+
+    .start-guidance-content strong {
+        font-size: 1rem;
+    }
+
+    .start-guidance-content p {
+        font-size: 0.8rem;
+    }
+}
