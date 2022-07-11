@@ -9,33 +9,34 @@
     background: linear-gradient(to left, #9d50bb, #6e48aa);
     margin-top: 5vh;
     border-radius: 15px;
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 1rem 0.5rem 1rem 0.5rem;
 }
 
 .with-word {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .word {
-    margin: 3rem;
+    margin: 2rem 3rem 2rem 3rem;
     color: white;
     font-size: 1rem;
 }
 
 .word label {
     margin-left: 5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .word input {
     background: linear-gradient(to right, #1d976c, #93f9b9);
     border: 2px solid darkgreen;
     border-radius: 10px;
-    padding: 0.5rem 4rem 0.5rem 4rem;
+    width: 100%;
+    padding: 0.5rem 3rem 0.5rem 3rem;
     color: black;
 }
 
@@ -52,7 +53,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 50%;
+    margin: auto;
 }
 
 .finish-button:hover {

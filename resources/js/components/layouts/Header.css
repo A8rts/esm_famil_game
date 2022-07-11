@@ -1,7 +1,7 @@
 .header {
     overflow: hidden;
     background: linear-gradient(to right, #03001e, #7303c0, #ec38bc);
-    padding: 15px 10px;
+    padding: 0rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -22,12 +22,13 @@
 .game-icon {
     width: 100%;
     display: flex;
+    font-size: 4rem;
     justify-content: center;
     align-items: center;
 }
 
 .header a:hover {
-    background-color: darkblue;
+    background-color: rgb(61, 1, 61);
 }
 
 .header-center {
@@ -36,7 +37,7 @@
     align-items: center;
 }
 
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 520px) {
     .header {
         display: block;
     }
@@ -46,5 +47,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .header a {
+        font-size: 0.9rem;
     }
 }

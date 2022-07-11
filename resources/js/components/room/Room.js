@@ -528,7 +528,7 @@ export default class Room extends Component {
                             <div className="start-section mt-5">
                                 <div className="start-box py-2">
                                     <div className="start-content">
-                                        <strong>بازی را شروع کنید</strong>
+                                        <strong>خوش آمدید</strong>
                                         <p className="mt-4">
                                             کلید اتاق : {room_key}
                                         </p>

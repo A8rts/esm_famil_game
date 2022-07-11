@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import './css/FinalResult.css';
+import "./css/FinalResult.css";
+import axios from "axios";
 
 export default class FinalResult extends Component {
     constructor(props) {
@@ -17,6 +18,13 @@ export default class FinalResult extends Component {
         if (Array.isArray(props.final_results) && props.final_results.length) {
             for (let i = 0; i < props.final_results.length; i++) {
                 scores = [...scores, props.final_results[i].score];
+
+                axios
+                    .post("/api/create_user_history", {
+                        user_name: props.final_results[i].name,
+                        user_score: props.final_results[i].score,
+                    })
+                    .then((res) => console.log(res.data));
             }
         }
 
@@ -38,10 +46,7 @@ export default class FinalResult extends Component {
             >
                 <div className="modal-dialog" role="document">
                     <div className="modal-content rounded-15 shadow final-result">
-                        <button
-                            type="button"
-                            className="px-4 gap-3 go-out"
-                        >
+                        <button type="button" className="px-4 gap-3 go-out">
                             <a
                                 style={{
                                     color: "white",
@@ -59,7 +64,11 @@ export default class FinalResult extends Component {
                             >
                                 {item.score == this.state.best_score ? (
                                     <div>
-                                        <img width='60' height='60' src="https://cdn-icons-png.flaticon.com/512/2385/2385856.png"></img>
+                                        <img
+                                            width="60"
+                                            height="60"
+                                            src="https://cdn-icons-png.flaticon.com/512/2385/2385856.png"
+                                        ></img>
                                         <h2>{item.name}</h2>
                                     </div>
                                 ) : (

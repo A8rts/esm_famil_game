@@ -47,12 +47,26 @@ class Profile extends Component {
                 <br></br> <br></br>
                 <br></br>
                 <div className="card profile">
-                    <h1 className="welcome mt-4">{name}</h1>
+                    <h1 className="welcome mt-4">
+                        {isLoading ? <>در حال بارگذاری...</> : <>{name}</>}
+                    </h1>
                     <div className="content mt-5">
-                        <strong className="data">{isLoading ? (<>در حال بارگذاری...</>) : (<>آیدی : {id}</>)}</strong>
+                        <strong className="data">
+                            {isLoading ? (
+                                <>در حال بارگذاری...</>
+                            ) : (
+                                <>آیدی : {id}</>
+                            )}
+                        </strong>
                         <br></br>
                         <br></br>
-                        <strong className="data">{isLoading ? (<>در حال بارگذاری...</>) : (<>ایمیل : {email}</>)}</strong>
+                        <strong className="data">
+                            {isLoading ? (
+                                <>در حال بارگذاری...</>
+                            ) : (
+                                <>ایمیل : {email}</>
+                            )}
+                        </strong>
                     </div>
                 </div>
             </main>

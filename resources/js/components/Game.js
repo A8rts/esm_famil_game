@@ -5,6 +5,7 @@ import Home from "./mainpage/Home";
 import Profile from "./Profile/Profile";
 import Loading from "./loading/Loading";
 import NotFound from "./404/NotFound";
+import BestPlayers from "./best_players/BestPlayers";
 
 const RoomData = React.lazy(() => import("./room/RoomData"));
 
@@ -24,6 +25,10 @@ class Game extends Component {
                                     <RoomData />
                                 </Suspense>
                             }
+                        />
+                        <Route
+                            path="/game/best_players"
+                            element={<BestPlayers />}
                         />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

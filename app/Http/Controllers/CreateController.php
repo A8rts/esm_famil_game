@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\FinishEvent;
-use App\Events\KickRequestEvent;
+use App\Models\BestPlayer;
 use App\Models\FinalScore;
-use App\Models\KickRequest;
 use App\Models\Room;
 use App\Models\RoomEvent;
 use App\Models\RoomGame;
@@ -211,18 +210,26 @@ class CreateController extends Controller
         }
     }
 
-    public function kick_request()
-    {
-        $kick_request = KickRequest::create([
-            'toId' => request()->toId,
-            'message' => 'شما از این اتاق بیرون انداخته شده اید !',
-        ]);
-
-        event(new KickRequestEvent($kick_request));
-    }
-
     public function update_score()
     {
         return request()->all();
+    }
+
+    public function create_user_history()
+    {
+        $user = User::where('name', request()->user_name)->get();
+        $email = $user[0]->email;
+        $name = $user[0]->name;
+        $id = $user[0]->id;
+
+        $user_history = BestPlayer::where('name', $name)->get();
+
+        if ($user_history->isEmpty()) {
+            BestPlayer::create([
+                'user_id' => $id,
+                'name' => $name,
+                'email' => $email,
+            ]);
+        }
     }
 }
