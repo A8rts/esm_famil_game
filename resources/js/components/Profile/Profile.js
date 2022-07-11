@@ -47,15 +47,8 @@ class Profile extends Component {
                 <br></br> <br></br>
                 <br></br>
                 <div className="card profile">
-                    <h1 className="welcome mt-4">سلام {name} :)</h1>
-                    <p className="title">
-                        شما در این قسمت میتوانید پروفایل خود را ببینید
-                    </p>
-
+                    <h1 className="welcome mt-4">{name}</h1>
                     <div className="content mt-5">
-                        <strong className="data">{isLoading ? (<>در حال بارگذاری...</>) : (<>نام : {name}</>)}</strong>
-                        <br></br>
-                        <br></br>
                         <strong className="data">{isLoading ? (<>در حال بارگذاری...</>) : (<>آیدی : {id}</>)}</strong>
                         <br></br>
                         <br></br>

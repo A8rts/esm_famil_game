@@ -8,9 +8,9 @@
     border-radius: 10px;
     max-width: 600px;
     margin: auto;
-    height: 480px;
+    height: 400px;
     text-align: center;
-    background: linear-gradient(to right, #03001e, #7303c0);
+    background-color: #130f40;
 }
 
 .title {
