@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class BestPlayer extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'name', 'email'];
+    protected $fillable = ['user_id', 'name', 'email', 'score', 'letter', 'room_key' , 'type'];
 }

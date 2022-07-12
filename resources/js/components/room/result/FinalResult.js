@@ -23,6 +23,8 @@ export default class FinalResult extends Component {
                     .post("/api/create_user_history", {
                         user_name: props.final_results[i].name,
                         user_score: props.final_results[i].score,
+                        letter : props.letter,
+                        room_key : props.room_key,
                     })
                     .then((res) => console.log(res.data));
             }

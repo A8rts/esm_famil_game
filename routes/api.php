@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BestPlayerController;
 use App\Http\Controllers\CheckRoomController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\RoomController;
@@ -50,7 +51,11 @@ Route::post('save_score', [CreateController::class, 'save_score']);
 Route::post('done_score', [CreateController::class, 'done_score']);
 Route::post('final_score', [CreateController::class, 'final_score']);
 Route::post('kick_request', [CreateController::class, 'kick_request']);
-Route::post('create_user_history', [CreateController::class, 'create_user_history']);
+
+
+Route::post('create_user_history', [BestPlayerController::class, 'create_user_history']);
+Route::post('get_best_players', [BestPlayerController::class, 'get_best_players']);
+
 
 Route::post('check_saved_score', [CheckRoomController::class, 'check_saved_score']);
 Route::post('check_key', [CheckRoomController::class, 'check_key']);

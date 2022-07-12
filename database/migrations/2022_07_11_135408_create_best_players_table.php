@@ -18,6 +18,10 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->string('name');
             $table->string('email');
+            $table->integer('score');
+            $table->string('letter');
+            $table->string('room_key');
+            $table->string('type');
             $table->timestamps();
         });
     }

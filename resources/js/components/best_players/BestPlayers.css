@@ -1,0 +1,65 @@
+.king-main {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #03001e, #7303c0, #ec38bc);
+    color: white;
+}
+
+.king-list-best {
+    width: 40rem;
+    margin: auto;
+}
+
+.list-best-player {
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+
+.how-many-score {
+    background-color: #009432;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    border-radius: 15px;
+}
+
+.how-many-score:hover {
+    background-color: #01852d;
+}
+
+.best-player-name {
+    font-size: 1.8rem;
+    display: block;
+}
+
+.medal-icon {
+    font-size: 3rem;
+}
+
+.medal-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+@media screen and (max-width: 640px) {
+    .king-list-best {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .best-player-name {
+        font-size: 1.4rem;
+        display: block;
+    }
+
+    .content-b {
+        font-size: 0.7rem;
+    }
+
+    .medal-icon {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+}

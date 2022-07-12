@@ -42,7 +42,7 @@ class Profile extends Component {
         let { id, email, name, isLoading } = this.state;
         return (
             <main className="main">
-                <Header />
+                <Header direction="right"/>
                 <hr style={{ height: "2px", backgroundColor: "black" }}></hr>
                 <br></br> <br></br>
                 <br></br>

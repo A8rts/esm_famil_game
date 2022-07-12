@@ -22,7 +22,7 @@ export default class Home extends Component {
             <main className="main-page">
                 <div className="home">
                     <div className="bd-masthead mb-5">
-                        <Header />
+                        <Header direction="right"/>
                         <hr
                             style={{ height: "2px", backgroundColor: "black" }}
                         ></hr>

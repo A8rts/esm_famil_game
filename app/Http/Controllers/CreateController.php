@@ -214,22 +214,4 @@ class CreateController extends Controller
     {
         return request()->all();
     }
-
-    public function create_user_history()
-    {
-        $user = User::where('name', request()->user_name)->get();
-        $email = $user[0]->email;
-        $name = $user[0]->name;
-        $id = $user[0]->id;
-
-        $user_history = BestPlayer::where('name', $name)->get();
-
-        if ($user_history->isEmpty()) {
-            BestPlayer::create([
-                'user_id' => $id,
-                'name' => $name,
-                'email' => $email,
-            ]);
-        }
-    }
 }

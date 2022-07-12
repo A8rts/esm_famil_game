@@ -625,7 +625,7 @@ export default class Room extends Component {
                 </div>
 
                 {show_final_result ? (
-                    <FinalResult final_results={this.state.final_results} />
+                    <FinalResult final_results={this.state.final_results} letter={letter} room_key={room_key}/>
                 ) : (
                     <div>
                         <GameForm
