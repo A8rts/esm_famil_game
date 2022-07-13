@@ -42,11 +42,18 @@ class Profile extends Component {
         let { id, email, name, isLoading } = this.state;
         return (
             <main className="main">
-                <Header direction="right"/>
+                <Header direction="right" />
                 <hr style={{ height: "2px", backgroundColor: "black" }}></hr>
                 <br></br> <br></br>
                 <br></br>
                 <div className="card profile">
+                    <div className="user-img mt-4">
+                        <img
+                            width="70"
+                            height="70"
+                            src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144709.png?token=exp=1657716283~hmac=3c5254c0d2515e147a688f732a0706fa"
+                        ></img>
+                    </div>
                     <h1 className="welcome mt-4">
                         {isLoading ? <>در حال بارگذاری...</> : <>{name}</>}
                     </h1>

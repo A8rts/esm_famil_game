@@ -34,7 +34,7 @@ export default class Home extends Component {
                                 شما میتوانید با استفاده از دکمه های زیر , اتاقی
                                 ایجاد یا به اتاقی بپیوندید
                             </h4>
-                            <h4>موق باشید :)</h4>
+                            <h4>موفق باشید :)</h4>
                         </div>
                         <div className="all-icon">
                             <div className="icon">

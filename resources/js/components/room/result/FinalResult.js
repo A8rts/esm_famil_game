@@ -16,23 +16,26 @@ export default class FinalResult extends Component {
         let best_score = "";
 
         if (Array.isArray(props.final_results) && props.final_results.length) {
-            for (let i = 0; i < props.final_results.length; i++) {
-                scores = [...scores, props.final_results[i].score];
+            if (props.final_results.length > 1) {
+                for (let i = 0; i < props.final_results.length; i++) {
+                    scores = [...scores, props.final_results[i].score];
 
-                axios
-                    .post("/api/create_user_history", {
-                        user_name: props.final_results[i].name,
-                        user_score: props.final_results[i].score,
-                        letter : props.letter,
-                        room_key : props.room_key,
-                    })
-                    .then((res) => console.log(res.data));
+                    axios
+                        .post("/api/create_user_history", {
+                            user_name: props.final_results[i].name,
+                            user_score: props.final_results[i].score,
+                            letter: props.letter,
+                            room_key: props.room_key,
+                        })
+                        .then((res) => console.log(res.data));
+                }
+            }
+
+            if (Array.isArray(scores) && scores.length) {
+                best_score = Math.max.apply(Math, scores);
             }
         }
 
-        if (Array.isArray(scores) && scores.length) {
-            best_score = Math.max.apply(Math, scores);
-        }
         return {
             best_score: best_score,
         };

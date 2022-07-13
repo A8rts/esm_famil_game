@@ -42,9 +42,40 @@
     height: 3.5rem;
 }
 
+.loading-best-players {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.best-player-text {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.best-player-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-more {
+    background-color: #3b3b98;
+    border: none;
+    padding: 0.5rem 2rem 1rem;
+    color: white;
+    border-radius: 15px;
+}
+
+.show-more:hover {
+    background-color: #282880;
+}
+
 @media screen and (max-width: 640px) {
     .king-list-best {
-        width: 100%;
+        width: 90%;
     }
 }
 
