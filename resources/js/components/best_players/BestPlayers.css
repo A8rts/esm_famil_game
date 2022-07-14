@@ -73,7 +73,7 @@
     background-color: #282880;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 656px) {
     .king-list-best {
         width: 90%;
     }
