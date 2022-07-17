@@ -51,7 +51,7 @@ class Profile extends Component {
                         <img
                             width="70"
                             height="70"
-                            src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144709.png?token=exp=1657716283~hmac=3c5254c0d2515e147a688f732a0706fa"
+                            src="https://cdn-icons-png.flaticon.com/128/3237/3237472.png"
                         ></img>
                     </div>
                     <h1 className="welcome mt-4">

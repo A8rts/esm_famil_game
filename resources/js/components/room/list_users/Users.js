@@ -43,7 +43,7 @@ export default class Users extends Component {
                         <div className="user-content" key={item.id}>
                             <div className="user-icon">
                                 <img
-                                    src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144709.png?token=exp=1657720164~hmac=775ba3efed1ac5d34d79db20c7b4f594"
+                                    src="https://cdn-icons-png.flaticon.com/128/3237/3237472.png"
                                     width="37"
                                     height="37"
                                 ></img>

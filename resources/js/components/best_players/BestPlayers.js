@@ -207,14 +207,18 @@ export default class BestPlayers extends Component {
                                     )}
                                 </div>
                             ))}
-                            <button className="show-more">
+                            <button
+                                className="show-more"
+                                onClick={() =>
+                                    (window.location.href =
+                                        "/game/best_players")
+                                }
+                            >
                                 به انتها رسیدید :)
                             </button>
                         </div>
                     </div>
                 )}
-
-                <br></br>
             </main>
         );
     }
