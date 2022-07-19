@@ -73,6 +73,12 @@
     background-color: #282880;
 }
 
+.empty-data {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
 @media screen and (max-width: 656px) {
     .king-list-best {
         width: 90%;

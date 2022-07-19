@@ -90,6 +90,8 @@ export default class Room extends Component {
                         title: "شما با تمام حروف بازی کرده اید !",
                         confirmButtonText: "باشه",
                     });
+
+                    this.showFinalResult();
                 } else if (e.event.event == "finish") {
                     //for when click on finish get all users form data and send thoes
                     this.setState({

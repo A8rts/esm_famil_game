@@ -16,6 +16,7 @@ export default class BestPlayers extends Component {
             last_player: "",
             name: "",
             uploadRate: 5,
+            empty: false,
             isLoading: false,
         };
     }
@@ -71,6 +72,12 @@ export default class BestPlayers extends Component {
                     ],
                 }));
             }
+        }
+
+        if (this.state.best_players_data.length === 0) {
+            this.setState({ empty: true });
+        } else {
+            this.setState({ empty: false });
         }
     };
 
@@ -156,57 +163,74 @@ export default class BestPlayers extends Component {
                             >
                                 اوضاع من چطوره؟
                             </button>
-                            {best_players_data.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className="modal-body text-center best-player-content"
-                                >
-                                    {item.num == 1 ? (
-                                        <div>
-                                            <img
-                                                className="medal-icon"
-                                                src="https://cdn-icons-png.flaticon.com/128/2583/2583381.png"
-                                            ></img>
-                                        </div>
-                                    ) : item.num == 2 ? (
-                                        <div>
-                                            <img
-                                                className="medal-icon"
-                                                src="https://cdn-icons-png.flaticon.com/128/2583/2583350.png"
-                                            ></img>
-                                        </div>
-                                    ) : item.num == 3 ? (
-                                        <div>
-                                            <img
-                                                className="medal-icon"
-                                                src="https://cdn-icons-png.flaticon.com/128/2583/2583448.png"
-                                            ></img>
-                                        </div>
-                                    ) : (
-                                        <></>
-                                    )}
-                                    <strong className="best-player-name">
-                                        {item.name}
+                            {this.state.empty ? (
+                                <div className="empty-data">
+                                    <img
+                                        width="100"
+                                        height="100"
+                                        src="https://pngimage.net/wp-content/uploads/2019/05/exclamation-mark-png-transparent-4.png"
+                                    ></img>
+
+                                    <strong>
+                                        فعلا هیچ بازیکنی تا به حال بازی ای را به
+                                        صورت کامل انجام نداده است
                                     </strong>
-                                    <div className="content-b">
-                                        جمع کل امتیازات :
-                                        <strong> {item.score}</strong>
-                                        <p className="mt-3">نفر {item.num}</p>
-                                    </div>
-                                    {item.num !== this.state.last_player ? (
-                                        <div
-                                            style={{
-                                                borderTop: "1px solid",
-                                                marginTop: 20,
-                                                marginLeft: 20,
-                                                marginRight: 20,
-                                            }}
-                                        ></div>
-                                    ) : (
-                                        <></>
-                                    )}
                                 </div>
-                            ))}
+                            ) : (
+                                best_players_data.map((item) => (
+                                    <div
+                                        key={item.id}
+                                        className="modal-body text-center best-player-content"
+                                    >
+                                        {item.num == 1 ? (
+                                            <div>
+                                                <img
+                                                    className="medal-icon"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2583/2583381.png"
+                                                ></img>
+                                            </div>
+                                        ) : item.num == 2 ? (
+                                            <div>
+                                                <img
+                                                    className="medal-icon"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2583/2583350.png"
+                                                ></img>
+                                            </div>
+                                        ) : item.num == 3 ? (
+                                            <div>
+                                                <img
+                                                    className="medal-icon"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2583/2583448.png"
+                                                ></img>
+                                            </div>
+                                        ) : (
+                                            <></>
+                                        )}
+                                        <strong className="best-player-name">
+                                            {item.name}
+                                        </strong>
+                                        <div className="content-b">
+                                            جمع کل امتیازات :
+                                            <strong> {item.score}</strong>
+                                            <p className="mt-3">
+                                                نفر {item.num}
+                                            </p>
+                                        </div>
+                                        {item.num !== this.state.last_player ? (
+                                            <div
+                                                style={{
+                                                    borderTop: "1px solid",
+                                                    marginTop: 20,
+                                                    marginLeft: 20,
+                                                    marginRight: 20,
+                                                }}
+                                            ></div>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                ))
+                            )}
                             <button
                                 className="show-more"
                                 onClick={() =>
@@ -217,6 +241,7 @@ export default class BestPlayers extends Component {
                                 به انتها رسیدید :)
                             </button>
                         </div>
+                        <br></br>
                     </div>
                 )}
             </main>
