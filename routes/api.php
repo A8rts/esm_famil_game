@@ -51,6 +51,7 @@ Route::post('save_score', [CreateController::class, 'save_score']);
 Route::post('done_score', [CreateController::class, 'done_score']);
 Route::post('final_score', [CreateController::class, 'final_score']);
 Route::post('kick_request', [CreateController::class, 'kick_request']);
+Route::post('update_user_profile', [CreateController::class, 'update_user_profile']);
 
 
 Route::post('create_user_history', [BestPlayerController::class, 'create_user_history']);
