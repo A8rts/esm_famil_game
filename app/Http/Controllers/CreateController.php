@@ -214,11 +214,4 @@ class CreateController extends Controller
     {
         return request()->all();
     }
-
-    public function update_user_profile()
-    {
-        $user = User::where('id', request()->id)->update(['name' => request()->name, 'email' => request()->email]);
-
-        return $user;
-    }
 }

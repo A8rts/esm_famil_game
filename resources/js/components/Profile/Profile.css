@@ -27,49 +27,6 @@
     color: white;
 }
 
-.edit-profile {
-    color: white;
-    background: linear-gradient(to left, #8e2de2, #4a00e0);
-    border-radius: 15px;
-    border: none;
-    padding: 1rem 4rem 1rem 4rem;
-}
-
-.edit-profile:hover {
-    background: linear-gradient(to left, #8719e7, #3a01ad);
-}
-
-.edit-data {
-    color: white;
-    margin: 2rem;
-}
-
-.edit-input {
-    width: 100%;
-    background: linear-gradient(to left, #8e2de2, #4a00e0);
-    border: none;
-    border-radius: 15px;
-    color: white;
-    padding: 0.6rem 3.5rem 0.6rem 3.5rem;
-}
-
-.edit-input::placeholder {
-    color: rgba(255, 255, 255, 0.308);
-}
-
-.submit-new-profile {
-    color: white;
-    background: #4834d4;
-    border-radius: 15px;
-    width: 100%;
-    border: none;
-    padding: 0.8rem 3.5rem 0.8rem 3.5rem;
-}
-
-.submit-new-profile:hover {
-    background: #3e27d4;
-}
-
 @media screen and (max-width: 700px) {
     .main {
         min-height: 100vh;
@@ -84,11 +41,5 @@
 @media screen and (max-width: 540px) {
     .profile {
         width: 97%;
-    }
-}
-
-@media screen and (max-width: 310px) {
-    .edit-profile {
-        padding: 1rem 3rem 1rem 3rem;
     }
 }
