@@ -55,7 +55,7 @@
 
 .create-button {
     color: white;
-    margin: 1.5rem;
+    margin: 0.5rem 0.5rem 0.8rem 0.5rem;
     background-color: #f7483b;
     border: pink;
     padding: 1rem 2rem 1rem;
@@ -64,6 +64,7 @@
 
 .join-button {
     color: white;
+    margin: 0.5rem 0.5rem 0.8rem 0.5rem;
     background-color: #f7483b;
     border: pink;
     padding: 1rem 2rem 1rem;
@@ -123,7 +124,7 @@
         width: 100%;
         align-items: center;
         justify-content: center;
-        margin-top: 14rem;
+        margin-top: 10rem;
     }
 
     .icon {
@@ -166,6 +167,23 @@
     }
 }
 
+@media screen and (max-width: 520px) {
+    .icon {
+        margin-bottom: 2rem;
+        font-size: 4rem;
+    }
+
+    .create-button {
+        padding: 0.8rem 1.1rem 0.8rem;
+        font-size: 14px;
+    }
+
+    .join-button {
+        padding: 0.8rem 1.1rem 0.8rem;
+        font-size: 14px;
+    }
+}
+
 @media screen and (max-width: 350px) {
     .Introduction {
         font-size: 1.5rem;
@@ -181,13 +199,13 @@
     }
 
     .create-button {
-        padding: 0.3rem 0.5rem 0.3rem;
-        font-size: 14px;
+        padding: 0.5rem 0.8rem 0.5rem;
+        font-size: 12px;
     }
 
     .join-button {
-        padding: 0.3rem 0.5rem 0.3rem;
-        font-size: 14px;
+        padding: 0.5rem 0.8rem 0.5rem;
+        font-size: 12px;
     }
 
     .text-mianpage {

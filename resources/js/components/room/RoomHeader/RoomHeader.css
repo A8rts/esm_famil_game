@@ -1,0 +1,271 @@
+.room-header {
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    width: 100%;
+    padding: 1rem;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.room-header-key {
+    font-size: 1.1rem;
+    margin-left: 25%;
+}
+
+.guidance {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.guidance-icon {
+    background: linear-gradient(to right, #ec008c, #fc6767);
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 50px;
+    margin-left: 2rem;
+}
+
+.swal2-popup {
+    font-size: 0.9rem !important;
+}
+
+.guidance-icon:hover {
+    background: linear-gradient(to right, #c20175, #cf5454);
+}
+
+.invite-button {
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background-color: #0097e6;
+    box-shadow: 2px 5px #1443cf;
+    padding: 0.9rem 1rem 0.9rem 1rem;
+    margin-left: 2rem;
+}
+
+.invite-button strong {
+    font-size: 1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.invite-button:hover {
+    box-shadow: 5px 10px #1443cf;
+}
+
+.start-game-button {
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background-color: #ffa801;
+    box-shadow: 2px 5px #a06801;
+    padding: 0.9rem 1rem 0.9rem 1rem;
+}
+
+.start-game-button:disabled,
+.start-game-button[disabled] {
+    background-color: #ffa60149;
+    box-shadow: 2px 5px #a0680142;
+    cursor: no-drop;
+}
+
+.start-game-button strong {
+    font-size: 1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.start-game-button:hover {
+    box-shadow: 5px 10px #a06801;
+}
+
+.loading-button {
+    background: #ff4757;
+    box-shadow: 2px 5px #962932;
+    padding: 0.9rem 2.6rem 0.9rem 2rem;
+}
+
+.playing-game {
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background: #20bf6b;
+    box-shadow: 2px 5px #009432;
+    padding: 0.9rem 1rem 0.9rem 1rem;
+}
+
+.playing-game strong {
+    font-size: 1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.playing-game:hover {
+    box-shadow: 5px 10px #009432;
+}
+
+.scoring-button {
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background: #e67e22;
+    box-shadow: 2px 5px #d35400;
+    padding: 0.9rem 1rem 0.9rem 1rem;
+}
+
+.scoring-button strong {
+    font-size: 1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.scoring-button:hover {
+    box-shadow: 5px 10px #d35400;
+}
+
+.finish-game-button {
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background: #34495e;
+    box-shadow: 2px 5px #2c3e50;
+    padding: 0.9rem 1rem 0.9rem 1rem;
+}
+
+.finish-game-button strong {
+    font-size: 1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.finish-game-button:hover {
+    box-shadow: 5px 10px #2c3e50;
+}
+
+.final-result-header-button {
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background: #e74c3c;
+    box-shadow: 2px 5px #c0392b;
+    padding: 0.9rem 1rem 0.9rem 1rem;
+}
+
+.final-result-header-button strong {
+    font-size: 1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.final-result-header-button:hover {
+    box-shadow: 5px 10px #c0392b;
+}
+
+@media screen and (max-width: 868px) {
+    .guidance-icon {
+        margin-left: 0rem;
+        margin: 0.5rem 0.5rem 0.3rem 0.5rem;
+    }
+
+    .room-header {
+        display: block;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .room-header-key {
+        margin-left: 0%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .room-header-buttons {
+        margin: 1rem 0rem 0rem 0rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .invite-button {
+        padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    }
+
+    .start-game-button {
+        padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    }
+
+    .playing-game {
+        padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    }
+
+    .loading-button {
+        padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+    }
+
+    .scoring-button {
+        padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+    }
+
+    .finish-game-button {
+        padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+    }
+
+    .final-result-header-button {
+        padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+    }
+
+    .room-header-key {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .swal2-popup {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media screen and (max-width: 338px) {
+    .room-header-key {
+        font-size: 0.9rem;
+    }
+
+    .invite-button {
+        padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    }
+
+    .start-game-button {
+        padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    }
+
+    .invite-button strong {
+        font-size: 0.9rem;
+    }
+
+    .final-result-header-button strong {
+        font-size: 0.9rem;
+    }
+
+    .playing-game {
+        padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+    }
+
+    .loading-button {
+        padding: 0.5rem 1.8rem 0.5rem 1.8rem;
+    }
+
+    .scoring-button {
+        padding: 0.5rem 1.2rem 0.5rem 1.2rem;
+    }
+}

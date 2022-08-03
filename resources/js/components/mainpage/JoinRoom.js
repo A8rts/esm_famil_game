@@ -58,9 +58,9 @@ export default class JoinRoom extends Component {
                 }}
             >
                 <div className="col p-4 d-flex flex-column position-static">
-                    <h3 className="mb-0">به اتاق بپیوندید</h3>
-                    <p className="card-text mb-auto">
-                        کلید اتاقی که میخواهید به آن بپیوندید را وارد کنید
+                    <h3 className="mb-0 top-text">به اتاق بپیوندید</h3>
+                    <p className="card-text mb-auto des-text">
+                        کلید اتاقه مد نظرتان را وارد کنید
                     </p>
                     <br></br>
                     <form

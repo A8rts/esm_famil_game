@@ -4,99 +4,198 @@
     color: white;
 }
 
-.king-list-best {
-    width: 40rem;
-    margin: auto;
-}
-
-.list-best-player {
-    background: linear-gradient(to left, #9d50bb, #6e48aa);
-    color: white;
-    border-radius: 15px;
-    border: none;
-}
-
-.how-many-score {
-    background-color: #009432;
-    border: none;
-    padding: 0.5rem 2rem 1rem;
-    color: white;
-    border-radius: 15px;
-}
-
-.how-many-score:hover {
-    background-color: #01852d;
-}
-
-.best-player-name {
-    font-size: 1.8rem;
-    display: block;
-}
-
-.medal-icon {
-    font-size: 3rem;
-}
-
-.medal-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-}
-
 .loading-best-players {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
 }
 
-.best-player-text {
-    font-size: 2rem;
+.best-players-icon {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
+    width: 7rem;
+    height: 7rem;
 }
 
-.best-player-icon {
+.best-players-txt {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
+    font-size: 1.5rem;
 }
 
-.show-more {
-    background-color: #3b3b98;
-    border: none;
-    padding: 0.5rem 2rem 1rem;
+.my-scores {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
     color: white;
+    border-radius: 5px;
+    border: none;
+    background: #27ae60;
+    transform: skew(-10deg);
+    box-shadow: 2px 5px #1f8b4c;
+    padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+}
+
+.my-scores strong {
+    transform: skew(10deg);
+}
+
+.my-scores:hover {
+    box-shadow: 5px 10px #1f8b4c;
+}
+
+.best-players-box {
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    width: 32%;
+    margin: auto;
+    overflow: auto;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.des-best-players-box {
+    font-size: 1.3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 70%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 15px;
+    background-color: #6f1e51;
+    border: #3f122e 3px dashed;
+}
+
+.best-player-data {
+    font-size: 1.3rem;
+    background-color: #6f1e51;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 70%;
+    border: #3f122e 3px solid;
+    margin: auto;
     border-radius: 15px;
 }
 
-.show-more:hover {
-    background-color: #282880;
-}
-
-.empty-data {
+.user-name-best-player,
+.score-best-player,
+.num-best-player {
     align-items: center;
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
 }
 
-@media screen and (max-width: 656px) {
-    .king-list-best {
+.user-name-best-player {
+    font-size: 1.7rem;
+}
+
+.score-best-player,
+.num-best-player {
+    font-size: 1rem;
+}
+
+.medal-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+}
+
+::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9c88ff;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1669px) {
+    .best-players-box {
+        width: 37rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .best-players-box {
+        width: 30rem;
+    }
+
+    .des-best-players-box {
+        font-size: 1rem;
+    }
+
+    .best-player-data {
+        font-size: 1rem;
+    }
+
+    .best-players-icon {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .best-players-txt {
+        font-size: 1.3rem;
+    }
+
+    .my-scores {
+        padding: 0.7rem 1.1rem 0.7rem 1.1rem;
+    }
+
+    .user-name-best-player {
+        font-size: 1.5rem;
+    }
+
+    .score-best-player,
+    .num-best-player {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .best-players-box {
         width: 90%;
     }
-}
 
-@media screen and (max-width: 400px) {
-    .best-player-name {
-        font-size: 1.4rem;
-        display: block;
+    .user-name-best-player {
+        font-size: 1.3rem;
     }
 
-    .content-b {
-        font-size: 0.7rem;
+    .score-best-player,
+    .num-best-player {
+        font-size: 0.8rem;
     }
 
     .medal-icon {
-        width: 3.2rem;
-        height: 3.2rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .best-players-icon {
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+
+    .best-players-txt {
+        font-size: 1.1rem;
+    }
+
+    .des-best-players-box {
+        font-size: 0.9rem;
     }
 }

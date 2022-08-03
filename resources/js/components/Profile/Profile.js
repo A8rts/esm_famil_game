@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Header from "../layouts/Header";
 import "./Profile.css";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
 
 class Profile extends Component {
     constructor() {
@@ -41,7 +38,7 @@ class Profile extends Component {
     }
 
     render() {
-        let { id, email, name, isLoading, edit } = this.state;
+        let { id, email, name, isLoading } = this.state;
         return (
             <main className="main">
                 <Header direction="right" />

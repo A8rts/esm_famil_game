@@ -20,57 +20,6 @@
     color: white;
 }
 
-.guidance {
-    align-items: center;
-    justify-content: center;
-    color: white;
-    display: flex;
-}
-
-.guidance-icon {
-    background: linear-gradient(to right, #ec008c, #fc6767);
-    cursor: pointer;
-    padding: 0.3rem;
-    border-radius: 50px;
-}
-
-.guidance-icon:hover {
-    background: linear-gradient(to right, #c20175, #cf5454);
-}
-
-.start-section {
-    float: right;
-    margin-right: 20rem;
-    width: 30%;
-}
-
-.start-box {
-    background: linear-gradient(to left, #9d50bb, #6e48aa);
-    border-radius: 15px;
-    color: white;
-}
-
-.start-content {
-    margin: 1rem;
-}
-
-.start-content strong {
-    font-size: 1.2rem;
-}
-
-.start-button {
-    color: white;
-    margin: 1.5rem;
-    background-color: #f7483b;
-    border: pink;
-    padding: 0.5rem 2rem 1rem;
-    border-radius: 20px;
-}
-
-.start-button:hover {
-    background-color: #fc1b0b;
-}
-
 .finished-scores {
     background-color: #e67e22;
     border: none;
@@ -84,18 +33,6 @@
     background-color: #d35400;
 }
 
-.play-again-button {
-    background-color: #27ae60;
-    border: none;
-    padding: 0.5rem 2rem 1rem;
-    color: white;
-    margin: 1.5rem;
-    border-radius: 20px;
-}
-
-.play-again-button:hover {
-    background-color: #2ecc71;
-}
 
 .final-result-button {
     background-color: #c0392b;
@@ -138,49 +75,6 @@
     font-size: 1rem;
 }
 
-@media screen and (min-width: 1251px) {
-    .users-section {
-        float: left;
-        margin-left: 20rem;
-        width: 30%;
-    }
-}
-
-@media screen and (max-width: 1615px) {
-    .users-section {
-        margin-left: 15rem;
-        width: 30%;
-    }
-
-    .start-section {
-        width: 30%;
-        margin-right: 15rem;
-    }
-}
-
-@media screen and (max-width: 1250px) {
-    .users-section {
-        float: none;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .start-section {
-        float: none;
-        width: 100%;
-        margin-right: 0rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .start-box {
-        padding: 5rem 5rem 10rem 10rem;
-    }
-}
-
 @media screen and (max-width: 700px) {
     .room-text .welcome {
         font-size: 1.5rem;
@@ -195,15 +89,6 @@
 @media screen and (max-width: 500px) {
     .room-text .welcome {
         font-size: 1rem;
-    }
-
-    .start-box {
-        padding: 0rem;
-        width: 100%;
-    }
-
-    .users-section {
-        width: 100%;
     }
 
     .click-question-text {

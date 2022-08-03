@@ -1,76 +1,175 @@
-.main-score strong {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.score-button {
-    border-radius: 5px;
-    margin: 0.7rem;
-    color: white;
-    overflow: hidden;
-    width: 6rem;
-}
-
-.send-button {
-    width: 100%;
-    color: white;
-    background-color: #f7483b;
-    border: pink;
-    padding: 0.2rem 2rem 1rem;
-    border-radius: 20px;
-}
-
-.send-button:hover {
-    background-color: #f12e20;
-}
-
 .score-loading {
-    width: 100%;
-    font-size: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    margin: auto;
 }
 
-.edit-scores {
+.scoring-buttons {
     display: flex;
     align-items: center;
     justify-content: center;
+    list-style-type: none;
+    margin: auto;
 }
 
-.edit-score-button {
-    background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+.scoring-buttons li {
+    float: right;
+    margin: 0.6rem;
+    padding: 1.2rem 3rem 1.2rem 3rem;
+    position: relative;
+}
+
+.scoring-buttons .o,
+.scoring-buttons input {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 6px;
+    border: 2px solid #dc3545;
+    text-align: center;
+    cursor: pointer;
+}
+
+.scoring-buttons .five {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 6px;
+    text-align: center;
+    border: 2px solid #f7b731;
+    cursor: pointer;
+}
+
+.scoring-buttons .ten {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 6px;
+    border: 2px solid #198754;
+    text-align: center;
+    cursor: pointer;
+}
+
+.scoring-buttons input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+}
+
+.scoring-buttons input[type="radio"]:checked + .o,
+.Checked + .o {
+    background: #dc3545;
+}
+
+.scoring-buttons input[type="radio"]:checked + .five,
+.Checked + .o {
+    background: #f7b731;
+}
+
+.scoring-buttons input[type="radio"]:checked + .ten,
+.Checked + .o {
+    background: #198754;
+}
+
+.scoring-buttons label {
+    padding: 0.4rem;
+    border: 1px solid white;
+    cursor: pointer;
+    z-index: 90;
+}
+
+.entry-button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
     color: white;
-    border-radius: 10px;
-    width: 100%;
-    padding: 1rem 5rem 1rem 5rem;
-    margin-top: 15vh;
+    background: #ee5a24;
+    border-radius: 5px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
     border: none;
 }
 
-.edit-score-button:hover {
-    background: linear-gradient(to right, #9c1e98, #eb3951, #f16c1a);
+.entry-button:hover {
+    background: #d14f20;
 }
 
-@media screen and (max-width: 1128px) {
-    .score-button {
-        border-radius: 5px;
-        margin: 0.5rem;
-        width: 5rem;
-    }
-
-    .edit-score-button {
-        margin: 0rem;
-    }
+.edit-scores {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    background: #e84393;
+    border-radius: 5px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    margin: auto;
+    border: none;
 }
 
-@media screen and (max-width: 437px) {
-    .score-button {
+.edit-scores:hover {
+    background: #c4387b;
+}
+
+.finished-scorings-button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    background: #d63031;
+    border-radius: 5px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    margin: auto;
+    border: none;
+}
+
+.finished-scorings-button:hover {
+    background: #a12424;
+}
+
+@media screen and (max-width: 868px) {
+    .scoring-buttons li {
+        margin: 0.4rem 0.4rem 0.4rem 0.6rem;
+        padding: 1.1rem 2.5rem 1.1rem 2.5rem;
         font-size: 0.8rem;
-        border-radius: 5px;
-        margin: 0.4rem;
-        width: 4rem;
+    }
+
+    .entry-button {
+        padding: 0.4rem 2.5rem 0.4rem 2.5rem;
+    }
+
+    .edit-scores {
+        padding: 0.3rem 2.5rem 0.3rem 2.5rem;
+    }
+
+    .finished-scorings-button {
+        padding: 0.3rem 2.5rem 0.3rem 2.5rem;
+    }
+}
+
+@media screen and (max-width: 447px) {
+    .scoring-buttons li {
+        margin: 0.3rem 0.3rem 0.3rem 0.5rem;
+        padding: 1rem 2.4rem 1rem 2.4rem;
+    }
+
+    .entry-button {
+        padding: 0.3rem 2.3rem 0.3rem 2.3rem;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .scoring-buttons li {
+        margin: 0.3rem 0.2rem 0.3rem 0.4rem;
+        padding: 1rem 2.2rem 1rem 2.2rem;
+        font-size: 0.7rem;
     }
 }

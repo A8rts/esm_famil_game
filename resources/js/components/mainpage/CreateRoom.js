@@ -71,8 +71,8 @@ export default class CreateRoom extends Component {
         return (
             <div className="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative form">
                 <div className="col p-4 d-flex flex-column position-static">
-                    <h3 className="mb-0">ایجاد اتاق</h3>
-                    <p className="card-text mb-auto">
+                    <h3 className="mb-0 top-text">ایجاد اتاق</h3>
+                    <p className="card-text mb-auto des-text">
                         اسم دلخواه برای اتاقتان را وارد کنید
                     </p>
                     <br></br>

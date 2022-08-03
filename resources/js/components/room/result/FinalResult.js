@@ -44,64 +44,44 @@ export default class FinalResult extends Component {
     render() {
         let { final_results } = this.props;
         return (
-            <div
-                className="modal modal-alert position-static d-block py-5"
-                role="dialog"
-                id="modalChoice"
-            >
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content rounded-15 shadow final-result">
-                        <button type="button" className="px-4 gap-3 go-out">
-                            <a
-                                style={{
-                                    color: "white",
-                                    textDecoration: "none",
-                                }}
-                                href="/game"
-                            >
-                                بازگشت به صفحه اصلی
-                            </a>
-                        </button>
-                        {final_results.map((item) => (
-                            <div
-                                key={item.id}
-                                className="modal-body p-4 text-center"
-                            >
-                                {item.score == this.state.best_score ? (
-                                    <div>
-                                        <img
-                                            width="60"
-                                            height="60"
-                                            src="https://cdn-icons-png.flaticon.com/512/2385/2385856.png"
-                                        ></img>
-                                        <h2>{item.name}</h2>
-                                    </div>
-                                ) : (
-                                    <h2 className="mb-0">{item.name}</h2>
-                                )}
-                                <br></br>
-                                {item.score == this.state.best_score ? (
-                                    <strong className="mb-0">
-                                        امتیاز : {item.score}
-                                    </strong>
-                                ) : (
-                                    <p className="mb-0">
-                                        امتیاز : {item.score}
-                                    </p>
-                                )}
-                                <br></br>
-                                <div
-                                    style={{
-                                        borderTop: "1px solid",
-                                        marginTop: 20,
-                                        marginLeft: 20,
-                                        marginRight: 20,
-                                    }}
-                                ></div>
-                            </div>
-                        ))}
+            <div className="final-result">
+                <img
+                    src="https://cdn-icons.flaticon.com/png/128/2065/premium/2065169.png?token=exp=1659437494~hmac=ab120bb39e1d8d08b099c7d70c71c24f"
+                    className="final-result-icon mt-2"
+                ></img>
+                <strong className="final-result-txt mt-3">
+                    نتیجه ی نهایی را ببینید
+                </strong>
+                <button className="return-home-button mt-3">
+                    <a href="/game" className="return-home-txt">
+                        بازگشت به خانه
+                    </a>
+                </button>
+                <div className="final-result-box mt-4">
+                    <div className="des-final-result-box mt-3 mb-4">
+                        <strong>نتایج نهایی را مشاهده کنید!</strong>
                     </div>
+
+                    {final_results.map((item) => (
+                        <div className="user-result-box mb-3" key={item.id}>
+                            {this.state.best_score == item.score ? (
+                                <img
+                                    src="https://cdn-icons-png.flaticon.com/128/1198/1198990.png"
+                                    className="crown-icon-result-box"
+                                ></img>
+                            ) : (
+                                <></>
+                            )}
+                            <strong className="user-name-result-box">
+                                {item.name}
+                            </strong>
+                            <strong className="score-result-box mt-2">
+                                امتیاز : {item.score}
+                            </strong>
+                        </div>
+                    ))}
                 </div>
+                <br></br>
             </div>
         );
     }

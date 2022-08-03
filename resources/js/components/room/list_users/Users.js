@@ -32,25 +32,74 @@ export default class Users extends Component {
     }
 
     render() {
-        let { allUsers} =
-            this.props;
+        let { allUsers, owner_id, user_id } = this.props;
 
         return (
-            <main className="all-users py-2">
-                <div className="users">
-                    <strong className="list-text-users mb-4">لیست کاربران</strong>
+            <main className="all-users">
+                {this.props.scores_sended ? (
+                    user_id == owner_id ? (
+                        <div className="again-finish-buttons">
+                            <button
+                                className="play-again-button mt-4"
+                                onClick={() => this.props.playAgain()}
+                            >
+                                <strong>شروع دوباره بازی</strong>
+                            </button>
+                            <button
+                                className="final-result-buttons mt-4 mb-3"
+                                onClick={() =>
+                                    this.props.makeFinalResultEvent()
+                                }
+                            >
+                                <strong>
+                                    دیدن نتایج نهایی و تموم کردن این بازی
+                                </strong>
+                            </button>
+                        </div>
+                    ) : (
+                        <strong className="wait-txt mb-2">
+                            صبر کنید تا سازنده اتاق بازی را دوباره شروع یا نتیجه
+                            ی نهایی رو ارسال کند
+                        </strong>
+                    )
+                ) : (
+                    <></>
+                )}
+                <img
+                    className="users-section-icon"
+                    src="https://cdn-icons.flaticon.com/png/128/1165/premium/1165725.png?token=exp=1659160501~hmac=fcf9a2b5e9a3e3957b0c93e1554f23c7"
+                ></img>
+                <strong className="mt-2 users-txt">بازیکن ها</strong>
+                <div className="all-users-box mt-4">
+                    <br></br>
+                    <div className="count-users-box">
+                        <strong>{allUsers.length} بازیکن</strong>
+                    </div>
                     {allUsers.map((item) => (
-                        <div className="user-content" key={item.id}>
-                            <div className="user-icon">
-                                <img
-                                    src="https://cdn-icons-png.flaticon.com/128/3237/3237472.png"
-                                    width="37"
-                                    height="37"
-                                ></img>
+                        <div key={item.id}>
+                            <br></br>
+                            <div className="user-data">
+                                <div className="user-content">
+                                    <img
+                                        className="user-section-icon"
+                                        src="https://cdn-icons.flaticon.com/png/128/2102/premium/2102633.png?token=exp=1659097789~hmac=0b84d2c5f541fe24920386db603e3fe6"
+                                    ></img>
+                                    <strong className="user-section-name">
+                                        {item.name}
+                                    </strong>
+                                    {item.id == owner_id ? (
+                                        <img
+                                            className="crown-icon"
+                                            src="https://cdn-icons.flaticon.com/png/128/1168/premium/1168868.png?token=exp=1659099060~hmac=da7dd393661814483321b5e7b2ed1f53"
+                                        ></img>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
                             </div>
-                            <p className="user-name">{item.name}</p>
                         </div>
                     ))}
+                    <br></br>
                 </div>
             </main>
         );

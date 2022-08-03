@@ -138,349 +138,307 @@ export default class Score extends Component {
         return (
             <main className="main-score">
                 {show == "loading" ? (
-                    <div className="score-loading">
+                    <div className="score-loading mb-2">
                         <Spinner
                             name="chasing-dots"
-                            style={{ width: 70, height: 70, color: "white" }}
+                            style={{ width: 60, height: 60, color: "white" }}
                         />
                     </div>
                 ) : show ? (
-                    <div>
-                        <strong>به {name} امتیاز بدید</strong>
-                        <form className="mt-3" onSubmit={this.sendScore}>
-                            <div className="score">
-                                <div className="score-buttons">
-                                    <div
-                                        role="group"
-                                        aria-label="Basic radio toggle button group"
+                    <form
+                        className="form-scores mt-3"
+                        onSubmit={this.sendScore}
+                    >
+                        <div className="scores-buttons">
+                            <ul className="scoring-buttons">
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"esm1" + id}
+                                        value="0"
+                                        name="esm"
+                                    />
+                                    <label className="o" htmlFor={"esm1" + id}>
+                                        اسم : 0
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"esm2" + id}
+                                        value="5"
+                                        name="esm"
+                                    />
+                                    <label
+                                        className="five"
+                                        htmlFor={"esm2" + id}
                                     >
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="esm"
-                                            id={"esm1" + id}
-                                            autoComplete="off"
-                                            value="0"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-danger score-button"
-                                            htmlFor={"esm1" + id}
-                                        >
-                                            اسم : 0
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="esm"
-                                            id={"esm2" + id}
-                                            value="5"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-warning score-button"
-                                            htmlFor={"esm2" + id}
-                                        >
-                                            اسم : 5
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="esm"
-                                            id={"esm3" + id}
-                                            autoComplete="off"
-                                            value="10"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-success score-button"
-                                            htmlFor={"esm3" + id}
-                                        >
-                                            اسم: 10
-                                        </label>
-                                    </div>
-
-                                    <div
-                                        role="group"
-                                        aria-label="Basic radio toggle button group"
+                                        اسم : 5
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"esm3" + id}
+                                        value="10"
+                                        name="esm"
+                                    />
+                                    <label
+                                        className="ten"
+                                        htmlFor={"esm3" + id}
                                     >
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="famil"
-                                            id={"famil1" + id}
-                                            value="0"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-danger score-button"
-                                            htmlFor={"famil1" + id}
-                                        >
-                                            فامیل : 0
-                                        </label>
+                                        اسم : 10
+                                    </label>
+                                </li>
+                            </ul>
 
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="famil"
-                                            id={"famil2" + id}
-                                            value="5"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-warning score-button"
-                                            htmlFor={"famil2" + id}
-                                        >
-                                            فامیل : 5
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="famil"
-                                            id={"famil3" + id}
-                                            value="10"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-success score-button"
-                                            htmlFor={"famil3" + id}
-                                        >
-                                            فامیل : 10
-                                        </label>
-                                    </div>
-
-                                    <div
-                                        role="group"
-                                        aria-label="Basic radio toggle button group"
+                            <ul className="scoring-buttons">
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"famil1" + id}
+                                        value="0"
+                                        name="famil"
+                                    />
+                                    <label
+                                        className="o"
+                                        htmlFor={"famil1" + id}
                                     >
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="ghaza"
-                                            id={"ghaza1" + id}
-                                            value="0"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-danger score-button"
-                                            htmlFor={"ghaza1" + id}
-                                        >
-                                            غذا : 0
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="ghaza"
-                                            id={"ghaza2" + id}
-                                            value="5"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-warning score-button"
-                                            htmlFor={"ghaza2" + id}
-                                        >
-                                            غذا : 5
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="ghaza"
-                                            id={"ghaza3" + id}
-                                            autoComplete="off"
-                                            value="10"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-success score-button"
-                                            htmlFor={"ghaza3" + id}
-                                        >
-                                            غذا: 10
-                                        </label>
-                                    </div>
-
-                                    <div
-                                        role="group"
-                                        aria-label="Basic radio toggle button group"
+                                        فامیل : 0
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"famil2" + id}
+                                        value="5"
+                                        name="famil"
+                                    />
+                                    <label
+                                        className="five"
+                                        htmlFor={"famil2" + id}
                                     >
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="miveh"
-                                            id={"miveh1" + id}
-                                            value="0"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-danger score-button"
-                                            htmlFor={"miveh1" + id}
-                                        >
-                                            میوه : 0
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="miveh"
-                                            id={"miveh2" + id}
-                                            value="5"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-warning score-button"
-                                            htmlFor={"miveh2" + id}
-                                        >
-                                            میوه : 5
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="miveh"
-                                            id={"miveh3" + id}
-                                            value="10"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-success score-button"
-                                            htmlFor={"miveh3" + id}
-                                        >
-                                            میوه : 10
-                                        </label>
-                                    </div>
-
-                                    <div
-                                        role="group"
-                                        aria-label="Basic radio toggle button group"
+                                        فامیل : 5
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"famil3" + id}
+                                        value="10"
+                                        name="famil"
+                                    />
+                                    <label
+                                        className="ten"
+                                        htmlFor={"famil3" + id}
                                     >
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="mashin"
-                                            id={"mashin1" + id}
-                                            value="0"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-danger score-button"
-                                            htmlFor={"mashin1" + id}
-                                        >
-                                            ماشین : 0
-                                        </label>
+                                        فامیل : 10
+                                    </label>
+                                </li>
+                            </ul>
 
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="mashin"
-                                            id={"mashin2" + id}
-                                            value="5"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-warning score-button"
-                                            htmlFor={"mashin2" + id}
-                                        >
-                                            ماشین : 5
-                                        </label>
-
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="mashin"
-                                            id={"mashin3" + id}
-                                            value="10"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-success score-button"
-                                            htmlFor={"mashin3" + id}
-                                        >
-                                            ماشین : 10
-                                        </label>
-                                    </div>
-
-                                    <div
-                                        role="group"
-                                        aria-label="Basic radio toggle button group"
+                            <ul className="scoring-buttons">
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"ghaza1" + id}
+                                        value="0"
+                                        name="ghaza"
+                                    />
+                                    <label
+                                        className="o"
+                                        htmlFor={"ghaza1" + id}
                                     >
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="ashia"
-                                            id={"ashia1" + id}
-                                            value="0"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-danger score-button"
-                                            htmlFor={"ashia1" + id}
-                                        >
-                                            اشیا : 0
-                                        </label>
+                                        غذا : 0
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"ghaza2" + id}
+                                        value="5"
+                                        name="ghaza"
+                                    />
+                                    <label
+                                        className="five"
+                                        htmlFor={"ghaza2" + id}
+                                    >
+                                        غذا : 5
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"ghaza3" + id}
+                                        value="10"
+                                        name="ghaza"
+                                    />
+                                    <label
+                                        className="ten"
+                                        htmlFor={"ghaza3" + id}
+                                    >
+                                        غذا : 10
+                                    </label>
+                                </li>
+                            </ul>
 
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="ashia"
-                                            id={"ashia2" + id}
-                                            value="5"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-warning score-button"
-                                            htmlFor={"ashia2" + id}
-                                        >
-                                            اشیا : 5
-                                        </label>
+                            <ul className="scoring-buttons">
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"miveh1" + id}
+                                        value="0"
+                                        name="miveh"
+                                    />
+                                    <label
+                                        className="o"
+                                        htmlFor={"miveh1" + id}
+                                    >
+                                        میوه : 0
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"miveh2" + id}
+                                        value="5"
+                                        name="miveh"
+                                    />
+                                    <label
+                                        className="five"
+                                        htmlFor={"miveh2" + id}
+                                    >
+                                        میوه : 5
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"miveh3" + id}
+                                        value="10"
+                                        name="miveh"
+                                    />
+                                    <label
+                                        className="ten"
+                                        htmlFor={"miveh3" + id}
+                                    >
+                                        میوه : 10
+                                    </label>
+                                </li>
+                            </ul>
 
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            name="ashia"
-                                            id={"ashia3" + id}
-                                            value="10"
-                                            autoComplete="off"
-                                        ></input>
-                                        <label
-                                            className="btn btn-outline-success score-button"
-                                            htmlFor={"ashia3" + id}
-                                        >
-                                            اشیا: 10
-                                        </label>
-                                    </div>
-                                </div>
-                                <button className="send-button mb-3 animate__animated animate__zoomIn">
-                                    ثبت
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                ) : this.props.show_finish_score_button ? (
-                    <div className="edit-scores">
-                        <div
-                            role="group"
-                            aria-label="Basic radio toggle button group"
-                        >
-                            <input
-                                type="radio"
-                                className="btn-check"
-                                name="ashia"
-                                id={"ashia1" + id}
-                                value="0"
-                                autoComplete="off"
-                            ></input>
-                            <label
-                                className="btn btn-outline-danger edit-score-button"
-                                htmlFor={"ashia1" + id}
-                                onClick={this.editScores}
-                            >
-                                ویرایش امتیازات {name}
-                            </label>
+                            <ul className="scoring-buttons">
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"mashin1" + id}
+                                        value="0"
+                                        name="mashin"
+                                    />
+                                    <label
+                                        className="o"
+                                        htmlFor={"mashin1" + id}
+                                    >
+                                        ماشین : 0
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"mashin2" + id}
+                                        value="5"
+                                        name="mashin"
+                                    />
+                                    <label
+                                        className="five"
+                                        htmlFor={"mashin2" + id}
+                                    >
+                                        ماشین : 5
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"mashin3" + id}
+                                        value="10"
+                                        name="mashin"
+                                    />
+                                    <label
+                                        className="ten"
+                                        htmlFor={"mashin3" + id}
+                                    >
+                                        ماشین : 10
+                                    </label>
+                                </li>
+                            </ul>
+
+                            <ul className="scoring-buttons">
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"ashia1" + id}
+                                        value="0"
+                                        name="ashia"
+                                    />
+                                    <label
+                                        className="o"
+                                        htmlFor={"ashia1" + id}
+                                    >
+                                        اشیا : 0
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"ashia2" + id}
+                                        value="5"
+                                        name="ashia"
+                                    />
+                                    <label
+                                        className="five"
+                                        htmlFor={"ashia2" + id}
+                                    >
+                                        اشیا : 5
+                                    </label>
+                                </li>
+                                <li>
+                                    <input
+                                        type="radio"
+                                        id={"ashia3" + id}
+                                        value="10"
+                                        name="ashia"
+                                    />
+                                    <label
+                                        className="ten"
+                                        htmlFor={"ashia3" + id}
+                                    >
+                                        اشیا : 10
+                                    </label>
+                                </li>
+                            </ul>
                         </div>
+                        <button
+                            type="submit"
+                            className="entry-button mt-2 mb-2"
+                        >
+                            ثبت
+                        </button>
+                    </form>
+                ) : this.props.show_finish_score_button ? (
+                    <div className="mt-4 mb-2">
+                        <button
+                            className="edit-scores"
+                            onClick={this.editScores}
+                        >
+                            ویرایش امتیازات {name}
+                        </button>
                     </div>
                 ) : (
-                    <strong>شما امتیازتان را تکمیل کردید</strong>
+                    <div className="mt-4 mb-2">
+                        <button className="finished-scorings-button">
+                            شما امتیاز دهی تان را تمام کردید!
+                        </button>
+                    </div>
                 )}
             </main>
         );

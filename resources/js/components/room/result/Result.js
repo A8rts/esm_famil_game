@@ -16,6 +16,7 @@ export default class Result extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         setTimeout(() => {
             axios
                 .post("/api/get_users_scores", {
@@ -76,6 +77,43 @@ export default class Result extends Component {
             });
     };
 
+    showUserAnswes = (name) => {
+        let answers = this.props.answers;
+        let user_answer = [];
+
+        for (let i = 0; i < answers.length; i++) {
+            if (answers[i].name == name) {
+                user_answer.push(answers[i]);
+            }
+        }
+
+        Swal.fire({
+            title: user_answer[0].name,
+            text:
+                "اسم : " +
+                user_answer[0].esm +
+                " || " +
+                "فامیل : " +
+                user_answer[0].famil +
+                " || " +
+                "غذا : " +
+                user_answer[0].ghaza +
+                " || " +
+                "میوه : " +
+                user_answer[0].miveh +
+                " || " +
+                "ماشین : " +
+                user_answer[0].mashin +
+                " || " +
+                "اشیا : " +
+                user_answer[0].ashia,
+            background: "linear-gradient(to right, #283c86, #45a247)",
+            color: "white",
+            confirmButtonText: "برم امتیاز بدم",
+            confirmButtonColor: "#EE5A24",
+        });
+    };
+
     render() {
         let {
             answers,
@@ -88,55 +126,59 @@ export default class Result extends Component {
         } = this.props;
         let { show_finish_score_button } = this.state;
         return (
-            <main>
-                {show_finish_score_button !== "loading" ? (
-                    show_finish_score_button ? (
-                        <div className="finish-score-button mt-5">
-                            <button
-                                className="scores-finished"
-                                onClick={this.scoresSended}
-                            >
-                                امتیاز دهی من تمام شد
-                            </button>
-                        </div>
-                    ) : (
-                        <></>
-                    )
-                ) : (
+            <main className="main-result">
+                {this.props.scores_sended == true ? (
                     <></>
-                )}
-                {show_finish_score_button == "loading" ? (
-                    <div className="result-loading">
-                        <Spinner
-                            name="chasing-dots"
-                            style={{ width: 70, height: 70, color: "white" }}
-                        />
-                    </div>
                 ) : (
-                    <div>
-                        {answers.map((item) => (
-                            <div className="boxes mt-5" key={item.id}>
-                                <div className="result-box">
-                                    <div className="result-content">
-                                        <strong>{item.name}</strong>
-                                        <p className="mt-3">
-                                            اسم : {item.esm} | فامیل :{" "}
-                                            {item.famil} | غذا : {item.ghaza} |
-                                            میوه : {item.miveh} | مشاین :
-                                            {item.mashin} | اشیا : {item.ashia}
-                                        </p>
-                                    </div>
-                                    <div className="result-emoji">
-                                        <p className="animate__animated animate__zoomIn">
-                                            &#128377;&#65039;
-                                        </p>
-                                        <p className="animate__animated animate__zoomIn">
-                                            &#127922;
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="score-box">
-                                    <div className="word-score">
+                    <div className="result-game mt-4">
+                        <img
+                            className="result-score-icon"
+                            src="https://cdn-icons-png.flaticon.com/128/2055/2055759.png"
+                        ></img>
+                        <strong className="result-score-txt mt-3">
+                            به حریفان خود امتیاز بدهید
+                        </strong>
+
+                        {show_finish_score_button !== "loading" ? (
+                            show_finish_score_button ? (
+                                <button
+                                    className="finished-scoring mt-2"
+                                    onClick={this.scoresSended}
+                                >
+                                    <strong>امتیاز به همه دادم!</strong>
+                                </button>
+                            ) : (
+                                <p className="des-result-txt mt-2">
+                                    هر موقع همه امتیاز هایشان را دادند برای
+                                    سازنده اتاق درخواستی میرود و اگر قبول کند
+                                    میتواند بازی را شروع یا نتیجه نهایی را ارسال
+                                    کند
+                                </p>
+                            )
+                        ) : (
+                            <></>
+                        )}
+
+                        <div className="results-scores-box mt-4">
+                            <div className="results-scores-box-txt mt-3">
+                                <strong>
+                                    روی دکمه دیدن پاسخ ها بزن تا پاسخارو ببینی
+                                </strong>
+                            </div>
+                            {answers.map((item) => (
+                                <div key={item.id}>
+                                    <div className="score-box mt-4 mb-4">
+                                        <div className="result-name-user-section">
+                                            <strong>{item.name}</strong>
+                                        </div>
+                                        <button
+                                            className="see-answer-user"
+                                            onClick={() =>
+                                                this.showUserAnswes(item.name)
+                                            }
+                                        >
+                                            دیدن پاسخ ها
+                                        </button>
                                         <Score
                                             id={item.id}
                                             name={item.name}
@@ -148,9 +190,21 @@ export default class Result extends Component {
                                             }
                                         />
                                     </div>
+                                    <hr
+                                        style={{
+                                            color: "#white",
+                                            backgroundColor: "white",
+                                            height: "0.2rem",
+                                            width: "30vh",
+                                            margin: "auto",
+                                            borderColor: "white",
+                                        }}
+                                    />
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        <br></br>
+                        <br></br>
                     </div>
                 )}
             </main>

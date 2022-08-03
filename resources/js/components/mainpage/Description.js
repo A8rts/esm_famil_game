@@ -6,7 +6,27 @@ export default class Description extends Component {
         return (
             <div className="container px-4 py-5 text-center" id="featured-3">
                 <h2 className="pb-2 border-bottom">توضیحات</h2>
-                <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                <div className="row g-4 py-3 row-cols-1 row-cols-lg-3">
+                    <div className="feature col">
+                        <div className="mb-3">
+                            <img
+                                src="https://cdn-icons-png.flaticon.com/128/3240/3240831.png"
+                                width="50"
+                                height="50"
+                            ></img>
+                        </div>
+                        <h2>الان باید چیکار کنم؟</h2>
+                        <p>
+                            شما در این صفحه میتوانید یک اتاق ایجاد کنید یا به یک
+                            اتاقی بپیوندید. اگر اتاقی ایجاد کنید خب کلید آن اتاق
+                            را به دوستان خود میدهید و آن ها میتوانند به اتاق شما
+                            بپیوندند ولی اگر میخواهید به اتاقی بپیوندید با
+                            استفاده از دکمه پیوستن به اتاق کلید اتاق را وارد
+                            میکنید و به آن اتاق جوین میشوید. اگر در اتاق هم
+                            سوالی داشتید یا نمیدانستید چیکار کنید روی دکمه ای که
+                            علامت سوال دارد بزنید
+                        </p>
+                    </div>
                     <div className="feature col">
                         <div className="mb-3">
                             <img
@@ -35,20 +55,6 @@ export default class Description extends Component {
                             شما میتوامدی بعد از هر دستی که بازی میکنید به حریفان
                             خود امتیاز بدید و نتیجه ی نهایی را هر وقت که سازنده
                             اتاق بازی را تمام کرد ببینید
-                        </p>
-                    </div>
-                    <div className="feature col">
-                        <div className="mb-3">
-                            <img
-                                src="https://cdn-icons-png.flaticon.com/128/3240/3240831.png"
-                                width="50"
-                                height="50"
-                            ></img>
-                        </div>
-                        <h2>نحوه بازی کردن</h2>
-                        <p>
-                            اگر در اتاق نمیدانستید چگونه باید بازی کنید روی دکمه
-                            ای که علامت سوال دارد کلیک کنید
                         </p>
                     </div>
                 </div>

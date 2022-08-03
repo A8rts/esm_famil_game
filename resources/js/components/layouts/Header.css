@@ -36,7 +36,7 @@
     align-items: center;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 650px) {
     .header {
         display: block;
     }
@@ -52,3 +52,21 @@
         font-size: 0.9rem;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .header {
+        display: block;
+    }
+
+    .header-center {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header a {
+        font-size: 0.8rem;
+    }
+}
+

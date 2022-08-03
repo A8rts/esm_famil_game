@@ -78,89 +78,125 @@ export default class GameForm extends Component {
     };
 
     render() {
-        let { letter, user_id, answers, finished, room_key, started } =
+        let { letter, user_id, answers, finished, room_key, started, scores_sended } =
             this.props;
         let { esm, famil, ghaza, miveh, mashin, ashia } = this.state;
         return (
             <main className="main-game-form">
                 {started ? (
-                    <div className="game-form">
-                        <div>
-                            <strong className="with-word">
-                                بازی با حرف ({letter}) است
-                            </strong>
-
-                            <form className="words" onSubmit={this.submitForm}>
-                                <div className="word">
-                                    <label>اسم</label>
-                                    <input
-                                        placeholder="اسم"
-                                        name="esm"
-                                        required
-                                        type="text"
-                                        onChange={this.onChangeInput}
-                                    ></input>
+                    <div>
+                        <img
+                            className="game-form-icon mb-2"
+                            src="https://cdn-icons.flaticon.com/png/128/1698/premium/1698579.png?token=exp=1659184503~hmac=1f93fe74a86a077c11f8595f15aa1787"
+                        ></img>
+                        <strong className="game-form-txt">
+                            بازی شروع شده فرمو پر کن!
+                        </strong>
+                        <form onSubmit={this.submitForm}>
+                            <button
+                                type="submit"
+                                className="finished-button mt-3 mb-2"
+                            >
+                                <strong>تمام</strong>
+                            </button>
+                            <div className="game-form mt-4 mb-4">
+                                <div className="letter-game-form mt-3">
+                                    <strong>بازی با حرف ({letter}) است</strong>
                                 </div>
-                                <div className="word">
-                                    <label>فامیل</label>
-                                    <input
-                                        placeholder="فامیل"
-                                        name="famil"
-                                        required
-                                        type="text"
-                                        onChange={this.onChangeInput}
-                                    ></input>
+                                <div className="one-word-game-form mt-3 mb-4">
+                                    <div className="word-content">
+                                        <strong className="game-form-word">
+                                            اسم
+                                        </strong>
+                                        <input
+                                            required
+                                            onChange={this.onChangeInput}
+                                            name="esm"
+                                            className="game-form-input"
+                                            placeholder="اسم"
+                                        ></input>
+                                    </div>
                                 </div>
-                                <div className="word">
-                                    <label>غذا</label>
-                                    <input
-                                        placeholder="غذا"
-                                        name="ghaza"
-                                        required
-                                        type="text"
-                                        onChange={this.onChangeInput}
-                                    ></input>
+                                <div className="one-word-game-form mt-3 mb-4">
+                                    <div className="word-content">
+                                        <strong className="game-form-word">
+                                            فامیل
+                                        </strong>
+                                        <input
+                                            required
+                                            onChange={this.onChangeInput}
+                                            name="famil"
+                                            className="game-form-input"
+                                            placeholder="فامیل"
+                                        ></input>
+                                    </div>
                                 </div>
-                                <div className="word">
-                                    <label>میوه</label>
-                                    <input
-                                        placeholder="میوه"
-                                        name="miveh"
-                                        required
-                                        type="text"
-                                        onChange={this.onChangeInput}
-                                    ></input>
+                                <div className="one-word-game-form mt-3 mb-4">
+                                    <div className="word-content">
+                                        <strong className="game-form-word">
+                                            غذا
+                                        </strong>
+                                        <input
+                                            required
+                                            onChange={this.onChangeInput}
+                                            name="ghaza"
+                                            className="game-form-input"
+                                            placeholder="غذا"
+                                        ></input>
+                                    </div>
                                 </div>
-                                <div className="word">
-                                    <label>ماشین</label>
-                                    <input
-                                        placeholder="ماشین"
-                                        name="mashin"
-                                        required
-                                        type="text"
-                                        onChange={this.onChangeInput}
-                                    ></input>
+                                <div className="one-word-game-form mt-3 mb-4">
+                                    <div className="word-content">
+                                        <strong className="game-form-word">
+                                            میوه
+                                        </strong>
+                                        <input
+                                            required
+                                            onChange={this.onChangeInput}
+                                            name="miveh"
+                                            className="game-form-input"
+                                            placeholder="میوه"
+                                        ></input>
+                                    </div>
                                 </div>
-                                <div className="word">
-                                    <label>اشیا</label>
-                                    <input
-                                        placeholder="اشیا"
-                                        name="ashia"
-                                        required
-                                        type="text"
-                                        onChange={this.onChangeInput}
-                                    ></input>
+                                <div className="one-word-game-form mt-3 mb-4">
+                                    <div className="word-content">
+                                        <strong className="game-form-word">
+                                            ماشین
+                                        </strong>
+                                        <input
+                                            required
+                                            onChange={this.onChangeInput}
+                                            name="mashin"
+                                            className="game-form-input"
+                                            placeholder="ماشین"
+                                        ></input>
+                                    </div>
                                 </div>
-
-                                <button className="finish-button">تمام</button>
-                            </form>
-                        </div>
+                                <div className="one-word-game-form mt-3 mb-4">
+                                    <div className="word-content">
+                                        <strong className="game-form-word">
+                                            اشیا
+                                        </strong>
+                                        <input
+                                            required
+                                            onChange={this.onChangeInput}
+                                            name="ashia"
+                                            className="game-form-input"
+                                            placeholder="اشیا"
+                                        ></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <br></br>
                     </div>
                 ) : finished ? (
                     <Result
                         send={this.props.send}
                         player_save_scores={this.props.player_save_scores}
                         esm={esm}
+                        scores_sended={scores_sended}
                         letter={letter}
                         allUsers={this.props.allUsers}
                         famil={famil}

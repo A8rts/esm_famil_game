@@ -1,95 +1,264 @@
 .main-game-form {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: white;
 }
 
 .game-form {
     background: linear-gradient(to left, #9d50bb, #6e48aa);
-    margin-top: 5vh;
+    width: 32%;
     border-radius: 15px;
-    padding: 1rem 0.5rem 1rem 0.5rem;
+    margin: auto;
+    overflow: auto;
 }
 
-.with-word {
-    color: white;
-    font-size: 1.3rem;
+.game-form-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.word {
-    margin: 2rem 3rem 2rem 3rem;
-    color: white;
-    font-size: 1rem;
-}
-
-.word label {
-    margin-left: 5rem;
-    font-size: 1rem;
-}
-
-.word input {
-    background: linear-gradient(to right, #1d976c, #93f9b9);
-    border: 2px solid darkgreen;
-    border-radius: 10px;
-    width: 100%;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    color: black;
-}
-
-.word input::placeholder {
-    color: gray;
-}
-
-.finish-button {
-    color: white;
-    background-color: #f7483b;
-    border: pink;
-    padding: 0.5rem 2rem 1rem;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
+    width: 6.3rem;
+    height: 6.3rem;
     margin: auto;
 }
 
-.finish-button:hover {
-    background-color: #fa2c1d;
+.game-form-txt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-size: 1.5rem;
 }
 
-@media screen and (max-width: 660px) {
-    .main-game-form {
-        width: 100%;
-        display: block;
-        align-items: none;
-        justify-content: none;
+.letter-game-form {
+    font-size: 1.4rem;
+    background-color: #009432;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 60%;
+    border: #006266 3px dashed;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.one-word-game-form {
+    font-size: 1.4rem;
+    background-color: #009432;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 60%;
+    border: #006266 3px solid;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.game-form-word {
+    margin: 1rem 0rem 1rem 1rem;
+    font-size: 1.2rem;
+}
+
+.game-form-input {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: none;
+    background: #0be881;
+    font-size: 1rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.finished-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background: #e74c3c;
+    box-shadow: 2px 5px #c0392b;
+    padding: 0.6rem 4rem 0.6rem 4rem;
+}
+
+.finished-button strong {
+    font-size: 1.1rem;
+    display: block;
+    transform: skew(10deg);
+}
+
+.finished-button:hover {
+    box-shadow: 5px 10px #c0392b;
+}
+
+::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9c88ff;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1720px) {
+    .game-form {
+        width: 38rem;
+    }
+}
+
+@media screen and (max-width: 868px) {
+    .game-form {
+        width: 32rem;
     }
 
-    .with-word {
-        color: white;
-        font-size: 1.2rem;
+    .game-form-icon {
+        width: 5.7rem;
+        height: 5.7rem;
+    }
+
+    .game-form-txt {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: auto;
+        font-size: 1.2rem;
     }
 
-    .word {
-        margin: 1rem;
-        font-size: 0.8rem;
+    .finished-button {
+        padding: 0.5rem 3rem 0.5rem 3rem;
     }
 
-    .word label {
-        margin-left: 0rem;
+    .finished-button strong {
+        font-size: 0.9rem;
+        display: block;
+        transform: skew(10deg);
+    }
+
+    /*----------*/
+
+    .letter-game-form {
+        font-size: 1.2rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        width: 70%;
+    }
+
+    .one-word-game-form {
+        font-size: 1.4rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+        width: 70%;
+    }
+
+    .game-form-word {
+        margin: 1rem 0rem 1rem 1rem;
+        font-size: 1rem;
+    }
+
+    .game-form-input {
+        font-size: 1rem;
+        padding: 0.3rem 1.5rem 0.3rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .game-form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .game-form-icon {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .game-form-txt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        font-size: 1rem;
+    }
+
+    .finished-button {
+        padding: 0.5rem 3rem 0.5rem 3rem;
+    }
+
+    .finished-button strong {
+        font-size: 0.9rem;
+        display: block;
+        transform: skew(10deg);
+    }
+
+    .letter-game-form {
+        font-size: 1.2rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        width: 80%;
+    }
+
+    .one-word-game-form {
+        font-size: 1.4rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        width: 80%;
+    }
+
+    .game-form-word {
+        display: none;
+        margin: 0rem;
+    }
+
+    .game-form-input {
         font-size: 1rem;
         width: 100%;
+        margin: 0rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .letter-game-form {
+        width: 90%;
     }
 
-    .word input {
+    .one-word-game-form {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .letter-game-form {
+        width: 90%;
+        font-size: 1rem;
+    }
+
+    .one-word-game-form {
+        width: 90%;
+    }
+
+    .game-form-input {
+        font-size: 1rem;
+        width: 90%;
+        margin-right: 0.5rem;
+    }
+
+    .game-form-input {
+        font-size: 1rem;
         width: 100%;
-        color: black;
+        margin: 0rem;
+    }
+}
+
+@media screen and (max-width: 285px) {
+    .game-form {
+        width: 97%;
     }
 }

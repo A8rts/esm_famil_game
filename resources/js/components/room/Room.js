@@ -6,10 +6,7 @@ import FinalResult from "./result/FinalResult";
 import GameForm from "./game_form/GameForm";
 import "./Room.css";
 import "animate.css";
-import StartGuidance from "./guidances/StartGuidance";
-import FinalResultGuidance from "./guidances/FinalResultGuidance";
-import FormGuidance from "./guidances/FormGuidance";
-import ScoreGuidance from "./guidances/ScoreGuidance";
+import RoomHeader from "./RoomHeader/RoomHeader";
 
 const Users = React.lazy(() => import("./list_users/Users"));
 
@@ -22,7 +19,36 @@ export default class Room extends Component {
             allUsers: [],
             started: false,
             finished: false,
-            letters: ["آ","ب","پ","ت","ث","ج","چ","ح","خ","د","ذ","ر","ز","ش","س","ص","ض","ط","ظ","ع","غ","ف","ق","ل","م","ن","و","ه","ی",
+            letters: [
+                "آ",
+                "ب",
+                "پ",
+                "ت",
+                "ث",
+                "ج",
+                "چ",
+                "ح",
+                "خ",
+                "د",
+                "ذ",
+                "ر",
+                "ز",
+                "ش",
+                "س",
+                "ص",
+                "ض",
+                "ط",
+                "ظ",
+                "ع",
+                "غ",
+                "ف",
+                "ق",
+                "ل",
+                "م",
+                "ن",
+                "و",
+                "ه",
+                "ی",
             ],
             letter: "",
             answers: [],
@@ -37,7 +63,6 @@ export default class Room extends Component {
             show_final_result: false,
             showButtons: true,
             showUsersAndStart: true,
-            guidance: false,
         };
     }
 
@@ -100,7 +125,6 @@ export default class Room extends Component {
                         guidance: false,
                         send: true,
                         scores_sended: false,
-                        showButtons: false,
                     });
                 } else if (e.event.event == "one_player_finished_scores") {
                     this.getCountSaveScoresFromProps(
@@ -155,7 +179,6 @@ export default class Room extends Component {
             answers_count: 0,
             guidance: false,
             showUsersAndStart: false,
-            showButtons: false,
         });
         this.props.resetPlayerSaveScores();
 
@@ -194,6 +217,8 @@ export default class Room extends Component {
         axios.post("/api/change_scores_not_sended", {
             room_key: this.state.room_key,
         });
+
+        this.setState({ showButtons: true });
     };
 
     clearFormData = () => {
@@ -446,188 +471,67 @@ export default class Room extends Component {
         let { owner_id, player_save_scores } = this.props;
 
         return (
-            <main className="king py-5">
-                <div className="room">
-                    <div className="room-text">
-                        {this.state.showUsersAndStart ? (
-                            <div>
-                                <strong className="animate__animated  animate__zoomIn welcome">
-                                    خوش آمیدد . سازنده اتاق میتواند بازی را شروع
-                                    کند
-                                </strong>
-                                <p className="click-question-text mt-3 animate__animated  animate__zoomIn">
-                                    هر موقع سوالی برایتان پیش آمد و یا
-                                    نمیدانستید چه کنید روی دکمه ای که علامت سوال
-                                    دارد بزنید
-                                </p>
-                            </div>
-                        ) : (
-                            <div>
-                                <strong className="animate__animated  animate__jackInTheBox playing">
-                                    بازی شروع شده است :)
-                                </strong>
-                                <p className="click-question-text mt-3 animate__animated  animate__zoomIn">
-                                    هر موقع سوالی برایتان پیش آمد و یا
-                                    نمیدانستید چه کنید روی دکمه ای که علامت سوال
-                                    دارد بزنید
-                                </p>
-                                <div className="playing-emoji animate__animated animate__swing">
-                                    <p>&#127918;</p>
-                                    <p>&#129669;</p>
-                                </div>
-                            </div>
-                        )}
-                        <div className="guidance mt-4 animate__animated animate__zoomIn">
-                            <svg
-                                onClick={() => {
-                                    if (this.state.guidance == true) {
-                                        this.setState({ guidance: false });
-                                    } else {
-                                        this.setState({ guidance: true });
-                                    }
-                                }}
-                                className="guidance-icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="45"
-                                height="45"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"
-                                />
-                            </svg>
-                        </div>
-                        {show_final_result ? (
-                            this.state.guidance ? (
-                                <FinalResultGuidance />
-                            ) : (
-                                <></>
-                            )
-                        ) : started ? (
-                            this.state.guidance ? (
-                                <FormGuidance letter={letter} />
-                            ) : (
-                                <></>
-                            )
-                        ) : finished ? (
-                            this.state.guidance ? (
-                                <ScoreGuidance />
-                            ) : (
-                                <></>
-                            )
-                        ) : this.state.guidance ? (
-                            <StartGuidance />
+            <main className="king">
+                <RoomHeader
+                    room_key={room_key}
+                    started={started}
+                    finished={finished}
+                    scores_sended={scores_sended}
+                    show_final_result={show_final_result}
+                    answers={answers}
+                    owner_id={owner_id}
+                    playing={this.state.playing}
+                    letter={letter}
+                    user_id={user_id}
+                    player_save_scores={player_save_scores}
+                    showButtons={this.state.showButtons}
+                    startGame={this.startGame.bind(this)}
+                    compareAndSaveScores={this.compareAndSaveScores.bind(this)}
+                />
+                {started ? (
+                    <></>
+                ) : finished == false ? (
+                    <Users
+                        allUsers={allUsers}
+                        owner_id={owner_id}
+                        started={started}
+                        user_id={user_id}
+                        finished={finished}
+                        scores_sended={scores_sended}
+                    />
+                ) : (
+                    <></>
+                )}
+
+                {started == false ? (
+                    scores_sended ? (
+                        show_final_result == false ? (
+                            <Users
+                                allUsers={allUsers}
+                                owner_id={owner_id}
+                                started={started}
+                                finished={finished}
+                                scores_sended={scores_sended}
+                                user_id={user_id}
+                                playAgain={this.playAgain.bind(this)}
+                                makeFinalResultEvent={this.makeFinalResultEvent.bind(this)}
+                            />
                         ) : (
                             <></>
-                        )}
-                    </div>
-                    {started ? (
-                        <></>
+                        )
                     ) : (
-                        <div>
-                            <div className="start-section mt-5">
-                                <div className="start-box py-2">
-                                    <div className="start-content">
-                                        <strong>خوش آمدید</strong>
-                                        <p className="mt-4">
-                                            کلید اتاق : {room_key}
-                                        </p>
-                                        {this.state.showButtons ? (
-                                            started ? (
-                                                <></>
-                                            ) : finished ? (
-                                                user_id == owner_id ? (
-                                                    player_save_scores ==
-                                                    answers.length ? (
-                                                        scores_sended ? (
-                                                            show_final_result ? (
-                                                                <></>
-                                                            ) : (
-                                                                <div className="col d-flex flex-column position-static">
-                                                                    <button
-                                                                        onClick={
-                                                                            this
-                                                                                .playAgain
-                                                                        }
-                                                                        className="play-again-button"
-                                                                    >
-                                                                        بازی
-                                                                        دوباره
-                                                                    </button>
-                                                                    <br></br>
-                                                                    <button
-                                                                        onClick={
-                                                                            this
-                                                                                .makeFinalResultEvent
-                                                                        }
-                                                                        className="final-result-button"
-                                                                    >
-                                                                        اتمام
-                                                                        بازی و
-                                                                        دیدن
-                                                                        نتایج
-                                                                        نهایی
-                                                                    </button>
-                                                                </div>
-                                                            )
-                                                        ) : (
-                                                            <button
-                                                                onClick={
-                                                                    this
-                                                                        .compareAndSaveScores
-                                                                }
-                                                                className="finished-scores"
-                                                            >
-                                                                امتیاز دهی
-                                                                کاربران تمام شد!
-                                                                ارسال امتیازات
-                                                            </button>
-                                                        )
-                                                    ) : (
-                                                        <></>
-                                                    )
-                                                ) : (
-                                                    <button className="whait-for-owner mt-4">
-                                                        صبر کنید تا سازنده اتاق
-                                                        دوباره بازی را شروع کند
-                                                    </button>
-                                                )
-                                            ) : user_id == owner_id ? (
-                                                <button
-                                                    className="start-button"
-                                                    onClick={this.startGame}
-                                                >
-                                                    شروع بازی
-                                                </button>
-                                            ) : (
-                                                <></>
-                                            )
-                                        ) : (
-                                            <></>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="users-section mt-5">
-                                <Users
-                                    allUsers={allUsers}
-                                    owner_id={owner_id}
-                                    started={started}
-                                    finished={finished}
-                                    scores_sended={scores_sended}
-                                />
-                            </div>
-                            <hr
-                                style={{ color: "white", fontSize: "3px" }}
-                            ></hr>
-                        </div>
-                    )}
-                </div>
+                        <></>
+                    )
+                ) : (
+                    <></>
+                )}
 
                 {show_final_result ? (
-                    <FinalResult final_results={this.state.final_results} letter={letter} room_key={room_key}/>
+                    <FinalResult
+                        final_results={this.state.final_results}
+                        letter={letter}
+                        room_key={room_key}
+                    />
                 ) : (
                     <div>
                         <GameForm
@@ -641,6 +545,7 @@ export default class Room extends Component {
                             started={started}
                             answers={answers}
                             user_id={user_id}
+                            scores_sended={scores_sended}
                             send={this.state.send}
                             setShowButtons={this.setShowButtons.bind(this)}
                         />

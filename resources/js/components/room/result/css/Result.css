@@ -1,158 +1,249 @@
-.result-loading {
+.result-game {
+    color: white;
+}
+
+.result-score-icon {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
+    width: 5.6rem;
+    height: 5.6rem;
 }
 
-.boxes {
-    color: white;
-    width: 100%;
+.result-score-txt {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-size: 1.5rem;
 }
 
-.result-box {
+.results-scores-box {
     background: linear-gradient(to left, #9d50bb, #6e48aa);
-    margin: 0rem 5rem 0rem 5rem;
-    padding: 2.5rem 5rem 2.5rem 5rem;
-    width: 40%;
-    display: inline-block;
+    width: 35%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: auto;
+    overflow: auto;
+}
+
+.results-scores-box-txt {
+    font-size: 1.3rem;
+    background-color: #273c75;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 70%;
+    border: #192a56 3px dashed;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
     border-radius: 15px;
 }
 
 .score-box {
-    background: linear-gradient(to left, #9d50bb, #6e48aa);
-    float: left;
-    margin: 0rem 5rem 0rem 5rem;
-    padding: 1rem 5rem 1rem 5rem;
-    width: 40%;
     border-radius: 15px;
+    width: 70%;
+    background-color: #273c75;
+    padding-top: 0.5rem;
+    border: #192a56 3px solid;
+    padding-bottom: 0.5rem;
+    overflow: auto;
+    margin: auto;
 }
 
-.result-content strong {
-    font-size: 1.5rem;
+.result-name-user-section {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
 }
 
-.result-content p {
-    font-size: 1rem;
-    word-wrap: break-word;
-    width: 40vh;
+.see-answer-user {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    color: white;
+    background: #009432;
+    border-radius: 5px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    border: none;
 }
 
-.word-score strong {
-    font-size: 1.5rem;
-}
-
-.result-emoji {
+.des-result-txt {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 6rem;
-    margin-top: 6rem;
+    text-align: center;
 }
 
-.finish-score-button {
+.see-answer-user:hover {
+    background: #016422;
+}
+
+.finished-scoring {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.scores-finished {
-    background: linear-gradient(to right, #7f00ff, #e100ff);
-    border: none;
+    margin: auto;
     color: white;
-    padding: 1rem;
-    border-radius: 15px;
-}
-
-.scores-finished:hover {
-    background: linear-gradient(to right, #6800cf, #b602ce);
-}
-
-.wait-play {
-    background: linear-gradient(to right, #b24592, #f15f79);
+    border-radius: 5px;
+    transform: skew(-10deg);
     border: none;
-    color: white;
-    padding: 1rem;
-    border-radius: 15px;
+    background: #e84393;
+    box-shadow: 2px 5px #bb3676;
+    padding: 0.6rem 2.5rem 0.6rem 2.5rem;
 }
 
-.wait-play:hover {
-    background: linear-gradient(to right, #85346c, #af4558);
+.finished-scoring strong {
+    font-size: 1.1rem;
+    display: block;
+    transform: skew(10deg);
 }
 
-@media screen and (max-width: 1384px) {
-    .result-box {
-        padding: 1rem 3rem 1rem 3rem;
-    }
-
-    .score-box {
-        padding: 1rem 3rem 1rem 3rem;
-    }
+.finished-scoring:hover {
+    box-shadow: 5px 10px #bb3676;
 }
 
-@media screen and (max-width: 1256px) {
-    .result-box {
-        padding: 1rem 1rem 1rem 1rem;
-    }
-
-    .score-box {
-        padding: 1rem 1rem 1rem 1rem;
+@media screen and (max-width: 1669px) {
+    .results-scores-box {
+        width: 40rem;
     }
 }
 
-@media screen and (max-width: 1061px) {
-    .boxes {
-        display: block;
+@media screen and (max-width: 868px) {
+    .results-scores-box {
+        width: 32rem;
     }
 
-    .result-box {
-        width: 100%;
-        padding: 0rem;
-        margin: 0rem;
-        float: none;
-        display: block;
-        padding: 3rem;
+    .result-score-icon {
+        width: 5.5rem;
+        height: 5.5rem;
     }
 
-    .score-box {
-        width: 100%;
-        float: none;
-        padding: 0rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 2rem 0rem 0rem 0rem;
+    .result-score-txt {
+        font-size: 1.2rem;
     }
 
-    .result-emoji {
-        font-size: 5rem;
+    .finished-scoring {
+        padding: 0.5rem 2rem 0.5rem 2rem;
+    }
+
+    .finished-scoring strong {
+        font-size: 0.9rem;
+    }
+
+    .results-scores-box-txt {
+        font-size: 1rem;
+    }
+
+    .result-name-user-section {
+        font-size: 1.6rem;
+    }
+
+    .see-answer-user {
+        padding: 0.3rem 2rem 0.3rem 2rem;
     }
 }
 
-@media screen and (max-width: 437px) {
-    .result-content p {
+@media screen and (max-width: 770px) {
+    .des-result-txt {
+        width: 90%;
+        margin: auto;
         font-size: 0.8rem;
-        word-wrap: break-word;
-        width: 33vh;
-    }
-
-    .result-emoji {
-        font-size: 4rem;
-    }
-
-    .result-box {
-        border-radius: 0px;
-    }
-
-    .score-box {
-        border-radius: 0px;
     }
 }
 
-@media screen and (max-width: 366px) {
-    .result-content p {
+@media screen and (max-width: 530px) {
+    .results-scores-box {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .result-score-icon {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .result-score-txt {
+        font-size: 1.1rem;
+    }
+
+    .results-scores-box-txt {
+        width: 80%;
+    }
+
+    .result-name-user-section {
+        font-size: 1.5rem;
+    }
+
+    .score-box {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 447px) {
+    .des-result-txt {
+        font-size: 0.7rem;
+    }
+
+    .result-score-icon {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    .result-score-txt {
+        font-size: 1rem;
+    }
+
+    .finished-scoring {
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    }
+
+    .finished-scoring strong {
         font-size: 0.8rem;
-        word-wrap: break-word;
-        width: 25vh;
+    }
+
+    .results-scores-box-txt {
+        width: 80%;
+        font-size: 0.9rem;
+    }
+
+    .result-name-user-section {
+        font-size: 1.4rem;
+    }
+
+    .see-answer-user {
+        padding: 0.3rem 1.5rem 0.3rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .results-scores-box-txt {
+        width: 90%;
+    }
+    .score-box {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .results-scores-box {
+        width: 95%;
+    }
+
+    .score-box {
+        width: 95%;
+    }
+
+    .results-scores-box-txt {
+        font-size: 0.8rem;
+        width: 95%;
     }
 }
