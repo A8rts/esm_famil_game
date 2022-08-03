@@ -18,7 +18,7 @@ use App\Models\UsersScoring;
 
 class CreateController extends Controller
 {
-    public function create_room(Request $request)
+    public function create_public_room(Request $request)
     {
         $room_name = request()->room_name;
         $letter = request()->letter;
@@ -38,6 +38,38 @@ class CreateController extends Controller
                 'finished' => false,
                 'scores_sended' => false,
                 'final_results' => false,
+                'type' => 'public',
+            ]);
+
+            return $create;
+        } else {
+            return 'no';
+        }
+
+        //for creating rooms
+    }
+
+    public function create_private_room(Request $request)
+    {
+        $room_name = request()->room_name;
+        $letter = request()->letter;
+        $owner = request()->user_id;
+
+        $key = Str::random(20);
+
+        $check_room = Room::where('key', $key)->get();
+
+        if ($check_room->isEmpty()) {
+            $create = Room::create([
+                'name' => $room_name,
+                'key' => $key,
+                'owner' => $owner,
+                'letter' => '',
+                'started' => false,
+                'finished' => false,
+                'scores_sended' => false,
+                'final_results' => false,
+                'type' => 'private',
             ]);
 
             return $create;

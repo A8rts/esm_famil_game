@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('finished');
             $table->boolean('scores_sended');
             $table->boolean('final_results');
+            $table->string('type');
             $table->timestamps();
         });
     }

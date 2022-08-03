@@ -22,7 +22,7 @@ export default class Home extends Component {
             <main className="main-page">
                 <div className="home">
                     <div className="bd-masthead mb-5">
-                        <Header direction="right"/>
+                        <Header direction="right" />
                         <hr
                             style={{ height: "2px", backgroundColor: "black" }}
                         ></hr>
@@ -66,7 +66,7 @@ export default class Home extends Component {
                                     })
                                 }
                             >
-                                ساخت اتاق
+                                <strong> ساخت اتاق</strong>
                             </button>
                             <button
                                 className="join-button"
@@ -77,7 +77,7 @@ export default class Home extends Component {
                                     })
                                 }
                             >
-                                پیوستن به اتاق
+                                <strong>پیوستن به اتاق</strong>
                             </button>
                         </div>
                     </div>

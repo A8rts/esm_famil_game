@@ -59,7 +59,13 @@
     background-color: #f7483b;
     border: pink;
     padding: 1rem 2rem 1rem;
-    border-radius: 20px;
+    transform: skew(-10deg);
+    border-radius: 5px;
+}
+
+.create-button strong {
+    display: block;
+    transform: skew(10deg);
 }
 
 .join-button {
@@ -68,7 +74,13 @@
     background-color: #f7483b;
     border: pink;
     padding: 1rem 2rem 1rem;
-    border-radius: 20px;
+    transform: skew(-10deg);
+    border-radius: 5px;
+}
+
+.join-button strong {
+    display: block;
+    transform: skew(10deg);
 }
 
 .join-button:hover {

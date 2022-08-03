@@ -36,35 +36,73 @@ export default class CreateRoom extends Component {
     onSubmitButton = (e) => {
         e.preventDefault();
 
-        axios
-            .post("/api/create_room", {
-                user_id: this.state.user_id,
-                room_name: this.state.room_name,
-            })
-            .then((res) => {
-                if (res.data == "no") {
-                    Swal.fire({
-                        icon: "error",
-                        title: "خطا",
-                        text: "لطفا دوباره تلاش کنید",
-                    });
-                } else {
-                    let room_key = res.data.key;
-                    Swal.fire({
-                        title: "اتاق شما ساخته شد",
-                        text: "بروید به اتاق خود",
-                        icon: "success",
-                        confirmButtonText: "برو",
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = `/game/room/${room_key}`;
+        Swal.fire({
+            title: "چه نوع اتاقی؟",
+            text: "میخواهید اتاقتان خصوصی باشد یا عمومی",
+            icon: "question",
+            showDenyButton: true,
+            confirmButtonColor: "#3085d6",
+            denyButtonColor: "#d33",
+            confirmButtonText: "عمومی",
+            denyButtonText: "خصوصی",
+            footer: "<strong>عمومی خصوصی یعنی چی؟ (در بخش توضیحات نوشته شده است)</strong>",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .post("/api/create_public_room", {
+                        user_id: this.state.user_id,
+                        room_name: this.state.room_name,
+                    })
+                    .then((res) => {
+                        if (res.data == "no") {
+                            Swal.fire({
+                                icon: "error",
+                                title: "خطا",
+                                text: "لطفا دوباره تلاش کنید",
+                            });
+                        } else {
+                            let room_key = res.data.key;
+                            Swal.fire({
+                                title: "اتاق شما ساخته شد",
+                                text: "بروید به اتاق خود",
+                                icon: "success",
+                                confirmButtonText: "برو",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/game/room/${room_key}`;
+                                }
+                            });
                         }
                     });
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            } else if (result.isDenied) {
+                axios
+                .post("/api/create_private_room", {
+                    user_id: this.state.user_id,
+                    room_name: this.state.room_name,
+                })
+                .then((res) => {
+                    if (res.data == "no") {
+                        Swal.fire({
+                            icon: "error",
+                            title: "خطا",
+                            text: "لطفا دوباره تلاش کنید",
+                        });
+                    } else {
+                        let room_key = res.data.key;
+                        Swal.fire({
+                            title: "اتاق شما ساخته شد",
+                            text: "بروید به اتاق خود",
+                            icon: "success",
+                            confirmButtonText: "برو",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = `/game/room/${room_key}`;
+                            }
+                        });
+                    }
+                });
+            }
+        });
     };
 
     render() {

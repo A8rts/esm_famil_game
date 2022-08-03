@@ -4,8 +4,12 @@
     border: 10px;
 }
 
+.arta {
+    color: red;
+}
+
 @media screen and (max-width: 350px) {
-    .room-content{
+    .room-content {
         width: 10rem;
     }
 
