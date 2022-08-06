@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -20,16 +21,25 @@ export default class Users extends Component {
         window.Echo.private(`kick_user.${this.props.user_id}`).listen(
             "KickRequestEvent",
             (e) => {
-                Swal.fire({
-                    title: e.kick_request.message,
-                    confirmButtonText: "باشه : (",
-                });
-                setTimeout(() => {
-                    window.location.href = "/game";
-                }, 500);
+                window.location.href = "/game";
             }
         );
     }
+
+    kickOutPlayer = (player_id) => {
+        if (this.props.finished == false) {
+            axios.post("/api/kick_request", {
+                toId: player_id,
+            });
+        } else {
+            Swal.fire({
+                title: "شما در حال امتیاز دهی هستید!",
+                text: "زمانی که کاربران در حال امتیاز دهی هستند نمیتوانید کسی را بیرون بندازید",
+                icon: "warning",
+                confirmButtonText: "باشه",
+            });
+        }
+    };
 
     render() {
         let { allUsers, owner_id, user_id } = this.props;
@@ -91,6 +101,14 @@ export default class Users extends Component {
                                         <img
                                             className="crown-icon"
                                             src="https://cdn-icons.flaticon.com/png/128/1168/premium/1168868.png?token=exp=1659099060~hmac=da7dd393661814483321b5e7b2ed1f53"
+                                        ></img>
+                                    ) : user_id == owner_id ? (
+                                        <img
+                                            onClick={() =>
+                                                this.kickOutPlayer(item.id)
+                                            }
+                                            className="kick-icon"
+                                            src="https://cdn-icons-png.flaticon.com/128/399/399274.png"
                                         ></img>
                                     ) : (
                                         <></>

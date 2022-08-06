@@ -166,4 +166,11 @@ class RoomController extends Controller
 
         return $score;
     }
+
+    public function get_rooms()
+    {
+        $rooms = Room::all();
+
+        return $rooms;
+    }
 }

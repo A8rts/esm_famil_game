@@ -39,6 +39,7 @@ Route::post('change_scores_not_sended', [RoomController::class, 'change_scores_n
 Route::post('make_final_result_event', [RoomController::class, 'make_final_result_event']);
 Route::post('get_final_result', [RoomController::class, 'get_final_result']);
 Route::post('edit_scores', [RoomController::class, 'edit_scores']);
+Route::post('get_rooms', [RoomController::class, 'get_rooms']);
 
 
 Route::post('create_room', [CreateController::class, 'create_room']);

@@ -1,0 +1,215 @@
+.main-public-rooms {
+    background: linear-gradient(to bottom, #03001e, #7303c0, #ec38bc);
+    min-height: 100vh;
+}
+
+.public-rooms-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.public-rooms-txt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: white;
+    font-size: 1.4rem;
+}
+
+.return-home-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: white;
+    border-radius: 5px;
+    transform: skew(-10deg);
+    border: none;
+    background: #e74c3c;
+    box-shadow: 2px 5px #c0392b;
+    padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+}
+
+.return-home-button strong {
+    display: block;
+    transform: skew(10deg);
+}
+
+.return-home-button:hover {
+    box-shadow: 5px 10px #c0392b;
+}
+
+.public-rooms-box {
+    border-radius: 15px;
+    margin: auto;
+    background: linear-gradient(to left, #9d50bb, #6e48aa);
+    width: 32%;
+    color: white;
+}
+
+.des-public-rooms-txt {
+    font-size: 1.3rem;
+    background-color: #273c75;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 70%;
+    border: #9d86c3 3px dashed;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.public-room-box {
+    background-color: #273c75;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: #9d86c3 3px solid;
+    width: 70%;
+    margin: auto;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.public-rooms-content {
+    margin: 0rem 0.5rem 0rem 0.5rem;
+}
+
+.public-room-icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.room-public-name {
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+.join-public-room-button {
+    float: left;
+    transform: skew(-10deg);
+    border: none;
+    color: white;
+    background-color: #44bd32;
+    box-shadow: 2px 5px #208a4c;
+    border-radius: 5px;
+    margin: 0.3rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+}
+
+.join-public-room-button strong {
+    display: block;
+    transform: skew(10deg);
+}
+
+.join-public-room-button:hover {
+    box-shadow: 5px 10px #208a4c;
+}
+
+.eny-public-rooms {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+}
+
+@media screen and (max-width: 1600px) {
+    .public-rooms-box {
+        width: 36rem;
+    }
+}
+
+@media screen and (max-width: 911px) {
+    .public-rooms-icon {
+        width: 6.5rem;
+        height: 6.5rem;
+    }
+
+    .public-rooms-txt {
+        font-size: 1.1rem;
+    }
+
+    .return-home-button {
+        padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+    }
+
+    .des-public-rooms-txt {
+        font-size: 1.1rem;
+    }
+
+    .public-room-icon {
+        width: 2.9rem;
+        height: 2.9rem;
+    }
+
+    .room-public-name {
+        margin-right: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .join-public-room-button {
+        padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+    }
+}
+
+@media screen and (max-width: 596px) {
+    .public-rooms-box {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .des-public-rooms-txt {
+        width: 80%;
+    }
+
+    .public-room-box {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .des-public-rooms-txt {
+        width: 90%;
+    }
+
+    .public-room-box {
+        width: 90%;
+    }
+
+    .des-public-rooms-txt {
+        font-size: 1rem;
+    }
+
+    .public-room-icon {
+        width: 2.9rem;
+        height: 2.9rem;
+    }
+
+    .join-public-room-button {
+        padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+    }
+}
+
+@media screen and (max-width: 339px) {
+    .public-room-icon {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
+
+    .room-public-name {
+        margin-right: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .join-public-room-button {
+        padding: 0.3rem 0.4rem 0.3rem 0.4rem;
+    }
+}

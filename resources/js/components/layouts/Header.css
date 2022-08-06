@@ -11,7 +11,7 @@
 .header a {
     color: white;
     text-align: center;
-    padding: 12px;
+    padding: 1rem;
     text-decoration: none;
     font-size: 16px;
     line-height: 25px;
@@ -36,7 +36,13 @@
     align-items: center;
 }
 
-@media screen and (max-width: 650px) {
+.public-rooms {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 910px) {
     .header {
         display: block;
     }
@@ -44,6 +50,33 @@
     .header-center {
         width: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header a {
+        font-size: 0.9rem;
+    }
+
+    .public-rooms {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+    
+}
+
+@media screen and (max-width: 429px) {
+    .header {
+        display: block;
+    }
+
+    .header-center {
+        width: 100%;
+        display: flex;
+        text-align: center;
         align-items: center;
         justify-content: center;
     }
@@ -69,4 +102,3 @@
         font-size: 0.8rem;
     }
 }
-

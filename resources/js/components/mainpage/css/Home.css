@@ -103,17 +103,12 @@
     display: flex;
 }
 
-@media screen and (max-width: 1400px) {
-    .Introduction {
-        width: 60%;
-    }
-}
-
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1580px) {
     .Introduction {
         width: 70%;
     }
 }
+
 
 @media screen and (max-width: 1000px) {
     .game-emoji {

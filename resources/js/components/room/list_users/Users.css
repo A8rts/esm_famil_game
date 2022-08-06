@@ -75,6 +75,14 @@
     margin: 0.3rem;
 }
 
+.kick-icon {
+    float: left;
+    width: 2rem;
+    height: 2rem;
+    margin: 0.3rem;
+    cursor: pointer;
+}
+
 .again-finish-buttons {
     display: flex;
     align-content: center;
@@ -156,7 +164,6 @@
     .wait-txt {
         font-size: 1rem;
     }
-    
 }
 
 @media screen and (max-width: 540px) {
@@ -228,8 +235,12 @@
         width: 1.8rem;
         height: 1.8rem;
     }
-}
 
+    .kick-icon {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
 
 @media screen and (max-width: 445px) {
     .again-finish-buttons {

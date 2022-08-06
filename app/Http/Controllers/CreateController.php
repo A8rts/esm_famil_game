@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\FinishEvent;
+use App\Events\KickRequestEvent;
 use App\Models\BestPlayer;
 use App\Models\FinalScore;
+use App\Models\KickRequest;
 use App\Models\Room;
 use App\Models\RoomEvent;
 use App\Models\RoomGame;
@@ -245,5 +247,14 @@ class CreateController extends Controller
     public function update_score()
     {
         return request()->all();
+    }
+
+    public function kick_request()
+    {
+        $kick_request = KickRequest::create([
+            'toId' => request()->toId,
+        ]);
+
+        event(new KickRequestEvent($kick_request));
     }
 }

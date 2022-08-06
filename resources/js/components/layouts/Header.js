@@ -29,6 +29,9 @@ export default class Header extends Component {
                             لیست بهترین بازیکن ها
                         </Link>
                     </div>
+                    <div className="public-rooms">
+                        <Link to="/game/public_rooms">اتاق های عمومی</Link>
+                    </div>
                 </div>
             </main>
         );
