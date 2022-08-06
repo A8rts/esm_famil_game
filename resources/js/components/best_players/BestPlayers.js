@@ -163,47 +163,53 @@ export default class BestPlayers extends Component {
                             <div className="des-best-players-box mt-3 mb-3">
                                 <strong>بهترین بازیکن ها را ببینید!</strong>
                             </div>
-                            {best_players_data.map((item) => (
-                                <div
-                                    className="best-player-data mt-3 mb-3"
-                                    key={item.id}
-                                >
-                                    {item.num == 1 ? (
-                                        <div>
-                                            <img
-                                                className="medal-icon"
-                                                src="https://cdn-icons-png.flaticon.com/128/2583/2583381.png"
-                                            ></img>
-                                        </div>
-                                    ) : item.num == 2 ? (
-                                        <div>
-                                            <img
-                                                className="medal-icon"
-                                                src="https://cdn-icons-png.flaticon.com/128/2583/2583350.png"
-                                            ></img>
-                                        </div>
-                                    ) : item.num == 3 ? (
-                                        <div>
-                                            <img
-                                                className="medal-icon"
-                                                src="https://cdn-icons-png.flaticon.com/128/2583/2583448.png"
-                                            ></img>
-                                        </div>
-                                    ) : (
-                                        <></>
-                                    )}
+                            {best_players_data.length > 0 ? (
+                                best_players_data.map((item) => (
+                                    <div
+                                        className="best-player-data mt-3 mb-3"
+                                        key={item.id}
+                                    >
+                                        {item.num == 1 ? (
+                                            <div>
+                                                <img
+                                                    className="medal-icon"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2583/2583381.png"
+                                                ></img>
+                                            </div>
+                                        ) : item.num == 2 ? (
+                                            <div>
+                                                <img
+                                                    className="medal-icon"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2583/2583350.png"
+                                                ></img>
+                                            </div>
+                                        ) : item.num == 3 ? (
+                                            <div>
+                                                <img
+                                                    className="medal-icon"
+                                                    src="https://cdn-icons-png.flaticon.com/128/2583/2583448.png"
+                                                ></img>
+                                            </div>
+                                        ) : (
+                                            <></>
+                                        )}
 
-                                    <strong className="user-name-best-player mb-2">
-                                        {item.name}
-                                    </strong>
-                                    <strong className="score-best-player">
-                                        امتیاز : {item.score}
-                                    </strong>
-                                    <strong className="num-best-player ">
-                                        نفره {item.num}
-                                    </strong>
-                                </div>
-                            ))}
+                                        <strong className="user-name-best-player mb-2">
+                                            {item.name}
+                                        </strong>
+                                        <strong className="score-best-player">
+                                            امتیاز : {item.score}
+                                        </strong>
+                                        <strong className="num-best-player ">
+                                            نفره {item.num}
+                                        </strong>
+                                    </div>
+                                ))
+                            ) : (
+                                <strong className="eny-public-rooms mb-2">
+                                    فعلا هیچ کسی بازی ای نکرده است!
+                                </strong>
+                            )}
                         </div>
                         <br></br>
                     </div>
