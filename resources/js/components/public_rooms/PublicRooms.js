@@ -110,7 +110,7 @@ export default class PublicRooms extends Component {
                                 <div className="public-rooms-content">
                                     <img
                                         className="public-room-icon"
-                                        src="https://cdn-icons.flaticon.com/png/128/2936/premium/2936774.png?token=exp=1659861876~hmac=af7a07c32ac87c579e8a521e17672dae"
+                                        src="https://cdn-icons.flaticon.com/png/128/2936/premium/2936774.png?token=exp=1660639730~hmac=5fea69d080e67f679e38ee5382fee06c"
                                     ></img>
                                     <strong className="room-public-name">
                                         {item.name}

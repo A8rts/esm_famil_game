@@ -46,7 +46,7 @@ export default class FinalResult extends Component {
         return (
             <div className="final-result">
                 <img
-                    src="https://cdn-icons.flaticon.com/png/128/2065/premium/2065169.png?token=exp=1659437494~hmac=ab120bb39e1d8d08b099c7d70c71c24f"
+                    src="https://cdn-icons.flaticon.com/png/128/2065/premium/2065169.png?token=exp=1660640206~hmac=7c4f6bd5f56c49da4ab5b351799063bf"
                     className="final-result-icon mt-2"
                 ></img>
                 <strong className="final-result-txt mt-3">

@@ -87,7 +87,7 @@ export default class GameForm extends Component {
                     <div>
                         <img
                             className="game-form-icon mb-2"
-                            src="https://cdn-icons.flaticon.com/png/128/1698/premium/1698579.png?token=exp=1659184503~hmac=1f93fe74a86a077c11f8595f15aa1787"
+                            src="https://cdn-icons.flaticon.com/png/128/1698/premium/1698579.png?token=exp=1660640081~hmac=0e923883ff1ba9d2fa69860eae46c58d"
                         ></img>
                         <strong className="game-form-txt">
                             بازی شروع شده فرمو پر کن!

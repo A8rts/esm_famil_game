@@ -77,7 +77,7 @@ export default class Users extends Component {
                 )}
                 <img
                     className="users-section-icon"
-                    src="https://cdn-icons.flaticon.com/png/128/1165/premium/1165725.png?token=exp=1659160501~hmac=fcf9a2b5e9a3e3957b0c93e1554f23c7"
+                    src="https://cdn-icons.flaticon.com/png/128/1165/premium/1165725.png?token=exp=1660639361~hmac=f5b7a926cb3b8e1e3254a2da3861ca2a"
                 ></img>
                 <strong className="mt-2 users-txt">بازیکن ها</strong>
                 <div className="all-users-box mt-4">
@@ -92,7 +92,7 @@ export default class Users extends Component {
                                 <div className="user-content">
                                     <img
                                         className="user-section-icon"
-                                        src="https://cdn-icons.flaticon.com/png/128/2102/premium/2102633.png?token=exp=1659097789~hmac=0b84d2c5f541fe24920386db603e3fe6"
+                                        src="https://cdn-icons.flaticon.com/png/128/2102/premium/2102633.png?token=exp=1660639361~hmac=89864f5afa95b07d238ea721bc884837"
                                     ></img>
                                     <strong className="user-section-name">
                                         {item.name}
@@ -100,7 +100,7 @@ export default class Users extends Component {
                                     {item.id == owner_id ? (
                                         <img
                                             className="crown-icon"
-                                            src="https://cdn-icons.flaticon.com/png/128/1168/premium/1168868.png?token=exp=1659099060~hmac=da7dd393661814483321b5e7b2ed1f53"
+                                            src="https://cdn-icons-png.flaticon.com/128/1198/1198990.png"
                                         ></img>
                                     ) : user_id == owner_id ? (
                                         <img
